@@ -1,0 +1,51 @@
+@import 'vars.scss';
+
+body{
+  font-family: Roboto, sans-serif;
+  color: #232323;
+}
+
+/* spacing */
+.py-6{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* text */
+.text-small{
+  font-size: 90%;
+}
+p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+h2{
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 3rem;
+  margin-top: 1.7rem;
+}
+
+.text-accent{color: $accent-color;}
+a.text-accent:hover{color:darken($accent-color, 5%);}
+
+/* buttons */
+
+.btn-custom-orange{
+  color: #ffffff;
+  background-color: $accent-color;
+  border-color: $accent-color;
+  &:hover{
+    color: #ffffff;
+    background-color: darken($accent-color, 3%);
+    border-color:darken($accent-color, 3%);
+  }
+}
+
+/* img */
+
+img{
+  max-width: 100%;
+}
