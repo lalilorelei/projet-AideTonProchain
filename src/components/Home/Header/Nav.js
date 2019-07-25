@@ -1,5 +1,5 @@
 import React from 'react';
-import logo_blanc from '../../assets/img/logo-atp-blanc.png';
+import logo_blanc from '../../../assets/img/logo-atp-blanc.png';
 
 const Nav = () => {
     return(
