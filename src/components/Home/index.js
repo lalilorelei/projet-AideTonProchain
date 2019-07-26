@@ -9,7 +9,7 @@ import './home.scss';
 
 const Home = () => (
     <>
-        <section className="py-5">
+        <section className="py-5 bg-white">
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -40,7 +40,7 @@ const Home = () => (
             </div>
             </div>
         </section>
-        <section id="join-us" className="py-5">
+        <section id="join-us" className="py-5 bg-white">
             <div className="container">
             <div className="row">
                 <div className="col text-center">
