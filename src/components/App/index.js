@@ -8,7 +8,7 @@ import './App.scss';
 import Header from '../Home/Header';
 import Nav from '../Nav';
 import Home from '../Home';
-import Login from '../Login';
+import Login from '../../containers/Login';
 
 const App = () => (
   <>
