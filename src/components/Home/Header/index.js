@@ -1,12 +1,13 @@
 import React from 'react';
 
 import './header.scss';
-import Nav from './Nav'; 
+import Nav from '../../Nav'; 
 
-const Header = () => (
+const Header = ({theme}) => {
+    return(
     <>
         <header>
-            <Nav />
+            <Nav theme={theme} />
             <div className="container mt-4 text-white py-5">
                 <div className="row justify-content-center">
                     <div className="col col-lg-8 text-center">
@@ -20,6 +21,7 @@ const Header = () => (
             </div>
         </header>
     </>
-);
+    );
+};
 
 export default Header;
