@@ -10,6 +10,7 @@ import Login from 'containers/Login';
 import Profil from 'components/Profil';
 import Register from 'components/Register';
 import ProfilUpdate from 'components/ProfilUpdate';
+import Donations from 'components/Donations';
 
 const App = () => (
   <>
@@ -60,6 +61,14 @@ const App = () => (
         path="/profil-update"
         render={() => {
           return <ProfilUpdate />;
+        }}
+      />
+      <Route
+        exact
+        key="/donations"
+        path="/donations"
+        render={() => {
+          return <Donations />;
         }}
       />
     </Switch>
