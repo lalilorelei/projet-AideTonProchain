@@ -13,11 +13,11 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 const rootComponent = (
-    <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>
 );
 
 ReactDOM.render(rootComponent, document.getElementById('root'));
