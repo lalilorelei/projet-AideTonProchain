@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './header.scss';
 import Nav from '../../Nav'; 
@@ -15,7 +16,7 @@ const Header = ({theme}) => {
                         <p className="mt-5">
                             I think we need to start from scratch. I'll pay you in a week we don't need to pay upfront i hope you understand we are a startup, nor we don't need a contract, do we or can you please change the color theme of the website
                         </p>
-                        <button className="btn btn-lg btn-custom-orange font-weight-bold mt-5 mb-4">Découvrir comment ça marche</button>
+                        <Link to="/comment-ca-marche" className="btn btn-lg btn-custom-accent font-weight-bold mt-5 mb-4">Découvrir comment ça marche</Link>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import './App.scss';
 import Header from '../Home/Header';
 import Nav from '../Nav';
 import Home from '../Home';
+import Login from '../../containers/Login';
 
 const App = () => (
   <>
@@ -61,7 +62,7 @@ const App = () => (
         path="/login"
         render={() => {
           return(
-            <h1>Login</h1>
+            <Login />
           );
         }}
       />
