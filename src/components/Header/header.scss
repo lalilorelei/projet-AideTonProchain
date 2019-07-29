@@ -1,6 +1,4 @@
 header{
-    background: url('../../../assets/img/header-background-blue.jpg') 50% 90%;
-    background-size: cover;
     
     h1{
         font-weight: bold;
@@ -10,4 +8,9 @@ header{
     p{
         color: rgba(255,255,255,.85);
     }
+}
+
+.home-header{
+    background: url('../../assets/img/header-background-blue.jpg') 50% 90%;
+    background-size: cover;
 }

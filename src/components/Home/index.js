@@ -4,11 +4,15 @@ import React from 'react';
 import illustration_qsn from '../../assets/img/illustration-qsn.jpg';
 import mockup from '../../assets/img/mockup-donation.png';
 
+import { Link } from 'react-router-dom';
+import Header from 'components/Header';
+
 import testimonies from '../../data/testimonies';
 import './home.scss';
 
 const Home = () => (
     <>
+        <Header page="home"/>
         <section className="py-5 bg-white">
             <div className="container">
                 <div className="row">

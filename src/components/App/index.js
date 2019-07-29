@@ -5,36 +5,14 @@ import {
 } from 'react-router-dom'
 
 import './App.scss';
-import Header from '../Home/Header';
-import Nav from '../Nav';
-import Home from '../Home';
-import Login from '../../containers/Login';
+
+/* Pages */
+import Home from 'components/Home';
+import Contact from 'components/Contact';
+import Login from 'containers/Login';
 
 const App = () => (
   <>
-    
-    { /* Header & Nav */ }
-    <Switch>
-      {/* specific display on homepage (header 'dark') */ }
-      <Route
-        exact
-        path="/"
-        render={() => {
-          return(
-            <Header theme="dark"/>
-          );
-        }}
-      />
-      {/* if not homepage, display nav in light theme */ }
-      <Route render={() => {
-        return(
-          <Nav theme="light" />
-        );
-      }}/>
-    </Switch>
-
-
-
     <Switch>
       <Route
         exact
@@ -52,7 +30,7 @@ const App = () => (
         path="/contact"
         render={() => {
           return(
-            <h1>Contact</h1>
+            <Contact />
           );
         }}
       />
