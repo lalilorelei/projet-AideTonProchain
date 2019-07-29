@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import form from './loginForm';
+import sharedReducer from './sharedReducer';
 
 const reducers = combineReducers({
-  form,
+  sharedReducer,
 });
 
 export default reducers;
