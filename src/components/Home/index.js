@@ -13,7 +13,7 @@ import './home.scss';
 const Home = () => (
     <>
         <Header page="home"/>
-        <section className="py-5 bg-white">
+        <section id="qui-sommes-nous" className="py-5 bg-white">
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -27,7 +27,7 @@ const Home = () => (
                 </div>
             </div>
         </section>
-        <section className="bg-light py-5">
+        <section id="comment-ca-marche" className="bg-light py-5">
             <div className="container">
             <div className="row">
                 <div className="col">

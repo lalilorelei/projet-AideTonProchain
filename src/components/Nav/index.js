@@ -38,26 +38,10 @@ class Nav extends React.Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                exact
-                to="/qui-sommes-nous"
-                key="/qui-sommes-nous"
-                className="nav-link"
-                activeClassName="active"
-              >
-              Qui sommes-nous ?
-              </NavLink>
+              <a className="nav-link" href="#qui-sommes-nous">Qui sommes-nous</a>
             </li>
             <li className="nav-item">
-              <NavLink
-                exact
-                to="/comment-ca-marche"
-                key="/comment-ca-marche"
-                className="nav-link"
-                activeClassName="active"
-              >
-              Comment ça marche
-              </NavLink>
+              <a className="nav-link" href="#comment-ca-marche">Comment ça marche</a>
             </li>
             <li className="nav-item">
               <NavLink
