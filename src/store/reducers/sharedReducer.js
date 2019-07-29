@@ -5,8 +5,8 @@ const initialState = {
   loginLogin: 'testinput@mail.com',
   loginPassword: '',
   user: {
-    username: 'Tinin72',
-    role: 'donor',
+    username: 'Tintin72',
+    role: 'shopkeeper',
   }
 };
 
