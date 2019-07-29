@@ -1,4 +1,4 @@
-import { SUBMIT_LOGIN } from './reducers/loginForm';
+import { SUBMIT_LOGIN } from './reducers/sharedReducer';
 
 const Middleware = store => next => (action) => {
   switch (action.type) {
