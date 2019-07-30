@@ -12,77 +12,59 @@ class Donations extends React.Component {
           <div className="row justify-content-center">
             <div className="col col-lg-8 text-center">
               <h2>En cours</h2>
-              <form>
-                <table class="table text-left">
-                  <thead>
-                    <tr>
-                      <th scope="col">Produit</th>
-                      <th scope="col">Prix</th>
-                      <th scope="col">Quantité</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Café</td>
-                      <td>2€</td>
-                      <td className="selector">
-                        <div>
-                          <select class="form-control form-control-sm" id="exampleFormControlSelect1">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Sandwich</td>
-                      <td>2€</td>
-                      <td className="selector">
-                        <div>
-                          <select class="form-control" id="exampleFormControlSelect1">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Jus d'orange</td>
-                      <td>4€</td>
-                      <td className="selector">
-                        <div>
-                          <select class="form-control" id="exampleFormControlSelect1">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th scope="row">Total</th>
-                      <td>8€</td>
-                      <td />
-                    </tr>
-                  </tfoot>
-                </table>
-                <input
-                  type="submit"
-                  className="btn btn-custom-accent btn-lg btn-block"
-                  name="submitProductSelector"
-                  value="Valider"
-                />
-              </form>
+              <table class="table text-left">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div>
+                        <p>Pour Toto le 30/07/2019</p>
+                        <h3>1 café</h3>
+                        <p>Café des amis</p>
+                        <p>Ref: ATP-2019-41</p>
+                      </div>
+                    </td>
+                    <td>2€</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div>
+                        <p>Pour Kylian le 01/08/2019</p>
+                        <h3>1 sandwich</h3>
+                        <p>Café de la gare</p>
+                        <p>Ref: ATP-2019-4112</p>
+                      </div>
+                    </td>
+                    <td>5€</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h2>Consommées</h2>
+              <table class="table text-left">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div>
+                        <p>Pour Patoche le 20/07/2019</p>
+                        <h3>1 café</h3>
+                        <p>Bar des amis</p>
+                        <p>Ref: ATP-2019-101</p>
+                      </div>
+                    </td>
+                    <td>2€</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div>
+                        <p>Pour michel le 05/08/2019</p>
+                        <h3>1 sandwich</h3>
+                        <p>Café du commerce</p>
+                        <p>Ref: ATP-2019-412</p>
+                      </div>
+                    </td>
+                    <td>5€</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

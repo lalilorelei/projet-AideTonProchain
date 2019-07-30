@@ -9,7 +9,7 @@ class Profil extends React.Component {
   render() {
     return (
       <>
-        <Header title="Profil" />
+        <Header title="Profil " />
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col col-lg-8 text-center">
