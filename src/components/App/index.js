@@ -11,6 +11,8 @@ import Profil from 'components/Profil';
 import Register from 'components/Register';
 import ProfilUpdate from 'components/ProfilUpdate';
 import Donations from 'components/Donations';
+import ShopKeeper from 'components/ShopKeeper';
+import DetailDonations from 'components/DetailDonations';
 
 const App = () => (
   <>
@@ -69,6 +71,22 @@ const App = () => (
         path="/donations"
         render={() => {
           return <Donations />;
+        }}
+      />
+      <Route
+        exact
+        key="/shopkeeper"
+        path="/shopkeeper"
+        render={() => {
+          return <ShopKeeper />;
+        }}
+      />
+      <Route
+        exact
+        key="/donations/[id]"
+        path="/donations/[id]"
+        render={() => {
+          return <DetailDonations />;
         }}
       />
     </Switch>

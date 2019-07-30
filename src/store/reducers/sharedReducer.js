@@ -4,10 +4,7 @@
 const initialState = {
   loginLogin: 'testinput@mail.com',
   loginPassword: '',
-  user: {
-    username: 'Tintin72',
-    role: 'beneficiary', /* use 'beneficiary' or 'shopkeeper' or 'donor' */
-  }
+  user: '',
 };
 
 /**
@@ -30,12 +27,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
       };
 
-    case CHANGE_INPUT_VALUE:
-      const target = action.key;
-      return {
-        ...state,
-        [target]: action.value,
-      };
     default:
       return state;
   }
@@ -45,8 +36,9 @@ const reducer = (state = initialState, action = {}) => {
  * Action Creators
  */
 
-export const submitLogin = credentials => ({
+export const submitLogin = data => ({
   type: SUBMIT_LOGIN,
+  data,
 });
 
 export const changeInput = (key, value) => ({
