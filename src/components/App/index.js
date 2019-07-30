@@ -15,6 +15,7 @@ import ShopKeeper from 'components/ShopKeeper';
 import DetailDonations from 'components/DetailDonations';
 import Products from 'components/Products';
 import Localisation from 'components/Localisation';
+import Payment from 'components/Payment';
 
 const App = () => (
   <>
@@ -106,6 +107,14 @@ const App = () => (
         path="/localisation"
         render={() => {
           return <Localisation />;
+        }}
+      />
+      <Route
+        exact
+        key="/payment"
+        path="/payment"
+        render={() => {
+          return <Payment />;
         }}
       />
     </Switch>
