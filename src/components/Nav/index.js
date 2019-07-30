@@ -9,7 +9,6 @@ class Nav extends React.Component {
   render() {
 
     const { theme, user } = this.props;
-    console.log(user);
 
     return(
       <nav className={`navbar navbar-expand-lg navbar-${theme}`}>
@@ -77,7 +76,13 @@ class Nav extends React.Component {
                         <a className="nav-link" href="#">Gérer&nbsp;mes&nbsp;produits</a>
                         <a className="nav-link" href="#">Suivi&nbsp;des&nbsp;transactions</a>
                         <div className="dropdown-divider"></div>
-                        <a className="nav-link" href="#">Mon&nbsp;profil</a>
+                        <Link 
+                          exact
+                          to="/profil"
+                          className="nav-link"
+                        >
+                          Mon&nbsp;profil
+                        </Link>
                         <a className="nav-link text-danger" href="#">Déconnexion</a>
                       </div>
                     : user.role === 'beneficiary' ?

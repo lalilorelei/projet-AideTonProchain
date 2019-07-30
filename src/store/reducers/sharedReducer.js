@@ -6,7 +6,7 @@ const initialState = {
   loginPassword: '',
   user: {
     username: 'Tintin72',
-    role: 'beneficiary',
+    role: 'beneficiary', /* use 'beneficiary' or 'shopkeeper' or 'donor' */
   }
 };
 

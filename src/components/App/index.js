@@ -8,6 +8,7 @@ import Home from 'components/Home';
 import Contact from 'components/Contact';
 import Login from 'containers/Login';
 import Profil from 'components/Profil';
+import Register from 'components/Register';
 
 const App = () => (
   <>
@@ -41,7 +42,7 @@ const App = () => (
         key="/register"
         path="/register"
         render={() => {
-          return <h1>Register</h1>;
+          return <Register />;
         }}
       />
       <Route
