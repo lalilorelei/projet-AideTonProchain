@@ -47,10 +47,8 @@ const App = () => (
       <Route
         exact
         key="/register"
-        path="/register"
-        render={() => {
-          return <Register />;
-        }}
+        path="/register/:role(donor|beneficiary|shopkeeper)"
+        component={Register}
       />
       <Route
         exact
@@ -115,6 +113,11 @@ const App = () => (
         path="/payment"
         render={() => {
           return <Payment />;
+        }}
+      />
+      <Route
+        render={() => {
+          return <h1>Erreur 404</h1>;
         }}
       />
     </Switch>

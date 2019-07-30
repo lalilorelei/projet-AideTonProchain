@@ -6,12 +6,11 @@ import Input from 'components/Forms';
 import RegisterShopkeeper from './shopkeeperInputs';
 import './register.scss';
 
-const Register = ({
-  location: {
-    state: { role },
-  },
-}) => {
+const Register = props => {
+  const role = props.match.params.role;
+  console.log(props);
   let roleTitle = '';
+
   role === 'beneficiary'
     ? (roleTitle = 'bénéficiaire')
     : role === 'donor'
@@ -25,53 +24,6 @@ const Register = ({
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-6">
             <form>
-              {// if no role in props, display role selector
-              role === 'donor' || role === 'beneficiary' || role === 'shopkeeper' ? (
-                ''
-              ) : (
-                <div className="radios">
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="registerRoleSelector"
-                      id="inlineRadio1"
-                      value="donor"
-                      checked={role === 'donor' ? 'checked' : ''}
-                    />
-                    <label className="form-check-label" htmlFor="inlineRadio1">
-                      Donateur
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="registerRoleSelector"
-                      id="inlineRadio2"
-                      value="beneficiary"
-                      checked={role === 'beneficiary' ? 'checked' : ''}
-                    />
-                    <label className="form-check-label" htmlFor="inlineRadio2">
-                      Bénéficaire
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="registerRoleSelector"
-                      id="inlineRadio2"
-                      value="shopkeeper"
-                      checked={role === 'shopkeeper' ? 'checked' : ''}
-                    />
-                    <label className="form-check-label" htmlFor="inlineRadio2">
-                      Commerçant
-                    </label>
-                  </div>
-                </div>
-              )}
-
               <h3>Vos identifiants</h3>
               <Input
                 type="text"

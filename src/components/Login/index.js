@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Header from 'components/Header';
+import Input from 'components/Forms';
 import './login.scss';
 
 const Login = ({ submitLogin }) => {
@@ -18,47 +20,37 @@ const Login = ({ submitLogin }) => {
 
   return (
     <>
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col text-center">
-            <h1>Connexion</h1>
-          </div>
-        </div>
-
+      <Header title="Connexion" />
+      <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 col-lg-4">
             <form className="mt-4" onSubmit={submitLoginForm}>
-              <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Adresse email ou nom d'utilisateur</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Entrez votre adresse e-mail"
-                  name="email"
-                />
-              </div>
-              <div className="form-group mt-4">
-                <div className="d-flex justify-content-between">
-                  <label htmlFor="exampleInputPassword1">Mot de passe</label>
-                  <a href="#" className="text-small">
-                    Mot de passe oublié ?
-                  </a>
-                </div>
-
-                <input
-                  type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="Entrez votre mot de passe"
-                  name="password"
-                />
-              </div>
+              <Input
+                label="Adresse email ou nom d'utilisateur"
+                type="text"
+                className="form-control"
+                id="emailOrUserName"
+                name="emailOrUserName"
+                placeholder="ex: tintin@mail.com"
+                required={true}
+              />
+              <Input
+                label="Mot de passe"
+                type="password"
+                className="form-control"
+                id="password"
+                name="password"
+                required={true}
+              />
               <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
                 Se connecter
               </button>
             </form>
+            <div className="mt-3 text-right">
+              <a href="#" className="text-small">
+                Mot de passe oublié ?
+              </a>
+            </div>
           </div>
         </div>
       </div>

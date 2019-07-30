@@ -13,9 +13,9 @@ const RegisterShopkeeper = () => (
       placeholder="ex: Café de la gare"
       required={true}
     />
-    <div class="form-group">
+    <div className="form-group">
       <label htmlFor="shopCategory">Catégorie de l'établissement</label>
-      <select class="form-control" id="shopCategory" name="shopCategory">
+      <select className="form-control" id="shopCategory" name="shopCategory">
         <option value="cafe">Café</option>
         <option value="restaurant">Restaurant</option>
       </select>
