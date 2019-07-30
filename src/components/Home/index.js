@@ -60,7 +60,18 @@ const Home = () => (
                         Donateur
                     </div>
                     <p>For doing some work for us "pro bono" will really add to your portfolio i promise nor can my website be in english?. In an ideal world give us a complimentary.</p>
-                    <a href="#" className="text-accent">Nous rejoindre</a>
+                    <Link 
+                        key="donorRegistration"
+                        className="text-accent"
+                        to={{
+                            pathname: '/register',
+                            state: { 
+                                role: 'donor',
+                                roleTitle: 'donateur',
+                            }
+                        }}>
+                    Nous rejoindre</Link>
+
                 </div>
 
                 { /* bloc bénéficiaire */ }
@@ -69,7 +80,17 @@ const Home = () => (
                         Bénéficiaire
                     </div>
                     <p>For doing some work for us "pro bono" will really add to your portfolio i promise nor can my website be in english?. In an ideal world give us a complimentary.</p>
-                    <a href="#" className="text-accent">Nous rejoindre</a>
+                    <Link 
+                        key="beneficiaryRegistration"
+                        className="text-accent"
+                        to={{
+                            pathname: '/register',
+                            state: { 
+                                role: 'beneficiary',
+                                roleTitle: 'bénéficiaire',
+                            }
+                        }}>
+                    Nous rejoindre</Link>
                 </div>
 
                 { /* bloc donateur */ }
@@ -78,7 +99,17 @@ const Home = () => (
                         Commerçant
                     </div>
                     <p>For doing some work for us "pro bono" will really add to your portfolio i promise nor can my website be in english?. In an ideal world give us a complimentary.</p>
-                    <a href="#" className="text-accent">Nous rejoindre</a>
+                    <Link 
+                        key="shopkeeperRegistration"
+                        className="text-accent"
+                        to={{
+                            pathname: '/register',
+                            state: { 
+                                role: 'shopkeeper',
+                                roleTitle: 'commerçant',
+                            }
+                        }}>
+                    Nous rejoindre</Link>
                 </div>
             </div> 
             </div>

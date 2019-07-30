@@ -1,13 +1,29 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Header from 'components/Header';
 import './register.scss';
 
 class Register extends React.Component {
+    state = {
+    roleTitle: '',
+    role: '',
+  }
+
+  componentDidMount = () => {
+    console.log('state', this.props.location.state);
+    const { roleTitle, role } =  this.props.location.state;
+    //console.log(roleTitle, role);
+    this.setState({
+      roleTitle: roleTitle,
+      role: role,
+    });
+  }
+
   render() {
     return (
       <>
-        <Header title="inscription" />
+        <Header title={`Inscription ${this.state.roleTitle}`} />
         <div className="row justify-content-center">
           <div className="col-md-6 col-lg-4">
             <form className="mt-4">
@@ -15,9 +31,10 @@ class Register extends React.Component {
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="inlineRadioOptions"
+                  name="registerRoleSelector"
                   id="inlineRadio1"
-                  value="option1"
+                  value="donor"
+                  checked={this.state.role === 'donor' ? 'checked' : ''}
                 />
                 <label className="form-check-label" for="inlineRadio1">
                   Donateur
@@ -27,9 +44,10 @@ class Register extends React.Component {
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="inlineRadioOptions"
+                  name="registerRoleSelector"
                   id="inlineRadio2"
-                  value="option2"
+                  value="beneficiary"
+                  checked={this.state.role === 'beneficiary' ? 'checked' : ''}
                 />
                 <label className="form-check-label" for="inlineRadio2">
                   Bénéficaire
@@ -39,9 +57,10 @@ class Register extends React.Component {
                 <input
                   className="form-check-input"
                   type="radio"
-                  name="inlineRadioOptions"
+                  name="registerRoleSelector"
                   id="inlineRadio2"
-                  value="option2"
+                  value="shopkeeper"
+                  checked={this.state.role === 'shopkeeper' ? 'checked' : ''}
                 />
                 <label className="form-check-label" for="inlineRadio2">
                   Commerçant
@@ -115,4 +134,5 @@ class Register extends React.Component {
     );
   }
 }
-export default Register;
+export default withRouter(Register);
+
