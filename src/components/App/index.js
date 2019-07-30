@@ -13,7 +13,11 @@ import ProfilUpdate from 'components/ProfilUpdate';
 import Donations from 'components/Donations';
 import ShopKeeper from 'components/ShopKeeper';
 import DetailDonations from 'components/DetailDonations';
+<<<<<<< HEAD
 import Products from 'components/Products';
+=======
+import Localisation from 'components/Localisation';
+>>>>>>> fd2b1f4a4222311221a892d3d207535b0949d67d
 
 const App = () => (
   <>
@@ -92,10 +96,17 @@ const App = () => (
       />
       <Route
         exact
+<<<<<<< HEAD
         key="/products"
         path="/products"
         render={() => {
           return <Products />;
+=======
+        key="/localisation"
+        path="/localisation"
+        render={() => {
+          return <Localisation />;
+>>>>>>> fd2b1f4a4222311221a892d3d207535b0949d67d
         }}
       />
     </Switch>
