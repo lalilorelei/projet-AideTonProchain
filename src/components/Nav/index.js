@@ -12,7 +12,11 @@ class Nav extends React.Component {
     return (
       <nav className={`navbar navbar-expand-lg navbar-${theme}`}>
         <Link key="/logo" className="navbar-brand" to="/">
-          {theme === 'dark' ? <img src={logo_dark} alt="logo-atp" /> : <img src={logo_light} alt="logo-atp" />}
+          {theme === 'dark' ? (
+            <img src={logo_dark} alt="logo-atp" />
+          ) : (
+            <img src={logo_light} alt="logo-atp" />
+          )}
         </Link>
         <button
           className="navbar-toggler"
@@ -44,7 +48,13 @@ class Nav extends React.Component {
               </a>
             </li>
             <li className="nav-item">
-              <NavLink exact to="/contact" key="/contact" className="nav-link" activeClassName="active">
+              <NavLink
+                exact
+                to="/contact"
+                key="/contact"
+                className="nav-link"
+                activeClassName="active"
+              >
                 Contact
               </NavLink>
             </li>
@@ -61,51 +71,66 @@ class Nav extends React.Component {
                   aria-expanded="false"
                 >
                   {user.username} ({user.role})
-                  </a>
-                  {
-                    user.role === 'donor' ?
-                      <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a className="nav-link" href="#">Personnes&nbsp;à&nbsp;proximité</a>
-                        <a className="nav-link" href="#">Commerces&nbsp;à&nbsp;proximité</a>
-                        <a className="nav-link" href="#">Mes&nbsp;dons</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="nav-link" href="#">Mon&nbsp;profil</a>
-                        <a className="nav-link text-danger" href="#">Déconnexion</a>
-                      </div>
-                    : user.role === 'shopkeeper' ?
-                      <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a className="nav-link" href="#">Gérer&nbsp;mes&nbsp;produits</a>
-                        <a className="nav-link" href="#">Suivi&nbsp;des&nbsp;transactions</a>
-                        <div className="dropdown-divider"></div>
-                        <Link 
-                          exact
-                          to="/profil"
-                          className="nav-link"
-                        >
-                          Mon&nbsp;profil
-                        </Link>
-                        <a className="nav-link text-danger" href="#">Déconnexion</a>
-                      </div>
-                    : user.role === 'beneficiary' ?
-                      <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a className="nav-link" href="#">Commerces&nbsp;à&nbsp;proximité</a>
-                        <a className="nav-link" href="#">Mes&nbsp;dons</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="nav-link" href="#">Mon&nbsp;profil</a>
-                        <a className="nav-link text-danger" href="#">Déconnexion</a>
-                      </div>
-                    : <p>Humm...</p>
-                  }
-                </li>
-             ) : (
-                <>
-                  <li className="nav-item">
-                    <NavLink
-                      exact
-                      to="/register"
-                      key="/register"
-                      className="nav-link"
-                    >
+                </a>
+                {user.role === 'donor' ? (
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a className="nav-link" href="#">
+                      Personnes&nbsp;à&nbsp;proximité
+                    </a>
+                    <a className="nav-link" href="#">
+                      Commerces&nbsp;à&nbsp;proximité
+                    </a>
+                    <a className="nav-link" href="#">
+                      Mes&nbsp;dons
+                    </a>
+                    <div className="dropdown-divider" />
+                    <a className="nav-link" href="#">
+                      Mon&nbsp;profil
+                    </a>
+                    <a className="nav-link text-danger" href="#">
+                      Déconnexion
+                    </a>
+                  </div>
+                ) : user.role === 'shopkeeper' ? (
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a className="nav-link" href="#">
+                      Gérer&nbsp;mes&nbsp;produits
+                    </a>
+                    <a className="nav-link" href="#">
+                      Suivi&nbsp;des&nbsp;transactions
+                    </a>
+                    <div className="dropdown-divider" />
+                    <Link exact to="/profil" className="nav-link">
+                      Mon&nbsp;profil
+                    </Link>
+                    <a className="nav-link text-danger" href="#">
+                      Déconnexion
+                    </a>
+                  </div>
+                ) : user.role === 'beneficiary' ? (
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a className="nav-link" href="#">
+                      Commerces&nbsp;à&nbsp;proximité
+                    </a>
+                    <a className="nav-link" href="#">
+                      Mes&nbsp;dons
+                    </a>
+                    <div className="dropdown-divider" />
+                    <a className="nav-link" href="#">
+                      Mon&nbsp;profil
+                    </a>
+                    <a className="nav-link text-danger" href="#">
+                      Déconnexion
+                    </a>
+                  </div>
+                ) : (
+                  <p>Humm...</p>
+                )}
+              </li>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink exact to="/register" key="/register" className="nav-link">
                     Inscription
                   </NavLink>
                 </li>
