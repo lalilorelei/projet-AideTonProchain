@@ -67,7 +67,7 @@ const Home = () => (
                             pathname: '/register',
                             state: { 
                                 role: 'donor',
-                                roleTitle: 'doneur',
+                                roleTitle: 'donateur',
                             }
                         }}>
                     Nous rejoindre</Link>

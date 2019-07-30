@@ -25,17 +25,17 @@ const reducer = (state = initialState, action = {}) => {
     // je décris l'évolution de mon state selon les actions
 
     case SUBMIT_LOGIN:
-    console.log("Tentative de connexion avec", action.credentials);
+      console.log('Tentative de connexion avec', action.credentials);
       return {
         ...state,
       };
 
     case CHANGE_INPUT_VALUE:
-    const target = action.key;
+      const target = action.key;
       return {
-          ...state,
-          [target]: action.value,
-      }
+        ...state,
+        [target]: action.value,
+      };
     default:
       return state;
   }
@@ -58,7 +58,6 @@ export const changeInput = (key, value) => ({
 /**
  * Selectors
  */
-
 
 /**
  * Export

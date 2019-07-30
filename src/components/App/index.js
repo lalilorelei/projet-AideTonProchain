@@ -9,6 +9,7 @@ import Contact from 'components/Contact';
 import Login from 'containers/Login';
 import Profil from 'components/Profil';
 import Register from 'components/Register';
+import ProfilUpdate from 'components/ProfilUpdate';
 
 const App = () => (
   <>
@@ -51,6 +52,14 @@ const App = () => (
         path="/profil"
         render={() => {
           return <Profil />;
+        }}
+      />
+      <Route
+        exact
+        key="/profil-update"
+        path="/profil-update"
+        render={() => {
+          return <ProfilUpdate />;
         }}
       />
     </Switch>
