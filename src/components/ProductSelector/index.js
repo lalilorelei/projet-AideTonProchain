@@ -7,7 +7,7 @@ const ProductSelector = ({ products }) => {
     <>
       <h2>Produits disponibles</h2>
       <form className="my-3">
-        <table class="table text-left">
+        <table className="table text-left">
           <thead>
             <tr>
               <th scope="col">Produit</th>
@@ -17,12 +17,16 @@ const ProductSelector = ({ products }) => {
           </thead>
           <tbody>
             {products.map(product => (
-              <tr>
+              <tr key={product.id}>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td className="selector">
                   <div>
-                    <select class="form-control form-control-sm" name={product.id} id={product.id}>
+                    <select
+                      className="form-control form-control-sm"
+                      name={product.id}
+                      id={product.id}
+                    >
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>

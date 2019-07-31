@@ -20,6 +20,7 @@ import ShopKeeperDetails from 'components/ShopKeeperDetails';
 import Contact from 'containers/Contact';
 import Login from 'containers/Login';
 import Register from 'containers/Register';
+import ShopProductsSelector from 'containers/ShopProductsSelector';
 
 const App = () => (
   <>
@@ -59,7 +60,7 @@ const App = () => (
         key="/profil"
         path="/profil"
         render={() => {
-          return <Profil />;
+          return <ShopProductsSelector />;
         }}
       />
       <Route
