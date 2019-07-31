@@ -44,7 +44,7 @@ const ShopKeeper = () => {
   return (
     <>
       <Header title="Commerces à proximité" />
-      <div className="container py-5">
+      <div className="container py-5 shopkeeper-list">
         <div className="row my-3">
           <form className="form-inline d-flex justify-content-between">
             <div className="col-md-4">
