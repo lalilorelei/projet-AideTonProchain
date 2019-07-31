@@ -8,7 +8,7 @@ import Home from 'components/Home';
 import Contact from 'components/Contact';
 import Login from 'containers/Login';
 import Profil from 'components/Profil';
-import Register from 'components/Register';
+import Register from 'containers/Register';
 import ProfilUpdate from 'components/ProfilUpdate';
 import Donations from 'components/Donations';
 import ShopKeeper from 'components/ShopKeeper';

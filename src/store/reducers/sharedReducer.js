@@ -12,7 +12,7 @@ const initialState = {
  */
 // je crée mes types d'actions
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
-const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
+export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
 
 /**
  * Reducer
@@ -23,6 +23,11 @@ const reducer = (state = initialState, action = {}) => {
 
     case SUBMIT_LOGIN:
       console.log('Tentative de connexion avec', action.credentials);
+      return {
+        ...state,
+      };
+    case SUBMIT_REGISTER:
+      console.log("Tentative d'enregistrement avec", action.credentials);
       return {
         ...state,
       };
@@ -41,10 +46,10 @@ export const submitLogin = data => ({
   data,
 });
 
-export const changeInput = (key, value) => ({
-  type: CHANGE_INPUT_VALUE,
-  value,
-  key,
+export const submitRegister = (data, role) => ({
+  type: SUBMIT_REGISTER,
+  data,
+  role,
 });
 
 /**

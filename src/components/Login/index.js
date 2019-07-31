@@ -3,19 +3,14 @@ import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
 import Input from 'components/Forms';
+import { serializeFormData } from 'utils';
 import './login.scss';
 
 const Login = ({ submitLogin }) => {
-  // const changeInput = (key, event) => {
-  //   const { changeInput } = this.props;
-  //   changeInput(key, event.target.value);
-  // }
   const submitLoginForm = event => {
     event.preventDefault();
-    console.log(event.target.email.value);
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    submitLogin({ email, password });
+    const jsonObject = serializeFormData(event.target);
+    submitLogin(jsonObject);
   };
 
   return (

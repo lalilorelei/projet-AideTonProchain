@@ -1,15 +1,24 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
 import Input from 'components/Forms';
 import RegisterShopkeeper from './shopkeeperInputs';
+import { serializeFormData } from 'utils';
 import './register.scss';
 
 const Register = props => {
+  const submitRegister = props.submitRegister;
+
   const role = props.match.params.role;
-  console.log(props);
   let roleTitle = '';
+
+  const submitRegisterForm = event => {
+    event.preventDefault();
+    const jsonObject = serializeFormData(event.target);
+    submitRegister(jsonObject, role);
+  };
 
   role === 'beneficiary'
     ? (roleTitle = 'bénéficiaire')
@@ -23,7 +32,7 @@ const Register = props => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-6">
-            <form>
+            <form onSubmit={submitRegisterForm}>
               <h3>Vos identifiants</h3>
               <Input
                 type="text"
@@ -76,6 +85,10 @@ const Register = props => {
       </div>
     </>
   );
+};
+
+Register.propTypes = {
+  submitRegister: PropTypes.func.isRequired,
 };
 
 export default withRouter(Register);
