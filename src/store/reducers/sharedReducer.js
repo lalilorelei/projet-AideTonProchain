@@ -33,6 +33,8 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
       };
+    case SUBMIT_PRODUCT_SELECTOR:
+      console.log('produits choisis :', action.data);
 
     default:
       return state;

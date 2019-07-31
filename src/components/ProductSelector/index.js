@@ -1,12 +1,23 @@
 import React from 'react';
 
 import './productSelector.scss';
+import { serializeFormData } from 'utils';
 
-const ProductSelector = ({ products }) => {
+const ProductSelector = props => {
+  console.log(props);
+  const submitProductSelector = props.submitProductSelector;
+  const products = props.products;
+
+  const handleSubmitProductSelector = event => {
+    event.preventDefault();
+    const jsonObject = serializeFormData(event.target);
+    submitProductSelector(jsonObject);
+  };
+
   return (
     <>
       <h2>Produits disponibles</h2>
-      <form className="my-3">
+      <form className="my-3" onSubmit={handleSubmitProductSelector}>
         <table className="table text-left">
           <thead>
             <tr>

@@ -6,7 +6,7 @@ import { submitShopProductsSelector } from '../../store/reducers/sharedReducer';
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  submitContact: data => {
+  submitProductSelector: data => {
     dispatch(submitShopProductsSelector(data));
   },
 });

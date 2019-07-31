@@ -5,7 +5,9 @@ import ProductSelector from 'components/ProductSelector';
 import './profil.scss';
 import { FaClock } from 'react-icons/fa';
 
-const Profil = () => {
+const Profil = props => {
+  console.log(props);
+  const submitProductSelector = props.submitProductSelector;
   const shop = {
     name: 'Le café des amis',
     address: {
@@ -40,7 +42,7 @@ const Profil = () => {
       <div className="container mt-4 page-id-product-selector">
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-8">
-            <ProductSelector products={products} />
+            <ProductSelector products={products} submitProductSelector={submitProductSelector} />
           </div>
           <div className="col-md-12 col-lg-4">
             <div className="card">
