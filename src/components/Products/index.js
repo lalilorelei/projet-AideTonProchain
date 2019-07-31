@@ -13,45 +13,41 @@ const Products = () => {
           <div className="col col-lg-8 text-center">
             <button className="btn btn-primary mb-4" type="submit">
               + Ajouter un produit
-            </button>
-            <table className="table text-left">
-              <tbody>
-                <tr>
-                  <td>
-                    <FaCoffee />
-                  </td>
-                  <td>
-                    <div>
-                      <h3>Café - 1€50</h3>
-                      <p>Ajouté le 10/08/2019 à 20h30</p>
-                      <td>
-                        <FaPencilAlt />
-                      </td>
-                      <td>
-                        <FaTrash />
-                      </td>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <FaCoffee />
-                  </td>
-                  <td>
-                    <div>
-                      <h3>Sandwich - 5€</h3>
-                      <p>Ajouté le 18/07/2019 à 16h30</p>
-                      <td>
-                        <FaPencilAlt />
-                      </td>
-                      <td>
-                        <FaTrash />
-                      </td>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            </button>            
+            <div className="table-responsive">
+              <table className="table text-left">
+                <tbody>
+                  <tr>
+                    <td colspan="3" className="text-center">Produits selectionnés</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3"><FaCoffee /></td>
+                    <td>Café - 1€50</td>                  
+                  </tr>
+                  <tr>
+                    <td>Ajouté le 25/07/2019 à 15h32</td>
+                  </tr>
+                  <tr>
+                    <td><FaPencilAlt /></td> <td><FaTrash /></td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3" className="text-center"></td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3"><FaCoffee /></td>
+                    <td>Sandwich - 3€</td>                  
+                  </tr>
+                  <tr>
+                    <td>Ajouté le 26/07/2019 à 12h12</td>
+                  </tr>
+                  <tr>
+                    <td><FaPencilAlt /></td>
+                    <td><FaTrash /></td>
+                  </tr>               
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
