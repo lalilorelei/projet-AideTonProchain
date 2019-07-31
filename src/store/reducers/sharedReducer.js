@@ -13,6 +13,7 @@ const initialState = {
 // je crée mes types d'actions
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
+export const SUBMIT_CONTACT = 'SUBMIT_CONTACT';
 
 /**
  * Reducer
@@ -50,6 +51,11 @@ export const submitRegister = (data, role) => ({
   type: SUBMIT_REGISTER,
   data,
   role,
+});
+
+export const submitContact = data => ({
+  type: SUBMIT_CONTACT,
+  data,
 });
 
 /**

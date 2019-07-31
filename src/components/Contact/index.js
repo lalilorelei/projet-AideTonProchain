@@ -1,57 +1,90 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+import Input from 'components/Forms';
 import Header from 'components/Header';
+import { serializeFormData } from 'utils';
 
-const Contact = () => (
-  <>
-    <Header title="contactez-nous" />
-    <div className="container mt-4 py-5">
-        <div className="row justify-content-center">
-          <div className="col col-lg-8 text-center">
+const Contact = ({ submitContact }) => {
+  const submitContactForm = event => {
+    event.preventDefault();
+    const jsonObject = serializeFormData(event.target);
+    submitContact(jsonObject);
+  };
+  return (
+    <>
+      <Header title="contactez-nous" />
+      <div className="container mt-4 py-5">
+        <div className="row">
+          <div className="col-sm-12 col-md-8">
+            <form className="mb-4" onSubmit={submitContactForm}>
+              <Input
+                type="email"
+                label="Adresse email"
+                name="email"
+                id="email"
+                placeholder="ex: jean-dupont@mail.com"
+                className="form-control"
+                required={true}
+              />
+              <Input
+                type="text"
+                label="Objet"
+                name="object"
+                id="object"
+                placeholder="ex: demande d'infos"
+                className="form-control"
+                required={false}
+              />
+              <div className="form-group">
+                <label htmlFor="message">Votre message</label>
+                <textarea
+                  className="form-control"
+                  name="message"
+                  id="message"
+                  placeholder="Votre message"
+                  aria-label="With textarea"
+                  rows="5"
+                />
+              </div>
 
-          <label for="basic-url">Adresse e-mail</label>
-          <div className="input-group mb-3">
-            <div className="input-group-prepend">             
-            </div>
-            <input type="text" class="form-control" id="basic-url" placeholder="exemple: adresse@gmail.com" aria-describedby="basic-addon3"/>
+              <div className="form-check">
+                <input type="checkbox" className="form-check-input" id="rgpdCheckbox" required />
+                <label className="form-check-label text-small" htmlFor="rgpdCheckbox">
+                  En soumettant ce formulaire, j'accepte que les informations soient exploitées dans
+                  le cadre de la demande de contact et de la relation qui peut en découler.
+                </label>
+              </div>
+
+              <input
+                type="submit"
+                className="btn btn-lg btn-custom-accent mt-3"
+                value="Envoyer"
+                name="submitContact"
+              />
+            </form>
           </div>
-
-          <label for="basic-url">Objet</label>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">              
+          <div className="col-sm-12 col-md-4">
+            <div className="card">
+              <div className="card-header">Nos coordonnées</div>
+              <div className="card-body">
+                <p className="font-weight-bold mb-0">Aide ton prochain</p>
+                <span>
+                  10 Rue de l'exemple
+                  <br />
+                  75014 - Paris
+                </span>
+                <a href="mailto:contact@aidetonprochain.com" className="d-block mt-3">
+                  contact@aidetonprochain.com
+                </a>
+              </div>
             </div>
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"/>
-          </div>
-            
-          <label for="basic-url">Votre message</label>
-          <div className="input-group">
-            <div className="input-group-prepend">             
-            </div>
-            <textarea className="form-control mb-2" placeholder="Votre message" aria-label="With textarea"></textarea>
-          </div>
-
-          <div class="custom-control custom-checkbox input-group">
-          <input type="checkbox" class="custom-control-input" id="customCheck1"/>
-          <label className="custom-control-label" for="customCheck1">Lorem ipsum dolor sit amet consectetur.</label>
-          </div>          
-
-          <button class="btn btn-primary mb-3" type="submit">Envoyer</button>
-
-          <div class="card">
-          <div class="card-body">
-            <h5 class="card-title text-left">Ou à l'adresse suivante :</h5>
-            <h6 class="card-subtitle mb-2 text-left">10 Rue de l'exemple</h6>
-            <h6 class="card-subtitle mb-2 text-left">75014 - Paris</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Notre adresse e-mail</h6>
-            <p class="card-text">contact@aidetonprochain.com</p>           
           </div>
         </div>
-
-        </div>
-         </div>   
-    </div>  
-  </>
-);
+      </div>
+    </>
+  );
+};
 
 export default Contact;

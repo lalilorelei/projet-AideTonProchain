@@ -1,10 +1,14 @@
 import { SUBMIT_LOGIN } from './reducers/sharedReducer';
 import { SUBMIT_REGISTER } from './reducers/sharedReducer';
+import { SUBMIT_CONTACT } from './reducers/sharedReducer';
 
 const Middleware = store => next => action => {
   switch (action.type) {
     case SUBMIT_REGISTER:
-      console.log("tentative d'inscription pour ", action.role, 'avec ', action.data);
+      console.log("tentative d'inscription pour", action.role, 'avec ', action.data);
+      break;
+    case SUBMIT_CONTACT:
+      console.log("envoi d'un message avec :", action.data);
       break;
     case SUBMIT_LOGIN:
       console.log('prêt à envoyer !', action.data);

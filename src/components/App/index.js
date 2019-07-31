@@ -5,7 +5,7 @@ import './App.scss';
 
 /* Pages */
 import Home from 'components/Home';
-import Contact from 'components/Contact';
+import Contact from 'containers/Contact';
 import Login from 'containers/Login';
 import Profil from 'components/Profil';
 import Register from 'containers/Register';
