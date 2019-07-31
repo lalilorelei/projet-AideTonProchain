@@ -4,11 +4,9 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import './App.scss';
 
 /* Pages */
+/* Components */
 import Home from 'components/Home';
-import Contact from 'containers/Contact';
-import Login from 'containers/Login';
 import Profil from 'components/Profil';
-import Register from 'containers/Register';
 import ProfilUpdate from 'components/ProfilUpdate';
 import Donations from 'components/Donations';
 import ShopKeeper from 'components/ShopKeeper';
@@ -17,6 +15,11 @@ import Products from 'components/Products';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
 import ShopKeeperDetails from 'components/ShopKeeperDetails';
+
+/* Containers */
+import Contact from 'containers/Contact';
+import Login from 'containers/Login';
+import Register from 'containers/Register';
 
 const App = () => (
   <>

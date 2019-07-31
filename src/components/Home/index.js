@@ -13,7 +13,7 @@ const Home = () => (
   <>
     <Header page="home" />
     <section id="qui-sommes-nous" className="py-5 bg-white">
-      <div className="container">
+      <div className="container page-id-home">
         <div className="row">
           <div className="col">
             <h2>Qui sommes-nous ?</h2>

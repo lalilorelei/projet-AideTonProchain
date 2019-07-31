@@ -2,11 +2,11 @@ import React from 'react';
 
 import './productSelector.scss';
 
-const ProductSelector = () => {
+const ProductSelector = ({ products }) => {
   return (
     <>
-      <h2>pdts dispo</h2>
-      <form>
+      <h2>Produits disponibles</h2>
+      <form className="my-3">
         <table class="table text-left">
           <thead>
             <tr>
@@ -16,51 +16,23 @@ const ProductSelector = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Café</td>
-              <td>2€</td>
-              <td className="selector">
-                <div>
-                  <select class="form-control form-control-sm" id="exampleFormControlSelect1">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Sandwich</td>
-              <td>2€</td>
-              <td className="selector">
-                <div>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>Jus d'orange</td>
-              <td>4€</td>
-              <td className="selector">
-                <div>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </div>
-              </td>
-            </tr>
+            {products.map(product => (
+              <tr>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td className="selector">
+                  <div>
+                    <select class="form-control form-control-sm" name={product.id} id={product.id}>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
           <tfoot>
             <tr>

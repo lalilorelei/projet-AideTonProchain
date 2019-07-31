@@ -41,6 +41,7 @@ const ShopKeeper = () => {
       image: 'https://picsum.photos/300/200?var=15',
     },
   ];
+
   return (
     <>
       <Header title="Commerces à proximité" />

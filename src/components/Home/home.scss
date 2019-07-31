@@ -1,64 +1,73 @@
 @import 'components/App/vars.scss';
 
-#steps-counter{
+#steps-counter {
   counter-reset: step;
   list-style-type: none;
   padding: 0;
-  li{
-    &::before{
+  li {
+    &::before {
       color: #ddd;
       display: inline-block;
       vertical-align: middle;
-      margin-right: .1em;
+      margin-right: 0.1em;
       font-size: 4em;
       counter-increment: step;
       content: counter(step);
     }
   }
 }
-.img-mockup{
-    height: 450px;
+.img-mockup {
+  height: 450px;
 }
 
-.profile-col{
-    padding-bottom: 2rem;
-    .profile-bloc{
-        background-color: darkslategray;
-        border-radius: 5px;
-        color: #fff;
-        padding: 4rem 3rem;
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 2rem;
-    }
+.profile-col {
+  padding-bottom: 2rem;
+  .profile-bloc {
+    background-color: darkslategray;
+    border-radius: 5px;
+    color: #fff;
+    padding: 4rem 3rem;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
 }
 
-
-#join-us{
-    a{
-        text-decoration: underline;
-    }
+#join-us {
+  a {
+    text-decoration: underline;
+  }
 }
 
-.testimony{
-    position: relative;
-    padding-bottom: 3rem;
-    .testimony-metas{
-        margin-top: 1rem;
-        img{
-            border-radius: 50%;
-            margin-right: .5rem;
-            max-width: 40px;
-        }
+.testimony {
+  position: relative;
+  padding-bottom: 3rem;
+  .testimony-metas {
+    margin-top: 1rem;
+    img {
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      max-width: 40px;
     }
-    &:before{
-        content: " ";
-        width: 144px;
-        height: 112px;
-        background-image: url('../../assets/img/quote.png');
-        position: absolute;
-        top: -2rem;
-        left: -1rem;
-        opacity: .3;
-    }
+  }
+  &:before {
+    content: ' ';
+    width: 144px;
+    height: 112px;
+    background-image: url('../../assets/img/quote.png');
+    position: absolute;
+    top: -2rem;
+    left: -1rem;
+    opacity: 0.3;
+  }
+}
+
+.page-id-home {
+  h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+    margin-top: 1.7rem;
+  }
 }

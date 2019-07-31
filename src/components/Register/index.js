@@ -29,7 +29,7 @@ const Register = props => {
   return (
     <>
       <Header title={`Inscription ${roleTitle}`} />
-      <div className="container">
+      <div className="container register">
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-6">
             <form onSubmit={submitRegisterForm}>

@@ -1,19 +1,19 @@
 @import 'vars.scss';
 
-body{
+body {
   font-family: Roboto, sans-serif;
   color: #232323;
   background-color: #f9f8fa;
 }
 
 /* spacing */
-.py-6{
+.py-6 {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
 
 /* text */
-.text-small{
+.text-small {
   font-size: 90%;
 }
 p {
@@ -21,32 +21,28 @@ p {
   line-height: 1.7;
 }
 
-h2{
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 3rem;
-  margin-top: 1.7rem;
+.text-accent {
+  color: $accent-color;
 }
-
-.text-accent{color: $accent-color;}
-a.text-accent:hover{color:darken($accent-color, 5%);}
+a.text-accent:hover {
+  color: darken($accent-color, 5%);
+}
 
 /* buttons */
 
-.btn-custom-accent{
+.btn-custom-accent {
   color: #ffffff;
   background-color: $accent-color;
   border-color: $accent-color;
-  &:hover{
+  &:hover {
     color: #ffffff;
     background-color: darken($accent-color, 3%);
-    border-color:darken($accent-color, 3%);
+    border-color: darken($accent-color, 3%);
   }
 }
 
 /* img */
 
-img{
+img {
   max-width: 100%;
 }
