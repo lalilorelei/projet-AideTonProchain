@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 
 import ShopProductsSelector from '../../components/Profil';
-import { submitShopProductsSelector } from '../../store/reducers/sharedReducer';
 
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  submitProductSelector: data => {
-    dispatch(submitShopProductsSelector(data));
-  },
+  submitProductSelector: data => {},
 });
 
 const ShopProductsSelectorContainer = connect(

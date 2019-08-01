@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 
 import Form from '../../components/Login';
-import { submitLogin } from '../../store/reducers/sharedReducer';
 
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  submitLogin: data => {
-    dispatch(submitLogin(data));
-  },
+  submitLogin: data => {},
 });
 
 const FormContainer = connect(

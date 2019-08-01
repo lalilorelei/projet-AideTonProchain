@@ -1,19 +1,20 @@
-import { SUBMIT_LOGIN } from './reducers/sharedReducer';
-import { SUBMIT_REGISTER } from './reducers/sharedReducer';
-import { SUBMIT_CONTACT } from './reducers/sharedReducer';
+// import { SUBMIT_LOGIN } from './reducers/sharedReducer';
+// import { SUBMIT_REGISTER } from './reducers/sharedReducer';
+// import { SUBMIT_CONTACT } from './reducers/sharedReducer';
 
 const Middleware = store => next => action => {
   switch (action.type) {
-    case SUBMIT_REGISTER:
-      console.log("tentative d'inscription pour", action.role, 'avec ', action.data);
-      break;
-    case SUBMIT_CONTACT:
-      console.log("envoi d'un message avec :", action.data);
-      break;
-    case SUBMIT_LOGIN:
-      console.log('prêt à envoyer !', action.data);
-      //axios.post('aider-son-prochain/api/connexion', data, {headers: {Authorization: `Bearer ${token}`}})
-      /*
+    // case SUBMIT_REGISTER:
+    //   console.log("tentative d'inscription pour", action.role, 'avec ', action.data);
+    //   break;
+    // case SUBMIT_CONTACT:
+    //   console.log("envoi d'un message avec :", action.data);
+    //   break;
+    // case SUBMIT_LOGIN:
+    //   console.log('prêt à envoyer !', action.data);
+
+    //axios.post('aider-son-prochain/api/connexion', data, {headers: {Authorization: `Bearer ${token}`}})
+    /*
     const jwtSecret = process.env.JWT_SECRET;
 
     url=aider-son-prochain/api/
@@ -31,17 +32,17 @@ const Middleware = store => next => action => {
             user.tokens.splice(i, 1);
             user.save();
           }
-          
+
             err = {
               name: 'TokenExpiredError',
               message: 'jwt expired',
               expiredAt: 1408621000
             }
-          
+
         }
       });
       */
-      break;
+    // break;
     default:
       next(action);
   }

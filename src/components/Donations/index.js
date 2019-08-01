@@ -14,45 +14,47 @@ const Donations = () => {
             <div className="table-responsive" />
             <table class="table text-left">
               <tbody>
-              
-                <tr>                                    
-                      <td>Pour Toto le 26/07/2019</td>
-                      <td rowspan="4" className="text-center">2€</td>
+                <tr>
+                  <td>Pour Toto le 26/07/2019</td>
+                  <td rowspan="4" className="text-center">
+                    2€
+                  </td>
                 </tr>
-                <tr> 
-                      <td>1 café</td>
+                <tr>
+                  <td>1 café</td>
                 </tr>
-                <tr> 
-                      <td>Café des amis</td>
+                <tr>
+                  <td>Café des amis</td>
                 </tr>
-                <tr> 
-                      <td>Ref: ATP-2019-41</td>
-                </tr>                  
+                <tr>
+                  <td>Ref: ATP-2019-41</td>
+                </tr>
               </tbody>
-              </table>
+            </table>
 
-              <h2 className="text-center">Consommées</h2>
-              <table class="table text-left">
-                  <tbody>
-                  <tr>                                    
-                          <td>Pour Toto le 28/07/2019</td>
-                          <td rowspan="4" className="text-center">2€</td>
-                    </tr>
-                    <tr> 
-                          <td>1 sandwich</td>
-                    </tr>
-                    <tr> 
-                          <td>Café des amis</td>
-                    </tr>
-                    <tr> 
-                          <td>Ref: ATP-2019-41</td>
-                    </tr>                     
-                  </tbody>
-              </table>
-              </div>                    
-              </div>         
-          </div>        
-      
+            <h2 className="text-center">Consommées</h2>
+            <table class="table text-left">
+              <tbody>
+                <tr>
+                  <td>Pour Toto le 28/07/2019</td>
+                  <td rowspan="4" className="text-center">
+                    2€
+                  </td>
+                </tr>
+                <tr>
+                  <td>1 sandwich</td>
+                </tr>
+                <tr>
+                  <td>Café des amis</td>
+                </tr>
+                <tr>
+                  <td>Ref: ATP-2019-41</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
