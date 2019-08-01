@@ -1,9 +1,17 @@
 import { combineReducers } from 'redux';
 
-import sharedReducer from './sharedReducer';
+import beneficiary from './beneficiary';
+import donor from './donor';
+import shopkeeper from './shopkeeper';
+import product from './product';
+import donation from './donation';
 
 const reducers = combineReducers({
-  sharedReducer,
+  beneficiary,
+  donor,
+  shopkeeper,
+  product,
+  donation,
 });
 
 export default reducers;

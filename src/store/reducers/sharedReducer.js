@@ -4,11 +4,11 @@
 const initialState = {
   loginLogin: 'testinput@mail.com',
   loginPassword: '',
-  user: {
+  /*user: {
     name: 'Patrick',
     username: 'Patrick72',
     role: 'beneficiary',
-  },
+  },*/
 };
 
 /**

@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 
 import Contact from '../../components/Contact';
-import { submitContact } from '../../store/reducers/sharedReducer';
 
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  submitContact: data => {
-    dispatch(submitContact(data));
-  },
+  submitContact: data => {},
 });
 
 const ContactContainer = connect(
