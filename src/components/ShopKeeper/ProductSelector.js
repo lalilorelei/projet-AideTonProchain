@@ -1,24 +1,23 @@
 import React from 'react';
 
-import './productSelector.scss';
 import { serializeFormData } from 'utils';
 
 const ProductSelector = props => {
-  const submitProductSelector = props.submitProductSelector;
+  //const submitProductSelector = props.submitProductSelector;
   const products = props.products;
-  const user = props.user;
+  const role = props.role;
 
   const handleSubmitProductSelector = event => {
     event.preventDefault();
     const jsonObject = serializeFormData(event.target);
-    submitProductSelector(jsonObject);
+    //submitProductSelector(jsonObject);
   };
 
   return (
     <>
       <div className="mb-5 table-header d-flex justify-content-between align-items-center">
         <h2>Produits disponibles</h2>
-        {user.role === 'shopkeeper' && (
+        {role === 'shopkeeper' && (
           <button className="btn btn-custom-accent ">Ajouter un produit</button>
         )}
       </div>
@@ -38,7 +37,7 @@ const ProductSelector = props => {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td className="selector">
-                  {user.role === 'donor' && (
+                  {role === 'donor' && (
                     <select
                       className="form-control form-control-sm"
                       name={product.id}
@@ -51,7 +50,7 @@ const ProductSelector = props => {
                       <option value="5">5</option>
                     </select>
                   )}
-                  {user.role === 'shopkeeper' && (
+                  {role === 'shopkeeper' && (
                     <>
                       <a href="#">Editer</a>
                       <a href="#">Supprimer</a>
@@ -61,7 +60,7 @@ const ProductSelector = props => {
               </tr>
             ))}
           </tbody>
-          {user.role === 'donor' && (
+          {role === 'donor' && (
             <tfoot>
               <tr>
                 <th scope="row">Total</th>
@@ -71,7 +70,7 @@ const ProductSelector = props => {
             </tfoot>
           )}
         </table>
-        {user.role === 'donor' && (
+        {role === 'donor' && (
           <input
             type="submit"
             className="btn btn-custom-accent btn-lg btn-block"

@@ -105,7 +105,7 @@ const Home = () => (
             <h2>Témoignages</h2>
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           {testimonies.map(testimony => {
             return (
               <div className="col-sm">
@@ -120,7 +120,7 @@ const Home = () => (
               </div>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </section>
   </>

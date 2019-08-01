@@ -6,21 +6,22 @@ import './App.scss';
 /* Pages */
 /* Components */
 import Home from 'components/Home';
-import Profil from 'components/Profil';
 import ProfilUpdate from 'components/ProfilUpdate';
 import Donations from 'components/Donations';
-import ShopKeeper from 'components/ShopKeeper';
 import DetailDonations from 'components/DetailDonations';
 import Products from 'components/Products';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
-import ShopKeeperDetails from 'components/ShopKeeperDetails';
 
 /* Containers */
 import Contact from 'containers/Contact';
 import Login from 'containers/Login';
 import Register from 'containers/Register';
 import ShopProductsSelector from 'containers/ShopProductsSelector';
+
+import Profil from 'containers/Profil';
+import Shopkeeper from 'containers/Shopkeeper';
+import ShopkeeperDetails from 'containers/ShopkeeperDetails';
 
 const App = () => (
   <>
@@ -60,7 +61,7 @@ const App = () => (
         key="/profil"
         path="/profil"
         render={() => {
-          return <ShopProductsSelector />;
+          return <Profil />;
         }}
       />
       <Route
@@ -84,7 +85,7 @@ const App = () => (
         key="/shopkeeper"
         path="/shopkeeper"
         render={() => {
-          return <ShopKeeper />;
+          return <Shopkeeper />;
         }}
       />
       <Route
@@ -122,10 +123,10 @@ const App = () => (
       />
       <Route
         exact
-        key="/shopkeeper-details"
-        path="/shopkeeper-details"
+        key="/shopkeeper/:id"
+        path="/shopkeeper/:id"
         render={() => {
-          return <ShopKeeperDetails />;
+          return <ShopkeeperDetails />;
         }}
       />
       <Route

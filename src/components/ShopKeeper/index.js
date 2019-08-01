@@ -6,42 +6,7 @@ import { FaCoffee } from 'react-icons/fa';
 import Header from 'components/Header';
 import './shopkeeper.scss';
 
-const ShopKeeper = () => {
-  const shops = [
-    {
-      id: 2144458,
-      name: 'Le café des amis',
-      category: 'Café',
-      products: ['café', 'restauration rapide', 'menus'],
-      distance: 0.7,
-      image: 'https://picsum.photos/300/200?var=12',
-    },
-    {
-      id: 687552,
-      name: 'Boulangerie du coin',
-      category: 'Boulangerie',
-      products: ['restaurantion rapide', 'café'],
-      distance: 1.1,
-      image: 'https://picsum.photos/300/200?var=13',
-    },
-    {
-      id: 14864528349,
-      name: 'Kebab Momo',
-      category: 'Restaurant',
-      products: ['restauration rapide', 'menus'],
-      distance: 1.7,
-      image: 'https://picsum.photos/300/200?var=14',
-    },
-    {
-      id: 148632549,
-      name: 'Le Balto',
-      category: 'Café',
-      products: ['café'],
-      distance: 2.1,
-      image: 'https://picsum.photos/300/200?var=15',
-    },
-  ];
-
+const ShopKeeper = ({ shops }) => {
   return (
     <>
       <Header title="Commerces à proximité" />
@@ -107,20 +72,25 @@ const ShopKeeper = () => {
         </div>
         <div className="row">
           {shops.map(shop => (
-            <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop.id}>
+            <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop.user._id}>
               <div className="card">
-                <img className="card-img-top" src={shop.image} alt={shop.name} />
+                <img
+                  className="card-img-top"
+                  src="https://picsum.photos/200/300?var=14"
+                  alt={shop.user.username}
+                />
                 <div className="card-body">
-                  <h3 className="card-title font-weight-bold">{shop.name}</h3>
+                  <h3 className="card-title f2nt-3eight-bold">{shop.user.username}</h3>
                   <h6 className="card-subtitle mb-2 text-muted">
-                    {shop.category} - {shop.distance} km
+                    {/* {shop.category} - {shop.distance} km */}
+                    category
                   </h6>
-                  <p className="card-text mt-3">
+                  {/* <p className="card-text mt-3">
                     <span className="font-weight-bold">Produits : </span>
                     {shop.products.map(product => `${product}, `)}
-                  </p>
+                  </p> */}
                 </div>
-                <Link to={`/shopkeeper/${shop.id}`} className="stretched-link" />
+                <Link to={`/shopkeeper/${shop.user._id}`} className="stretched-link" />
               </div>
             </div>
           ))}

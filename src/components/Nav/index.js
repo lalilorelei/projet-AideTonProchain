@@ -60,7 +60,7 @@ class Nav extends React.Component {
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
-            {user !== '' ? (
+            {/* {user !== '' ? (
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -140,7 +140,7 @@ class Nav extends React.Component {
                   </NavLink>
                 </li>
               </>
-            )}
+            )} */}
           </ul>
         </div>
       </nav>

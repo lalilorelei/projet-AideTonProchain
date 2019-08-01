@@ -18,3 +18,14 @@
     margin-right: 15px;
   }
 }
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+table {
+  td {
+    &.selector {
+      width: 84px;
+    }
+  }
+}
