@@ -1,0 +1,19 @@
+.profile-header {
+  h1 {
+    text-transform: none;
+    font-size: 30px;
+    font-weight: 500;
+  }
+  .profile-avatar {
+    img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+    }
+  }
+  .profile-bio {
+    flex: 2;
+    .bio {
+    }
+  }
+}

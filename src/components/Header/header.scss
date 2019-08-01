@@ -1,16 +1,15 @@
-header{
-    
-    h1{
-        font-weight: bold;
-        text-transform: uppercase;
-        line-height: 1.4;
-    }
-    p{
-        color: rgba(255,255,255,.85);
-    }
+header {
+  h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
 }
 
-.home-header{
-    background: url('../../assets/img/header-background-blue.jpg') 50% 90%;
-    background-size: cover;
+.home-header {
+  background: url('../../assets/img/header-background-blue.jpg') 50% 90%;
+  background-size: cover;
+  p {
+    color: rgba(255, 255, 255, 0.85);
+  }
 }

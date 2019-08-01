@@ -4,9 +4,9 @@ import './productSelector.scss';
 import { serializeFormData } from 'utils';
 
 const ProductSelector = props => {
-  console.log(props);
   const submitProductSelector = props.submitProductSelector;
   const products = props.products;
+  const user = props.user;
 
   const handleSubmitProductSelector = event => {
     event.preventDefault();
@@ -16,7 +16,13 @@ const ProductSelector = props => {
 
   return (
     <>
-      <h2>Produits disponibles</h2>
+      <div className="mb-5 table-header d-flex justify-content-between align-items-center">
+        <h2>Produits disponibles</h2>
+        {user.role === 'shopkeeper' && (
+          <button className="btn btn-custom-accent ">Ajouter un produit</button>
+        )}
+      </div>
+
       <form className="my-3" onSubmit={handleSubmitProductSelector}>
         <table className="table text-left">
           <thead>
@@ -32,7 +38,7 @@ const ProductSelector = props => {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td className="selector">
-                  <div>
+                  {user.role === 'donor' && (
                     <select
                       className="form-control form-control-sm"
                       name={product.id}
@@ -44,25 +50,35 @@ const ProductSelector = props => {
                       <option value="4">4</option>
                       <option value="5">5</option>
                     </select>
-                  </div>
+                  )}
+                  {user.role === 'shopkeeper' && (
+                    <>
+                      <a href="#">Editer</a>
+                      <a href="#">Supprimer</a>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <th scope="row">Total</th>
-              <td>8€</td>
-              <td />
-            </tr>
-          </tfoot>
+          {user.role === 'donor' && (
+            <tfoot>
+              <tr>
+                <th scope="row">Total</th>
+                <td>8€</td>
+                <td />
+              </tr>
+            </tfoot>
+          )}
         </table>
-        <input
-          type="submit"
-          className="btn btn-custom-accent btn-lg btn-block"
-          name="submitProductSelector"
-          value="Valider"
-        />
+        {user.role === 'donor' && (
+          <input
+            type="submit"
+            className="btn btn-custom-accent btn-lg btn-block"
+            name="submitProductSelector"
+            value="Valider"
+          />
+        )}
       </form>
     </>
   );
