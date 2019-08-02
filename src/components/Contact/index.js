@@ -4,6 +4,8 @@ import Input from 'components/Input';
 import Header from 'components/Header';
 import { serializeFormData } from 'utils';
 
+import contactBackgroundImage from 'assets/img/handshake.jpg';
+
 const Contact = ({ submitContact }) => {
   const submitContactForm = event => {
     event.preventDefault();
@@ -12,10 +14,17 @@ const Contact = ({ submitContact }) => {
   };
   return (
     <>
-      <Header title="contactez-nous" />
+      <Header title="contactez-nous" theme="dark" backgroundImage={contactBackgroundImage} />
       <div className="container mt-4 py-5">
         <div className="row">
           <div className="col-sm-12 col-md-8">
+            <h2>Demande de contact</h2>
+            <p className="text-small">
+              Pour toute demande de renseignements sur notre association, nos activités, nos
+              missions ou pour toute autre demande, n'hésitez pas à nous contacter. Vous pouvez
+              utiliser le formulaire ci-dessous ou nous envoyer un email. Nous essayerons de vous
+              répondre dans les plus brefs délais.
+            </p>
             <form className="mb-4" onSubmit={submitContactForm}>
               <Input
                 type="email"

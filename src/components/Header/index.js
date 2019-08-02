@@ -5,12 +5,17 @@ import Nav from 'containers/Nav';
 
 class Header extends React.Component {
   render() {
-    const { page, title } = this.props;
+    const { page, title, backgroundImage, theme, subtitle } = this.props;
+
+    const themeValue = theme === undefined ? 'dark' : theme;
+    const style = {
+      backgroundImage: `url("${backgroundImage}")`,
+    };
     return (
       <>
         {page === 'home' ? (
           <header className="home-header">
-            <Nav theme="dark" />
+            <Nav theme={themeValue} />
             <div className="container mt-4 text-white py-5">
               <div className="row justify-content-center">
                 <div className="col col-lg-8 text-center">
@@ -31,15 +36,19 @@ class Header extends React.Component {
             </div>
           </header>
         ) : (
-          <header>
-            <Nav theme="light" />
+          <header className="page-header mb-5">
+            <Nav theme={themeValue} />
             <div className="container mt-4 py-5">
               <div className="row justify-content-center">
                 <div className="col col-lg-8 text-center">
-                  <h1>{title}</h1>
+                  <h1 className="text-white">
+                    {title}
+                    {subtitle && <small>{subtitle}</small>}
+                  </h1>
                 </div>
               </div>
             </div>
+            <div className="background-image" style={style} />
           </header>
         )}
       </>

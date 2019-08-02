@@ -46,7 +46,7 @@ const initialState = {
         _id: '5d3c60e6c1695050f020f22e',
         firstname: 'thomas',
         lastname: 'e',
-        username: 'thomas',
+        username: 'thomas 2',
         shopkeeper_name: 'café du coin',
         email: 'testshopkeeper@test.com',
         updated_at: '2019-07-27T14:34:14.934Z',

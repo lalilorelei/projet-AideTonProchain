@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCoffee } from 'react-icons/fa';
 // import Media from 'react-media';
+import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 
 import Header from 'components/Header';
 import './shopkeeper.scss';
@@ -9,7 +10,11 @@ import './shopkeeper.scss';
 const ShopKeeper = ({ shops }) => {
   return (
     <>
-      <Header title="Commerces à proximité" />
+      <Header
+        title="Commerces à proximité"
+        backgroundImage={shopKeepersBackgroundImage}
+        theme="dark"
+      />
       <div className="container py-5 shopkeeper-list">
         <div className="row my-3">
           <form className="form-inline d-flex justify-content-between">
@@ -76,7 +81,7 @@ const ShopKeeper = ({ shops }) => {
               <div className="card">
                 <img
                   className="card-img-top"
-                  src="https://picsum.photos/200/300?var=14"
+                  src={`https://picsum.photos/300/200?var=${shop.user.username}`}
                   alt={shop.user.username}
                 />
                 <div className="card-body">

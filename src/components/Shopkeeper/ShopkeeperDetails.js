@@ -4,6 +4,10 @@ import { withRouter } from 'react-router-dom';
 import Header from 'components/Header';
 import ProductSelector from './ProductSelector';
 import './shopkeeper.scss';
+<<<<<<< HEAD:src/components/Shopkeeper/ShopkeeperDetails.js
+=======
+import shopKeeperBackgroundImage from 'assets/img/background-shopkeepers.jpg';
+>>>>>>> ce4a007828e035a0a310519c89f714e769ce2525:src/components/Shopkeeper/ShopkeeperDetails.js
 import { FaClock, FaPhone, FaGlobeEurope } from 'react-icons/fa';
 
 class ShopkeeperDetails extends Component {
@@ -16,7 +20,7 @@ class ShopkeeperDetails extends Component {
     const date = new Date();
     return (
       <>
-        <Header title="Le café des amis" />
+        <Header title="Le café des amis" backgroundImage={shopKeeperBackgroundImage} theme="dark" />
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col-md-12 col-lg-8">

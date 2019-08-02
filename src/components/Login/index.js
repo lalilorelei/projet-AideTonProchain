@@ -5,6 +5,7 @@ import Header from 'components/Header';
 import Input from 'components/Input';
 import { serializeFormData } from 'utils';
 import './login.scss';
+import loginBackgroundImage from 'assets/img/welcome.jpg';
 
 const Login = ({ submitLogin }) => {
   const submitLoginForm = event => {
@@ -15,7 +16,12 @@ const Login = ({ submitLogin }) => {
 
   return (
     <>
-      <Header title="Connexion" />
+      <Header
+        title="Heureux de vous revoir !"
+        subtitle="Connectez-vous à votre compte"
+        theme="dark"
+        backgroundImage={loginBackgroundImage}
+      />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 col-lg-4">
