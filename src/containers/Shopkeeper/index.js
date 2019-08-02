@@ -6,6 +6,7 @@ import { updateUserLocation, sendManualLocation } from 'store/reducers/user';
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
   shops: state.shopkeeper.shopkeepers,
+  getLocationErrorMessage: state.user.getLocationErrorMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

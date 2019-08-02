@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { SEND_MANUAL_LOCATION, updateUserLocation } from 'store/reducers/user';
+import {
+  SEND_MANUAL_LOCATION,
+  updateUserLocation,
+  getLocationErrorMessage,
+} from 'store/reducers/user';
 
 const locationMiddleware = store => next => action => {
   switch (action.type) {
@@ -11,9 +15,14 @@ const locationMiddleware = store => next => action => {
           }&limit=1`,
         )
         .then(response => {
-          const { lat, lon } = response.data[0];
-          store.dispatch(updateUserLocation(lat, lon));
-          console.log(response);
+          if (response.data[0] !== undefined) {
+            const { lat, lon } = response.data[0];
+            store.dispatch(updateUserLocation(lat, lon));
+          } else {
+            store.dispatch(
+              getLocationErrorMessage("L'adresse renseignée n'est pas valide, veuillez réessayer"),
+            );
+          }
         });
 
       break;

@@ -33,9 +33,15 @@ export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
 export const SEND_MANUAL_LOCATION = 'SEND_MANUAL_LOCATION';
 export const UPDATE_USER_LOCATION = 'UPDATE_USER_LOCATION';
+export const GET_LOCATION_ERROR_MESSAGE = 'GET_LOCATION_ERROR_MESSAGE';
 
 const user = (state = initialState, action = {}) => {
   switch (action.type) {
+    case GET_LOCATION_ERROR_MESSAGE:
+      return {
+        ...state,
+        getLocationErrorMessage: action.message,
+      };
     case UPDATE_USER_LOCATION:
       return {
         ...state,
@@ -76,6 +82,11 @@ export const updateUserLocation = (lat, long) => ({
 export const sendManualLocation = address => ({
   type: SEND_MANUAL_LOCATION,
   address,
+});
+
+export const getLocationErrorMessage = message => ({
+  type: GET_LOCATION_ERROR_MESSAGE,
+  message,
 });
 
 export default user;

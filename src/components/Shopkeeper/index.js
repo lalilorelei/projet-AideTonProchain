@@ -30,15 +30,15 @@ class Shopkeeper extends React.Component {
 
   render() {
     let userLocation = '';
-    const { currentUser, shops } = this.props;
+    const { currentUser, shops, getLocationErrorMessage } = this.props;
 
     if (currentUser.user.localisation !== undefined) {
       userLocation = {
         latitude: currentUser.user.localisation.latitude,
         longitude: currentUser.user.localisation.longitude,
       };
-      console.log(userLocation);
     }
+    console.log(this.props);
 
     return (
       <>
@@ -53,7 +53,7 @@ class Shopkeeper extends React.Component {
               <div className="col">
                 <p>
                   Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre
-                  navigateur ou renseigner une adresse
+                  navigateur ou renseigner une adresse.
                 </p>
                 <form onSubmit={this.submitAskLocation}>
                   <Input
@@ -64,6 +64,9 @@ class Shopkeeper extends React.Component {
                     name="locationAddress"
                     id="locationAddress"
                   />
+                  {getLocationErrorMessage !== undefined && (
+                    <p class="text-danger text-small mt-0">{getLocationErrorMessage}</p>
+                  )}
                   <input
                     type="submit"
                     value="valider"
