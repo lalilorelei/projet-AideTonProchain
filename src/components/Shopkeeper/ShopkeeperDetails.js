@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { useEffect, Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Header from 'components/Header';
 import ProductSelector from './ProductSelector';
 import './shopkeeper.scss';
+import { FaClock, FaPhone, FaGlobeEurope } from 'react-icons/fa';
 
 class ShopkeeperDetails extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ class ShopkeeperDetails extends Component {
   }
 
   render() {
-    const { products, shop, role } = this.props;
+    const { products, match, getProducts, shop, currentUser, role } = this.props;
     const date = new Date();
     return (
       <>
@@ -19,11 +20,13 @@ class ShopkeeperDetails extends Component {
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col-md-12 col-lg-8">
-              <ProductSelector
-                products={products}
-                //submitProductSelector={submitProductSelector}
-                role={role}
-              />
+              {role === 'shopkeeper' || role === 'donor' ? (
+                <ProductSelector
+                  products={products}
+                  //submitProductSelector={submitProductSelector}
+                  role={role}
+                />
+              ) : null}
             </div>
             <div className="col-md-12 col-lg-4">
               {shop && (

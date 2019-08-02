@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaCoffee } from 'react-icons/fa';
 // import Media from 'react-media';
 
 import Header from 'components/Header';
