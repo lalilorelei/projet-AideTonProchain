@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import * as geolib from 'geolib';
 
 export const serializeFormData = form => {
   const dataObject = {};
@@ -19,7 +20,6 @@ export const decodedToken = token => {
   }
   let role;
   jwt.verify(token, 'aidetonprochain', (err, decoded) => {
-    console.log(decoded);
     if (err) {
       if (err.message) {
         console.log(err.message);
@@ -32,4 +32,12 @@ export const decodedToken = token => {
     }
   });
   return role;
+};
+
+export const calculateDistance = (from, to) => {
+  const distance = geolib.getDistance(
+    { latitude: from.latitude, longitude: from.longitude },
+    { latitude: to.latitude, longitude: to.longitude },
+  );
+  return Number((distance / 1000).toFixed(1));
 };
