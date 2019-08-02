@@ -2,11 +2,12 @@ import React from 'react';
 
 import Header from 'components/Header';
 import './donations.scss';
+import backgroundDonations from 'assets/img/donations.jpg';
 
 const Donations = ({ role, donations }) => {
   return (
     <>
-      <Header title="Liste des dons" />
+      <Header title="Liste des dons" theme="dark" backgroundImage={backgroundDonations} />
       <div className="container mt-4 py-5">
         <div className="row justify-content-center">
           <div className="col col-lg-8 text-center">

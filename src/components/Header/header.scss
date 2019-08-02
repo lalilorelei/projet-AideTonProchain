@@ -1,3 +1,5 @@
+@import 'components/App/vars.scss';
+
 header {
   h1 {
     font-weight: bold;
@@ -11,5 +13,33 @@ header {
   background-size: cover;
   p {
     color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+.page-header {
+  position: relative;
+  min-height: 350px;
+  overflow: hidden;
+
+  h1 {
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.2);
+    small {
+      display: block;
+      font-size: 30px;
+      text-transform: none;
+    }
+  }
+
+  .background-image {
+    background-color: darken($accent-color, 20%);
+    background-blend-mode: multiply;
+    content: '';
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
   }
 }

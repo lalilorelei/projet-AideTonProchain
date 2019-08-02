@@ -7,6 +7,7 @@ import Input from 'components/Input';
 import RegisterShopkeeper from './shopkeeperInputs';
 import { serializeFormData } from 'utils';
 import './register.scss';
+import registerBackgroundImage from 'assets/img/welcome.jpg';
 
 const Register = props => {
   const submitRegister = props.submitRegister;
@@ -24,11 +25,16 @@ const Register = props => {
     ? (roleTitle = 'bénéficiaire')
     : role === 'donor'
     ? (roleTitle = 'donateur')
-    : (roleTitle = 'shopkeeper');
+    : (roleTitle = 'commerçant');
 
   return (
     <>
-      <Header title={`Inscription ${roleTitle}`} />
+      <Header
+        title="Bienvenue chez vous !"
+        subtitle={`Inscription ${roleTitle}`}
+        theme="dark"
+        backgroundImage={registerBackgroundImage}
+      />
       <div className="container register">
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-6">
