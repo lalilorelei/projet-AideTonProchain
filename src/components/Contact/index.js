@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-import Input from 'components/Forms';
+import Input from 'components/Input';
 import Header from 'components/Header';
 import { serializeFormData } from 'utils';
 

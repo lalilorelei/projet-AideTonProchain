@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
-import Input from 'components/Forms';
+import Input from 'components/Input';
 import RegisterShopkeeper from './shopkeeperInputs';
 import { serializeFormData } from 'utils';
 import './register.scss';

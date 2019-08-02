@@ -14,6 +14,22 @@ export const serializeFormData = form => {
 };
 
 export const decodedToken = token => {
-  const decoded = jwt.verify(token, 'aidetonprochain');
-  return decoded;
+  if (!token) {
+    return;
+  }
+  let role;
+  jwt.verify(token, 'aidetonprochain', (err, decoded) => {
+    console.log(decoded);
+    if (err) {
+      if (err.message) {
+        console.log(err.message);
+      }
+    }
+    if (decoded !== undefined) {
+      role = decoded.role;
+    } else {
+      role = 'null';
+    }
+  });
+  return role;
 };

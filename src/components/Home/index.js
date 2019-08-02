@@ -6,7 +6,7 @@ import mockup from '../../assets/img/mockup-donation.png';
 import { Link } from 'react-router-dom';
 import Header from 'components/Header';
 
-import testimonies from '../../data/testimonies';
+import testimonies from 'data/testimonies';
 import './home.scss';
 
 const Home = () => (
@@ -105,22 +105,20 @@ const Home = () => (
             <h2>Témoignages</h2>
           </div>
         </div>
-        {/* <div className="row">
-          {testimonies.map(testimony => {
-            return (
-              <div className="col-sm">
-                <div className="testimony">
-                  <p className="text-small">{testimony.text}</p>
-                  <div className="testimony-metas">
-                    <img src={testimony.avatar_url} alt={testimony.name} />
-                    <span className="name">{testimony.name} - </span>
-                    <span className="role">{testimony.role}</span>
-                  </div>
+        <div className="row">
+          {testimonies.map(testimony => (
+            <div className="col-sm" key={testimony.avatar_url}>
+              <div className="testimony">
+                <p className="text-small">{testimony.text}</p>
+                <div className="testimony-metas">
+                  <img src={testimony.avatar_url} alt={testimony.name} />
+                  <span className="name">{testimony.name} - </span>
+                  <span className="role">{testimony.role}</span>
                 </div>
               </div>
-            );
-          })}
-        </div> */}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   </>

@@ -3,7 +3,7 @@ import React from 'react';
 import Header from 'components/Header';
 import './donations.scss';
 
-const Donations = () => {
+const Donations = ({ role, donations }) => {
   return (
     <>
       <Header title="Liste des dons" />
@@ -14,25 +14,29 @@ const Donations = () => {
             <div className="table-responsive" />
             <table class="table text-left">
               <tbody>
-                <tr>
-                  <td>Pour Toto le 26/07/2019</td>
-                  <td rowspan="4" className="text-center">
-                    2€
-                  </td>
-                </tr>
-                <tr>
-                  <td>1 café</td>
-                </tr>
-                <tr>
-                  <td>Café des amis</td>
-                </tr>
-                <tr>
-                  <td>Ref: ATP-2019-41</td>
-                </tr>
+                {donations.map(donation => (
+                  <>
+                    <tr>
+                      <td>Pour Toto le 26/07/2019</td>
+                      <td rowspan="4" className="text-center">
+                        2€
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1 café</td>
+                    </tr>
+                    <tr>
+                      <td>Café des amis</td>
+                    </tr>
+                    <tr>
+                      <td>Ref: ATP-2019-41</td>
+                    </tr>
+                  </>
+                ))}
               </tbody>
             </table>
 
-            <h2 className="text-center">Consommées</h2>
+            {/* <h2 className="text-center">Consommées</h2>
             <table class="table text-left">
               <tbody>
                 <tr>
@@ -51,7 +55,7 @@ const Donations = () => {
                   <td>Ref: ATP-2019-41</td>
                 </tr>
               </tbody>
-            </table>
+            </table> */}
           </div>
         </div>
       </div>

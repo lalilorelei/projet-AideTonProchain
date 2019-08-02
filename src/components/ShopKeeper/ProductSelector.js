@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { serializeFormData } from 'utils';
+// import { serializeFormData } from 'utils';
 
 const ProductSelector = props => {
   //const submitProductSelector = props.submitProductSelector;
@@ -9,7 +9,7 @@ const ProductSelector = props => {
 
   const handleSubmitProductSelector = event => {
     event.preventDefault();
-    const jsonObject = serializeFormData(event.target);
+    // const jsonObject = serializeFormData(event.target);
     //submitProductSelector(jsonObject);
   };
 
@@ -28,12 +28,12 @@ const ProductSelector = props => {
             <tr>
               <th scope="col">Produit</th>
               <th scope="col">Prix</th>
-              <th scope="col">Quantité</th>
+              {role !== 'beneficiary' && <th scope="col">Quantité</th>}
             </tr>
           </thead>
           <tbody>
             {products.map(product => (
-              <tr key={product.id}>
+              <tr key={product._id}>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td className="selector">

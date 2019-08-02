@@ -18,7 +18,7 @@ const productMiddleware = store => next => action => {
               __v: 0,
             },
             {
-              _id: '5d415f6ed3631001bca8ec69',
+              _id: '5d415f6ed3631001bca8ec68',
               name: 'café',
               price: 2,
               available: true,

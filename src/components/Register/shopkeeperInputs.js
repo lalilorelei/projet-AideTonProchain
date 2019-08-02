@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Input from 'components/Forms';
+import Input from 'components/Input';
 
 const RegisterShopkeeper = () => (
   <>

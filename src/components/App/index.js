@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import './App.scss';
 
@@ -7,9 +7,7 @@ import './App.scss';
 /* Components */
 import Home from 'components/Home';
 import ProfilUpdate from 'components/ProfilUpdate';
-import Donations from 'components/Donations';
 import DetailDonations from 'components/DetailDonations';
-import Products from 'components/Products';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
 
@@ -17,11 +15,11 @@ import Payment from 'components/Payment';
 import Contact from 'containers/Contact';
 import Login from 'containers/Login';
 import Register from 'containers/Register';
-import ShopProductsSelector from 'containers/ShopProductsSelector';
 
 import Profil from 'containers/Profil';
 import Shopkeeper from 'containers/Shopkeeper';
 import ShopkeeperDetails from 'containers/ShopkeeperDetails';
+import Donations from 'containers/Donation';
 
 const App = () => (
   <>
@@ -98,15 +96,6 @@ const App = () => (
       />
       <Route
         exact
-        key="/products"
-        path="/products"
-        render={() => {
-          return <Products />;
-        }}
-      />
-
-      <Route
-        exact
         key="/localisation"
         path="/localisation"
         render={() => {
@@ -122,7 +111,6 @@ const App = () => (
         }}
       />
       <Route
-        exact
         key="/shopkeeper/:id"
         path="/shopkeeper/:id"
         render={() => {

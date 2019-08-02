@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 
-import Nav from 'components/Nav';
+import Donation from 'components/Donation';
 
 import { decodedToken } from 'utils';
 
 const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+  donations: state.donation.donations,
   role: decodedToken(state.user.currentUser.token),
 });
 
 const mapDispatchToProps = dispatch => ({});
 
-const NavContainer = connect(
+const DonationContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Nav);
+)(Donation);
 
-export default NavContainer;
+export default DonationContainer;

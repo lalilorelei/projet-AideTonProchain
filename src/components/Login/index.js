@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
-import Input from 'components/Forms';
+import Input from 'components/Input';
 import { serializeFormData } from 'utils';
 import './login.scss';
 
