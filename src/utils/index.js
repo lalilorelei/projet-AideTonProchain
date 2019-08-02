@@ -41,3 +41,17 @@ export const calculateDistance = (from, to) => {
   );
   return Number((distance / 1000).toFixed(1));
 };
+
+export const orderByDistance = (startingPoint, array) => {
+  return geolib.orderByDistance(startingPoint, [...array]);
+};
+
+export const compare = (a, b) => {
+  let comparison = 0;
+  if (a.distance > b.distance) {
+    comparison = 1;
+  } else if (a.distance < b.distance) {
+    comparison = -1;
+  }
+  return comparison;
+};

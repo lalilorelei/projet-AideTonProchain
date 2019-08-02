@@ -6,12 +6,12 @@ import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import Header from 'components/Header';
 import Input from 'components/Input';
 import './shopkeeper.scss';
-import { calculateDistance } from 'utils';
+import { calculateDistance, orderByDistance, compare } from 'utils';
 
 class Shopkeeper extends React.Component {
+  // Avant d'afficher le composant on récupère la localisation via le navigateur
   componentWillMount() {
     const { updateUserLocation } = this.props;
-
     navigator.geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude;
@@ -22,6 +22,7 @@ class Shopkeeper extends React.Component {
     );
   }
 
+  // Soumission du formulaire avec adresse manuelle
   submitAskLocation = evt => {
     evt.preventDefault();
     const { sendManualLocation } = this.props;
@@ -29,16 +30,44 @@ class Shopkeeper extends React.Component {
   };
 
   render() {
-    let userLocation = '';
     const { currentUser, shops, getLocationErrorMessage } = this.props;
 
+    let userLocation = '';
+    let shopsOrderedByDistance = '';
+
+    // si le currentUser a une localisation définie
     if (currentUser.user.localisation !== undefined) {
+      /*
+        1 - on créé un objet simple avec les coordonnées
+      */
       userLocation = {
         latitude: currentUser.user.localisation.latitude,
         longitude: currentUser.user.localisation.longitude,
       };
+
+      /*
+        2 - On réorganise le tableau de shops en leur mettant lat, long 
+        et distance par rapport au current user au 1er niveau 
+      */
+      const newShops = shops.map(shop => {
+        return {
+          latitude: shop.user.localisation.latitude,
+          longitude: shop.user.localisation.longitude,
+          // calcul de la distance du shop par rapport au currentUser
+          distance: calculateDistance(userLocation, {
+            latitude: shop.user.localisation.latitude,
+            longitude: shop.user.localisation.longitude,
+          }),
+          ...shop,
+        };
+      });
+
+      /*
+        3 - On a maintenant un tableau de shops simplifié avec accès à lat long et distance
+        On trie ce tableau par distance grâce à une fonction utils 
+      */
+      shopsOrderedByDistance = newShops.sort(compare);
     }
-    console.log(this.props);
 
     return (
       <>
@@ -139,24 +168,20 @@ class Shopkeeper extends React.Component {
               </form>
             </div>
             <div className="row">
-              {shops.map(shop => {
-                const shopLocation = {
-                  latitude: shop.user.localisation.latitude,
-                  longitude: shop.user.localisation.longitude,
-                };
+              {shopsOrderedByDistance.map(shop => {
                 return (
                   <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop.user._id}>
                     <div className="card">
                       <img
                         className="card-img-top"
-                        src={`https://picsum.photos/300/200?var=${shop.user.username}`}
-                        alt={shop.user.username}
+                        src={`https://picsum.photos/300/200?var=${shop.user.shopkeeper_name}`}
+                        alt={shop.user.shopkeeper_name}
                       />
                       <div className="card-body">
-                        <h3 className="card-title f2nt-3eight-bold">{shop.user.username}</h3>
+                        <h3 className="card-title f2nt-3eight-bold">{shop.user.shopkeeper_name}</h3>
                         <h6 className="card-subtitle mb-2 text-muted">
                           {/* {shop.category} - {shop.distance} km */}
-                          category - {calculateDistance(userLocation, shopLocation)} km
+                          category - {shop.distance} km
                         </h6>
                       </div>
                       <Link to={`/shopkeeper/${shop.user._id}`} className="stretched-link" />
