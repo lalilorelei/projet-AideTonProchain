@@ -1,11 +1,10 @@
-import React, { useEffect, Component } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Header from 'components/Header';
 import ProductSelector from './ProductSelector';
 import './shopkeeper.scss';
 import shopKeeperBackgroundImage from 'assets/img/background-shopkeepers.jpg';
-import { FaClock, FaPhone, FaGlobeEurope } from 'react-icons/fa';
 
 class ShopkeeperDetails extends Component {
   componentDidMount() {

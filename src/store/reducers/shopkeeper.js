@@ -4,14 +4,14 @@ const initialState = {
       user: {
         localisation: {
           address: '19 rue du test React',
-          latitude: 0,
-          longitude: 0,
+          latitude: 48.864622,
+          longitude: 2.362588,
         },
         _id: '5d3c60e6c1695050f020f22e',
-        firstname: 'thomas',
-        lastname: 'e',
-        username: 'thomas',
-        shopkeeper_name: 'café du coin',
+        firstname: 'Philippe',
+        lastname: 'Dumont',
+        username: 'pdumont',
+        shopkeeper_name: "Tom's shop' in Paris",
         email: 'testshopkeeper@test.com',
         updated_at: '2019-07-27T14:34:14.934Z',
         products: [
@@ -40,14 +40,14 @@ const initialState = {
       user: {
         localisation: {
           address: '17 rue du test React',
-          latitude: 0,
-          longitude: 0,
+          latitude: 52.4672,
+          longitude: 13.371637,
         },
-        _id: '5d3c60e6c1695050f020f22e',
-        firstname: 'thomas',
-        lastname: 'e',
-        username: 'thomas 2',
-        shopkeeper_name: 'café du coin',
+        _id: '5d3c60e6c1695050f020f2k2e',
+        firstname: 'Thomas',
+        lastname: 'Dubois',
+        username: 'tdubois',
+        shopkeeper_name: "Tom's shop' in Berlin",
         email: 'testshopkeeper@test.com',
         updated_at: '2019-07-27T14:34:14.934Z',
         products: [

@@ -1,72 +1,61 @@
 const initialState = {
   currentUser: {
     user: {
-      localisation: {
-        address: '',
-        latitude: 0,
-        longitude: 0,
-      },
-      _id: '5d3c60e6c1695050f020f22e',
-      donnations: [],
-      firstname: 'thomas',
-      lastname: 'e',
-      username: 'thomas',
-      shopkeeper_name: 'café du coin',
-      email: 'testshopkeeper@test.com',
-      updated_at: '2019-07-27T14:34:14.934Z',
-      products: [
-        {
-          _id: '5d400205b4e65906b49a5357',
-          name: 'café',
-          price: 2,
-          available: true,
-          category: 'alimentaire',
-        },
-        {
-          _id: '5d414b981dca5b3990a44b4d',
-        },
-        {
-          _id: '5d414bda1dca5b3990a44b4f',
-        },
-        {
-          _id: '5d415401120de5440c4e7370',
-        },
-        {
-          _id: '5d41545bfdf55e15cc5083a0',
-        },
-        {
-          _id: '5d415535709d9720105f9eb2',
-        },
-      ],
-      created_at: '2019-07-27T14:34:15.032Z',
-      __v: 71,
+      active: true,
+      _id: '5d42d498e678ee5b540f30e4',
+      firstname: 'gregory',
+      lastname: 'shields',
+      username: 'greg',
+      email: 'testdonor@test.com',
+      updated_at: '2019-08-01T12:01:28.297Z',
       tokens: [
         {
-          _id: '5d42ba274eb76c0b40a87711',
+          _id: '5d440f858749f612809d5559',
           token:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDNjNjBlNmMxNjk1MDUwZjAyMGYyMmUiLCJyb2xlIjoic2hvcGtlZXBlciIsImlhdCI6MTU2NDY1NDExOSwiZXhwIjoxNTY0NzQwNTE5fQ.m96YNS51SuKHLHeJCpk2E2GOB4Buz-9IHkSnFwahrsY',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQyZDQ5OGU2NzhlZTViNTQwZjMwZTQiLCJyb2xlIjoiZG9ub3IiLCJpYXQiOjE1NjQ3NDE1MDksImV4cCI6MTU2NDgyNzkwOX0.YxcstY5QDIm-XhAjj-tjYNj7I9MQIXiQT22k-iKuc64',
         },
         {
-          _id: '5d43ec2648c42d40cc327dee',
+          _id: '5d4456246a9859576c273dae',
           token:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDNjNjBlNmMxNjk1MDUwZjAyMGYyMmUiLCJyb2xlIjoic2hvcGtlZXBlciIsImlhdCI6MTU2NDczMjQ1NCwiZXhwIjoxNTY0ODE4ODU0fQ.rr9nlgb7Smbo7fQzDP3Ac4MSdD1UAfLkHpCmwSsJW7E',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQyZDQ5OGU2NzhlZTViNTQwZjMwZTQiLCJyb2xlIjoiZG9ub3IiLCJpYXQiOjE1NjQ3NTk1ODgsImV4cCI6MTU2NTM2NDM4OH0.AikJ7lF0BC4GkQquNvFvVCQilc_6nSqS0UmhNtZ_j04',
         },
       ],
+      created_at: '2019-08-01T12:01:28.329Z',
+      __v: 6,
     },
     token:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDNjNjBlNmMxNjk1MDUwZjAyMGYyMmUiLCJyb2xlIjoic2hvcGtlZXBlciIsImlhdCI6MTU2NDczMjQ1NCwiZXhwIjoxNTY0ODE4ODU0fQ.rr9nlgb7Smbo7fQzDP3Ac4MSdD1UAfLkHpCmwSsJW7E',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQyZDQ5OGU2NzhlZTViNTQwZjMwZTQiLCJyb2xlIjoiZG9ub3IiLCJpYXQiOjE1NjQ3NTk1ODgsImV4cCI6MTU2NTM2NDM4OH0.AikJ7lF0BC4GkQquNvFvVCQilc_6nSqS0UmhNtZ_j04',
   },
 };
 
 export const FAKE = 'FAKE';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
+export const SEND_MANUAL_LOCATION = 'SEND_MANUAL_LOCATION';
+export const UPDATE_USER_LOCATION = 'UPDATE_USER_LOCATION';
+export const GET_LOCATION_ERROR_MESSAGE = 'GET_LOCATION_ERROR_MESSAGE';
 
-const donor = (state = initialState, action = {}) => {
+const user = (state = initialState, action = {}) => {
   switch (action.type) {
-    case FAKE:
+    case GET_LOCATION_ERROR_MESSAGE:
       return {
         ...state,
+        getLocationErrorMessage: action.message,
+      };
+    case UPDATE_USER_LOCATION:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          user: {
+            ...state.currentUser.user,
+            localisation: {
+              ...state.currentUser.user.localisation,
+              latitude: action.lat,
+              longitude: action.long,
+            },
+          },
+        },
       };
     default:
       return state;
@@ -84,4 +73,20 @@ export const submitRegister = (data, role) => ({
   role,
 });
 
-export default donor;
+export const updateUserLocation = (lat, long) => ({
+  type: UPDATE_USER_LOCATION,
+  lat,
+  long,
+});
+
+export const sendManualLocation = address => ({
+  type: SEND_MANUAL_LOCATION,
+  address,
+});
+
+export const getLocationErrorMessage = message => ({
+  type: GET_LOCATION_ERROR_MESSAGE,
+  message,
+});
+
+export default user;
