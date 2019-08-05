@@ -17,6 +17,7 @@ import Login from 'containers/Login';
 import Register from 'containers/Register';
 
 import Profil from 'containers/Profil';
+//import Beneficiary from 'containers/Beneficiary';
 import Shopkeeper from 'containers/Shopkeeper';
 import ShopkeeperDetails from 'containers/ShopkeeperDetails';
 import Donations from 'containers/Donation';

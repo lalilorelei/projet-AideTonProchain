@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import * as geolib from 'geolib';
+import axios from 'axios';
 
 export const serializeFormData = form => {
   const dataObject = {};
@@ -54,4 +55,77 @@ export const compare = (a, b) => {
     comparison = -1;
   }
   return comparison;
+};
+
+export const initGeolocalisation = (self, lat, long, shopsDistance, isGeoLocAccessible) => {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        self.setState({
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        });
+        shopsDistance();
+      },
+      err => {
+        self.setState({
+          isGeoLocAccessible: false,
+        });
+      },
+    );
+  } else {
+    self.setState({
+      isGeoLocAccessible: false,
+    });
+  }
+};
+
+export const geoCode = (
+  self,
+  value,
+  lat,
+  long,
+  isGeoLocAccessible,
+  shopsDistance,
+  getLocationErrorMessage,
+) => {
+  axios
+    .get(`https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=${value}&limit=1`)
+    .then(response => {
+      const { lat, lon } = response.data[0];
+      self.setState({
+        lat,
+        long: lon,
+        isGeoLocAccessible: true,
+      });
+      shopsDistance();
+    })
+    .catch(e => {
+      self.setState({
+        getLocationErrorMessage: true,
+      });
+    });
+};
+
+export const shopsDistance = (self, km, shops, lat, long, shopsOrderedByDistance) => {
+  const shopsWithDistance = shops.map(shop => {
+    return {
+      // calcul de la distance du shop par rapport au currentUser
+      ...shop,
+      distance: calculateDistance(
+        {
+          latitude: lat,
+          longitude: long,
+        },
+        {
+          latitude: shop.user.localisation.latitude,
+          longitude: shop.user.localisation.longitude,
+        },
+      ),
+    };
+  });
+  const shopsFilter = shopsWithDistance.sort(compare).filter(shop => shop.distance <= km);
+  self.setState({
+    shopsOrderedByDistance: shopsFilter,
+  });
 };
