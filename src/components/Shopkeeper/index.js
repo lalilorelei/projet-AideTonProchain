@@ -6,15 +6,14 @@ import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 
 import Header from 'components/Header';
 import Input from 'components/Input';
-import './shopkeeper.scss';
-import { calculateDistance, compare, initGeolocalisation, geoCode, shopsDistance } from 'utils';
+import { calculateDistance, compare, initGeolocalisation, geoCode, itemsDistance } from 'utils';
 
 class Shopkeeper extends React.Component {
   state = {
     lat: '',
     long: '',
     isGeoLocAccessible: true,
-    shopsOrderedByDistance: [],
+    itemsOrderedByDistance: [],
     getLocationErrorMessage: false,
     shops: [],
   };
@@ -30,7 +29,7 @@ class Shopkeeper extends React.Component {
   }
 
   shopsDistance = () => {
-    shopsDistance(
+    itemsDistance(
       this,
       9999,
       this.props.shops,
@@ -56,7 +55,7 @@ class Shopkeeper extends React.Component {
 
   onChangeSelect = evt => {
     const { value } = evt.target;
-    shopsDistance(
+    itemsDistance(
       this,
       value,
       this.props.shops,
@@ -108,76 +107,83 @@ class Shopkeeper extends React.Component {
           </div>
         ) : (
           <div className="container py-5 shopkeeper-list">
-            <div className="row my-3">
+            {this.state.lat !== '' && this.state.long !== '' && (
               <form className="form-inline d-flex justify-content-between">
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
-                      Distance maxi :
-                    </label>
-                    <select
-                      className="form-control form-control-sm"
-                      id="exampleFormControlSelect1"
-                      onChange={this.onChangeSelect}
-                    >
-                      <option value="1">1 km</option>
-                      <option value="2">2 km</option>
-                      <option value="3">3 km</option>
-                      <option value="4">4 km</option>
-                      <option value="5">5 km</option>
-                      <option value="10" selected>
-                        10 km
-                      </option>
-                      <option value="20">20 km</option>
-                      <option value="30">30 km</option>
-                    </select>
+                <div className="row my-3">
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
+                        Distance maxi :
+                      </label>
+                      <select
+                        className="form-control form-control-sm"
+                        id="exampleFormControlSelect1"
+                        onChange={this.onChangeSelect}
+                        defaultValue={10}
+                      >
+                        <option value="1">1 km</option>
+                        <option value="2">2 km</option>
+                        <option value="3">3 km</option>
+                        <option value="4">4 km</option>
+                        <option value="5">5 km</option>
+                        <option value="10">10 km</option>
+                        <option value="20">20 km</option>
+                        <option value="30">30 km</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="form-group">
-                    <span className="inline-form-label">Produits :</span>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1"
-                      />
-                      <label className="form-check-label" htmlFor="inlineCheckbox1">
-                        menus
-                      </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox2"
-                        value="option2"
-                      />
-                      <label className="form-check-label" htmlFor="inlineCheckbox2">
-                        restauration rapide
-                      </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox3"
-                        value="option3"
-                      />
-                      <label className="form-check-label" htmlFor="inlineCheckbox3">
-                        café
-                      </label>
+                  <div className="col-md-8">
+                    <div className="form-group">
+                      <span className="inline-form-label">Produits :</span>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox1"
+                          value="option1"
+                        />
+                        <label className="form-check-label" htmlFor="inlineCheckbox1">
+                          menus
+                        </label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox2"
+                          value="option2"
+                        />
+                        <label className="form-check-label" htmlFor="inlineCheckbox2">
+                          restauration rapide
+                        </label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox3"
+                          value="option3"
+                        />
+                        <label className="form-check-label" htmlFor="inlineCheckbox3">
+                          café
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </form>
-            </div>
-            <div className="row">
-              {this.state.shopsOrderedByDistance <= 0 && (
-                <p className="text-muted">Aucun commerçant trouvé dans la zone selectionnée</p>
+            )}
+            {this.state.lat !== '' &&
+              this.state.long !== '' &&
+              this.state.itemsOrderedByDistance <= 0 && (
+                <div className="row">
+                  <div className="col">
+                    <p className="text-muted">Aucun commerçant trouvé dans la zone selectionnée</p>
+                  </div>
+                </div>
               )}
-              {this.state.shopsOrderedByDistance.map(shop => {
+            <div className="row">
+              {this.state.itemsOrderedByDistance.map(shop => {
                 return (
                   <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop.user._id}>
                     <div className="card">

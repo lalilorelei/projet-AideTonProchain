@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 // import Media from 'react-media';
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
+import './beneficiary.scss';
 
 import Header from 'components/Header';
 import Input from 'components/Input';
-import './shopkeeper.scss';
-import { calculateDistance, compare, initGeolocalisation, geoCode, shopsDistance } from 'utils';
+import { calculateDistance, compare, initGeolocalisation, geoCode, itemsDistance } from 'utils';
 
-class Shopkeeper extends React.Component {
+class Beneficiary extends React.Component {
   state = {
     lat: '',
     long: '',
     isGeoLocAccessible: true,
-    shopsOrderedByDistance: [],
+    itemsOrderedByDistance: [],
     getLocationErrorMessage: false,
-    shops: [],
+    beneficiaries: [],
   };
   // Avant d'afficher le composant on récupère la localisation via le navigateur
   componentDidMount() {
@@ -24,19 +24,19 @@ class Shopkeeper extends React.Component {
       this,
       this.state.lat,
       this.state.long,
-      this.shopsDistance,
+      this.itemsDistance,
       this.state.isGeoLocAccessible,
     );
   }
 
-  shopsDistance = () => {
-    shopsDistance(
+  itemsDistance = () => {
+    itemsDistance(
       this,
       9999,
-      this.props.shops,
+      this.props.beneficiaries,
       this.state.lat,
       this.state.long,
-      this.state.shopsOrderedByDistance,
+      this.state.beneficiariesOrderedByDistance,
     );
   };
 
@@ -49,20 +49,20 @@ class Shopkeeper extends React.Component {
       this.state.lat,
       this.state.long,
       this.state.isGeoLocAccessible,
-      this.shopsDistance,
+      this.itemsDistance,
       this.state.getLocationErrorMessage,
     );
   };
 
   onChangeSelect = evt => {
     const { value } = evt.target;
-    shopsDistance(
+    itemsDistance(
       this,
       value,
-      this.props.shops,
+      this.props.beneficiaries,
       this.state.lat,
       this.state.long,
-      this.state.shopsOrderedByDistance,
+      this.state.beneficiariesOrderedByDistance,
     );
   };
 
@@ -70,7 +70,7 @@ class Shopkeeper extends React.Component {
     return (
       <>
         <Header
-          title="Commerces à proximité"
+          title="Bénéficiaires à proximité"
           backgroundImage={shopKeepersBackgroundImage}
           theme="dark"
         />
@@ -107,93 +107,74 @@ class Shopkeeper extends React.Component {
             </div>
           </div>
         ) : (
-          <div className="container py-5 shopkeeper-list">
-            <div className="row my-3">
+          <div className="container py-5 beneficiary-list">
+            {this.state.lat !== '' && this.state.long !== '' && (
               <form className="form-inline d-flex justify-content-between">
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
-                      Distance maxi :
-                    </label>
-                    <select
-                      className="form-control form-control-sm"
-                      id="exampleFormControlSelect1"
-                      onChange={this.onChangeSelect}
-                    >
-                      <option value="1">1 km</option>
-                      <option value="2">2 km</option>
-                      <option value="3">3 km</option>
-                      <option value="4">4 km</option>
-                      <option value="5">5 km</option>
-                      <option value="10" selected>
-                        10 km
-                      </option>
-                      <option value="20">20 km</option>
-                      <option value="30">30 km</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="form-group">
-                    <span className="inline-form-label">Produits :</span>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox1"
-                        value="option1"
-                      />
-                      <label className="form-check-label" htmlFor="inlineCheckbox1">
-                        menus
+                <div className="row my-3">
+                  <div className="col-12">
+                    <div className="form-group">
+                      <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
+                        Distance maxi :
                       </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox2"
-                        value="option2"
-                      />
-                      <label className="form-check-label" htmlFor="inlineCheckbox2">
-                        restauration rapide
-                      </label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="inlineCheckbox3"
-                        value="option3"
-                      />
-                      <label className="form-check-label" htmlFor="inlineCheckbox3">
-                        café
-                      </label>
+                      <select
+                        className="form-control form-control-sm"
+                        id="exampleFormControlSelect1"
+                        onChange={this.onChangeSelect}
+                        defaultValue={99999}
+                      >
+                        <option value="1">1 km</option>
+                        <option value="2">2 km</option>
+                        <option value="3">3 km</option>
+                        <option value="4">4 km</option>
+                        <option value="5">5 km</option>
+                        <option value="10">10 km</option>
+                        <option value="20">20 km</option>
+                        <option value="30">30 km</option>
+                        <option value="99999">Illimitée</option>
+                      </select>
                     </div>
                   </div>
                 </div>
               </form>
-            </div>
-            <div className="row">
-              {this.state.shopsOrderedByDistance <= 0 && (
-                <p className="text-muted">Aucun commerçant trouvé dans la zone selectionnée</p>
+            )}
+
+            {this.state.lat !== '' &&
+              this.state.long !== '' &&
+              this.state.itemsOrderedByDistance <= 0 && (
+                <div className="row">
+                  <div className="col">
+                    <p className="text-muted">
+                      Aucun bénéficiaire trouvé dans la zone selectionnée
+                    </p>
+                  </div>
+                </div>
               )}
-              {this.state.shopsOrderedByDistance.map(shop => {
+            <div className="row">
+              {this.state.itemsOrderedByDistance.map(beneficiary => {
                 return (
-                  <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop.user._id}>
+                  <div
+                    className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4"
+                    key={beneficiary.user._id}
+                  >
                     <div className="card">
                       <img
                         className="card-img-top"
-                        src={`https://picsum.photos/300/200?var=${shop.user.shopkeeper_name}`}
-                        alt={shop.user.shopkeeper_name}
+                        src={`https://picsum.photos/300/200?var=${
+                          beneficiary.user.shopkeeper_name
+                        }`}
+                        alt={beneficiary.user.shopkeeper_name}
                       />
                       <div className="card-body">
-                        <h3 className="card-title f2nt-3eight-bold">{shop.user.shopkeeper_name}</h3>
+                        <h3 className="card-title f2nt-3eight-bold">{beneficiary.user.username}</h3>
                         <h6 className="card-subtitle mb-2 text-muted">
                           {/* {shop.category} - {shop.distance} km */}
-                          category - {shop.distance} km
+                          {beneficiary.distance} km
                         </h6>
                       </div>
-                      <Link to={`/shopkeeper/${shop.user._id}`} className="stretched-link" />
+                      <Link
+                        to={`/beneficiary/${beneficiary.user._id}`}
+                        className="stretched-link"
+                      />
                     </div>
                   </div>
                 );
@@ -206,4 +187,4 @@ class Shopkeeper extends React.Component {
   }
 }
 
-export default Shopkeeper;
+export default Beneficiary;

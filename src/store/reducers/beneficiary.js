@@ -5,8 +5,8 @@ const initialState = {
         email: '',
         localisation: {
           address: '',
-          latitude: 0,
-          longitude: 0,
+          latitude: 48.709907,
+          longitude: 6.225622,
         },
         _id: '5d3f0f54c73f995908ac01e2',
         firstname: 'ludo',

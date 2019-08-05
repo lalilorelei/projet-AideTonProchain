@@ -57,7 +57,7 @@ export const compare = (a, b) => {
   return comparison;
 };
 
-export const initGeolocalisation = (self, lat, long, itemsDistance, isGeoLocAccessible) => {
+export const initGeolocalisation = (self, lat, long, shopsDistance, isGeoLocAccessible) => {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -65,7 +65,7 @@ export const initGeolocalisation = (self, lat, long, itemsDistance, isGeoLocAcce
           lat: position.coords.latitude,
           long: position.coords.longitude,
         });
-        itemsDistance();
+        shopsDistance();
       },
       err => {
         self.setState({
@@ -86,7 +86,7 @@ export const geoCode = (
   lat,
   long,
   isGeoLocAccessible,
-  itemsDistance,
+  shopsDistance,
   getLocationErrorMessage,
 ) => {
   axios
@@ -98,7 +98,7 @@ export const geoCode = (
         long: lon,
         isGeoLocAccessible: true,
       });
-      itemsDistance();
+      shopsDistance();
     })
     .catch(e => {
       self.setState({
@@ -107,25 +107,25 @@ export const geoCode = (
     });
 };
 
-export const itemsDistance = (self, km, items, lat, long, itemsOrderedByDistance) => {
-  const itemsWithDistance = items.map(item => {
+export const shopsDistance = (self, km, shops, lat, long, shopsOrderedByDistance) => {
+  const shopsWithDistance = shops.map(shop => {
     return {
       // calcul de la distance du shop par rapport au currentUser
-      ...item,
+      ...shop,
       distance: calculateDistance(
         {
           latitude: lat,
           longitude: long,
         },
         {
-          latitude: item.user.localisation.latitude,
-          longitude: item.user.localisation.longitude,
+          latitude: shop.user.localisation.latitude,
+          longitude: shop.user.localisation.longitude,
         },
       ),
     };
   });
-  const itemsFilter = itemsWithDistance.sort(compare).filter(item => item.distance <= km);
+  const shopsFilter = shopsWithDistance.sort(compare).filter(shop => shop.distance <= km);
   self.setState({
-    itemsOrderedByDistance: itemsFilter,
+    shopsOrderedByDistance: shopsFilter,
   });
 };

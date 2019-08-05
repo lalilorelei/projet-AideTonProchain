@@ -18,7 +18,7 @@ import Login from 'containers/Login';
 import Register from 'containers/Register';
 
 import Profil from 'containers/Profil';
-//import Beneficiary from 'containers/Beneficiary';
+import Beneficiary from 'containers/Beneficiary';
 import Shopkeeper from 'containers/Shopkeeper';
 import ShopkeeperDetails from 'containers/ShopkeeperDetails';
 import Donations from 'containers/Donation';
@@ -50,7 +50,12 @@ const App = () => (
           return <Login />;
         }}
       />
-      <Route exact key="/register" path="/register/:role(donor|beneficiary|shopkeeper)" component={Register} />
+      <Route
+        exact
+        key="/register"
+        path="/register/:role(donor|beneficiary|shopkeeper)"
+        component={Register}
+      />
       <Route
         exact
         key="/profil"
@@ -81,6 +86,14 @@ const App = () => (
         path="/shopkeeper"
         render={() => {
           return <Shopkeeper />;
+        }}
+      />
+      <Route
+        exact
+        key="/beneficiary"
+        path="/beneficiary"
+        render={() => {
+          return <Beneficiary />;
         }}
       />
       <Route
