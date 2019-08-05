@@ -3,6 +3,7 @@ import React from 'react';
 import ProfilHeader from './ProfilHeader';
 import Beneficiary from './Beneficiary';
 import Shopkeeper from './Shopkeeper';
+import Error403 from 'components/Error403';
 import './profil.scss';
 
 const Profil = ({ currentUser, role }) => {
@@ -16,7 +17,7 @@ const Profil = ({ currentUser, role }) => {
       </div>
     );
   } else {
-    return <div>ERROR</div>;
+    return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
   }
 };
 

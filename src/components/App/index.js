@@ -114,11 +114,10 @@ const App = () => (
         }}
       />
       <Route
-        key="/404"
-        path="/404"
         render={() => {
           return <Error404 />;
         }}
+        status={404}
       />
     </Switch>
   </>
