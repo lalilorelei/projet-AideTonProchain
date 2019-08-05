@@ -1,18 +1,10 @@
 import jwt from 'jsonwebtoken';
 import * as geolib from 'geolib';
 import axios from 'axios';
+import * as serialize from 'form-serialize';
 
 export const serializeFormData = form => {
-  const dataObject = {};
-  const formData = new FormData(form);
-
-  formData.forEach(function(value, key) {
-    dataObject[key] = value;
-  });
-
-  const jsonObject = JSON.stringify(dataObject);
-
-  return jsonObject;
+  return serialize(form, { hash: true });
 };
 
 export const decodedToken = token => {
@@ -107,7 +99,7 @@ export const geoCode = (
     });
 };
 
-export const itemsDistance = (self, km, items, lat, long, itemsOrderedByDistance) => {
+export const itemsDistance = (self, km = 9999, items, lat, long, itemsOrderedByDistance) => {
   const itemsWithDistance = items.map(item => {
     return {
       // calcul de la distance du shop par rapport au currentUser

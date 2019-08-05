@@ -26,6 +26,7 @@ const initialState = {
     token:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQyZDQ5OGU2NzhlZTViNTQwZjMwZTQiLCJyb2xlIjoiZG9ub3IiLCJpYXQiOjE1NjQ3NTk1ODgsImV4cCI6MTU2NTM2NDM4OH0.AikJ7lF0BC4GkQquNvFvVCQilc_6nSqS0UmhNtZ_j04',
   },
+  addressError: false,
 };
 
 export const FAKE = 'FAKE';
@@ -34,6 +35,7 @@ export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
 export const SEND_MANUAL_LOCATION = 'SEND_MANUAL_LOCATION';
 export const UPDATE_USER_LOCATION = 'UPDATE_USER_LOCATION';
 export const GET_LOCATION_ERROR_MESSAGE = 'GET_LOCATION_ERROR_MESSAGE';
+export const ADDRESS_ERROR = 'ADDRESS_ERROR';
 
 const user = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -41,6 +43,12 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         getLocationErrorMessage: action.message,
+      };
+    case ADDRESS_ERROR:
+      console.log('Reducer erreur adresse');
+      return {
+        ...state,
+        addressError: action.bool,
       };
     case UPDATE_USER_LOCATION:
       return {
@@ -87,6 +95,11 @@ export const sendManualLocation = address => ({
 export const getLocationErrorMessage = message => ({
   type: GET_LOCATION_ERROR_MESSAGE,
   message,
+});
+
+export const setAddressError = bool => ({
+  type: ADDRESS_ERROR,
+  bool,
 });
 
 export default user;

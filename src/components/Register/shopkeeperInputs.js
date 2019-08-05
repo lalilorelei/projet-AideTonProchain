@@ -8,26 +8,67 @@ const RegisterShopkeeper = () => (
     <Input
       type="text"
       label="Nom de votre commerce"
-      name="shopName"
-      id="shopName"
+      name="shopkeeper_name"
+      id="shopkeeper_name"
       placeholder="ex: Café de la gare"
       required={true}
     />
-    <div className="form-group">
-      <label htmlFor="shopCategory">Catégorie de l'établissement</label>
-      <select className="form-control" id="shopCategory" name="shopCategory">
-        <option value="cafe">Café</option>
-        <option value="restaurant">Restaurant</option>
-      </select>
-    </div>
     <Input
       type="text"
-      label="Adresse votre commerce"
-      name="shopAddress"
-      id="shopAddress"
-      placeholder="ex: 15 rue des Lilas 75018 Paris"
+      label="Numéro et rue de votre commerce"
+      name="streetAddress"
+      id="streetAddress"
+      placeholder="ex: 15 rue des Lilas"
       required={true}
     />
+    <Input
+      type="text"
+      label="Code postal"
+      name="postCode"
+      id="postCode"
+      placeholder="75008"
+      required={true}
+    />
+    <Input type="text" label="Ville" name="city" id="city" placeholder="Paris" required={true} />
+    <div className="form-group">
+      <label>Catégories de l'établissement</label>
+      <div className="form-check">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          value="Restauration"
+          id="restauration"
+          name="categories"
+        />
+        <label className="form-check-label" for="restauration">
+          Restauration
+        </label>
+      </div>
+      <div className="form-check">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          name="categories"
+          value="Habillement"
+          id="habillement"
+        />
+        <label className="form-check-label" for="habillement">
+          Habillement
+        </label>
+      </div>
+      <div className="form-check">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          name="categories"
+          value="Hôtellerie"
+          id="hotellerie"
+        />
+        <label className="form-check-label" for="hotellerie">
+          Hôtellerie
+        </label>
+      </div>
+    </div>
   </>
 );
 

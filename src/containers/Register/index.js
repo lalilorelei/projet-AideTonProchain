@@ -4,7 +4,9 @@ import Register from 'components/Register';
 
 import { submitRegister } from 'store/reducers/user';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  addressError: state.user.addressError,
+});
 
 const mapDispatchToProps = dispatch => ({
   submitRegister: (data, role) => {

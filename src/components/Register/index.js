@@ -10,7 +10,8 @@ import './register.scss';
 import registerBackgroundImage from 'assets/img/welcome.jpg';
 
 const Register = props => {
-  const submitRegister = props.submitRegister;
+  console.log(props);
+  const { submitRegister, addressError } = props;
 
   const role = props.match.params.role;
   let roleTitle = '';
@@ -38,6 +39,11 @@ const Register = props => {
       <div className="container register">
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-6">
+            {addressError && (
+              <div className="alert alert-danger">
+                L'adresse saisie n'a pas pu être reconnue, veuillez réessayer.
+              </div>
+            )}
             <form onSubmit={submitRegisterForm}>
               <h3>Vos identifiants</h3>
               <Input

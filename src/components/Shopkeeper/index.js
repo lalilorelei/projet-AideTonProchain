@@ -6,7 +6,7 @@ import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 
 import Header from 'components/Header';
 import Input from 'components/Input';
-import { calculateDistance, compare, initGeolocalisation, geoCode, itemsDistance } from 'utils';
+import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
 
 class Shopkeeper extends React.Component {
   state = {
@@ -19,50 +19,36 @@ class Shopkeeper extends React.Component {
   };
   // Avant d'afficher le composant on récupère la localisation via le navigateur
   componentDidMount() {
-    initGeolocalisation(
-      this,
-      this.state.lat,
-      this.state.long,
-      this.shopsDistance,
-      this.state.isGeoLocAccessible,
-    );
+    const { lat, long, isGeoLocAccessible } = this.state;
+    initGeolocalisation(this, lat, long, this.itemsDistance, isGeoLocAccessible);
   }
 
-  shopsDistance = () => {
-    itemsDistance(
-      this,
-      9999,
-      this.props.shops,
-      this.state.lat,
-      this.state.long,
-      this.state.shopsOrderedByDistance,
-    );
+  itemsDistance = () => {
+    const { lat, long, itemsOrderedByDistance } = this.state;
+    const { shops } = this.props;
+    itemsDistance(this, 9999, shops, lat, long, itemsOrderedByDistance);
   };
 
   // Soumission du formulaire avec adresse manuelle
   submitAskLocation = evt => {
     evt.preventDefault();
+    const { lat, long, isGeoLocAccessible, getLocationErrorMessage } = this.state;
     geoCode(
       this,
       evt.target.locationAddress.value,
-      this.state.lat,
-      this.state.long,
-      this.state.isGeoLocAccessible,
+      lat,
+      long,
+      isGeoLocAccessible,
       this.shopsDistance,
-      this.state.getLocationErrorMessage,
+      getLocationErrorMessage,
     );
   };
 
   onChangeSelect = evt => {
     const { value } = evt.target;
-    itemsDistance(
-      this,
-      value,
-      this.props.shops,
-      this.state.lat,
-      this.state.long,
-      this.state.shopsOrderedByDistance,
-    );
+    const { lat, long, shopsOrderedByDistance } = this.state;
+    const { shops } = this.props;
+    itemsDistance(this, value, shops, lat, long, shopsOrderedByDistance);
   };
 
   render() {
@@ -117,7 +103,7 @@ class Shopkeeper extends React.Component {
                       </label>
                       <select
                         className="form-control form-control-sm"
-                        id="exampleFormControlSelect1"
+                        id="selectDistance"
                         onChange={this.onChangeSelect}
                         defaultValue={10}
                       >
@@ -129,6 +115,7 @@ class Shopkeeper extends React.Component {
                         <option value="10">10 km</option>
                         <option value="20">20 km</option>
                         <option value="30">30 km</option>
+                        <option value="9999">Illimitée</option>
                       </select>
                     </div>
                   </div>

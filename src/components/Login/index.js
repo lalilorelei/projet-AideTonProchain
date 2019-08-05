@@ -30,8 +30,8 @@ const Login = ({ submitLogin }) => {
                 label="Adresse email ou nom d'utilisateur"
                 type="text"
                 className="form-control"
-                id="emailOrUserName"
-                name="emailOrUserName"
+                id="login"
+                name="login"
                 placeholder="ex: tintin@mail.com"
                 required={true}
               />
