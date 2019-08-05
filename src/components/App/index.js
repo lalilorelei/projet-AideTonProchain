@@ -10,6 +10,7 @@ import ProfilUpdate from 'components/ProfilUpdate';
 import DetailDonations from 'components/DetailDonations';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
+import Error404 from 'components/Error404';
 
 /* Containers */
 import Contact from 'containers/Contact';
@@ -49,12 +50,7 @@ const App = () => (
           return <Login />;
         }}
       />
-      <Route
-        exact
-        key="/register"
-        path="/register/:role(donor|beneficiary|shopkeeper)"
-        component={Register}
-      />
+      <Route exact key="/register" path="/register/:role(donor|beneficiary|shopkeeper)" component={Register} />
       <Route
         exact
         key="/profil"
@@ -120,8 +116,9 @@ const App = () => (
       />
       <Route
         render={() => {
-          return <h1>Erreur 404</h1>;
+          return <Error404 />;
         }}
+        status={404}
       />
     </Switch>
   </>
