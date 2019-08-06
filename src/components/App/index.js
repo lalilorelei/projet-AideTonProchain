@@ -7,7 +7,6 @@ import './App.scss';
 /* Components */
 import Home from 'components/Home';
 import ProfilUpdate from 'components/ProfilUpdate';
-import DetailDonations from 'components/DetailDonations';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
 import Error404 from 'components/Error404';
@@ -22,6 +21,7 @@ import Beneficiary from 'containers/Beneficiary';
 import Shopkeeper from 'containers/Shopkeeper';
 import ShopkeeperDetails from 'containers/ShopkeeperDetails';
 import Donations from 'containers/Donation';
+import DetailDonations from 'containers/Donation/detailDonation';
 
 const App = () => (
   <>
@@ -98,8 +98,8 @@ const App = () => (
       />
       <Route
         exact
-        key="/donations/[id]"
-        path="/donations/[id]"
+        key="/donations/:id"
+        path="/donations/:id"
         render={() => {
           return <DetailDonations />;
         }}

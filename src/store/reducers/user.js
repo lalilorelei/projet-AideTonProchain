@@ -1,5 +1,24 @@
 const initialState = {
-  currentUser: {},
+  currentUser: {
+    user: {
+      firstname: 'Suki',
+      lastname: 'Mason',
+      email: 'videx@mailinator.net',
+      localisation: {
+        address: '',
+        latitude: 0,
+        longitude: 0,
+      },
+      active: true,
+      _id: '5d48548b625a0204a20548dd',
+      username: 'ggglyke-beneficiary',
+      updated_at: '2019-08-05T16:08:43.017Z',
+      created_at: '2019-08-05T16:08:43.094Z',
+      __v: 8,
+    },
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQ4NTQ4YjYyNWEwMjA0YTIwNTQ4ZGQiLCJyb2xlIjoiYmVuZWZpY2lhcnkiLCJpYXQiOjE1NjUwODYxNzQsImV4cCI6MTU2NTY5MDk3NH0.kW9QdBPu_RNyVyYqsizFZr5w2vYP18DdGe6dPgTlMsQ',
+  },
   message: {
     success: '',
     error: '',

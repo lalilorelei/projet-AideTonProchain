@@ -1,0 +1,31 @@
+.card.donation {
+  .donation-metas {
+    flex: 3;
+  }
+  .donation-value {
+    flex: 1;
+  }
+  h4,
+  .donation-value {
+    font-size: 30px;
+  }
+  &.expired {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  table.recap {
+    tr {
+      td {
+        padding: 0.25rem 0;
+        &.product-item {
+          padding-right: 2rem;
+        }
+      }
+    }
+    tfoot {
+      border-top: 1px solid #888;
+      td {
+        padding: 0.25rem 0;
+      }
+    }
+  }
+}
