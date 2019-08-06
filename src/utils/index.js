@@ -122,7 +122,3 @@ export const itemsDistance = (self, km = 9999, items, lat, long, itemsOrderedByD
     itemsOrderedByDistance: itemsFilter,
   });
 };
-
-export const sumOfProducts = obj => {
-  return obj.reduce((a, b) => a.price + b.price);
-};

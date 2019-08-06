@@ -44,7 +44,6 @@ const Register = props => {
               address: stringAddress,
             };
             if (typeof jsonObject.categories !== 'object') {
-              console.log('une seule cat');
               jsonObject.categories = [jsonObject.categories];
             }
             delete jsonObject.city;

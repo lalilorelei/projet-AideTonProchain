@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 import Header from 'components/Header';
 import './donations.scss';
 import backgroundDonations from 'assets/img/donations.jpg';
-import { sumOfProducts } from 'utils';
+import { getDonationData } from 'utils/donationUtils';
 
-const Donations = ({ role, donations }) => {
-  console.log(donations);
-  //role = 'shopkeeper';
+const Donations = ({ currentUser, role, donations }) => {
+  role = 'shopkeeper';
   let title = '';
   switch (role) {
     case 'beneficiary':
@@ -28,90 +27,126 @@ const Donations = ({ role, donations }) => {
       <Header title={title} theme="dark" backgroundImage={backgroundDonations} />
       <div className="container mt-4 py-5">
         <div className="row justify-content-center">
-          <div className="col col-lg-8">
-            <h2 className="text-center">En cours</h2>
-            {role}
+          <div className="col col-md-6">
             {donations.map(donation => {
-              return (
-                <div className="card my-5 donation">
-                  <div className="card-header d-flex justify-content-between align-items-baseline">
-                    <div>
-                      <h5 className="mb-1">
-                        Donation <b>{donation.donation._id}</b>
-                      </h5>
-                      <div className="text-muted">
-                        <table className="text-small">
-                          <tbody>
-                            <tr>
-                              <td>Effectuée : </td>
-                              <td className="text-right"> {donation.donation.created_at}</td>
-                            </tr>
-                          </tbody>
-                        </table>
+              const donationAdditionalData = getDonationData(donation);
+              console.log('add data', donationAdditionalData);
+
+              if (true) {
+                return (
+                  <div className="card mb-4 donation">
+                    <div
+                      data-toggle="collapse"
+                      data-target={`#collapseDonation-${donation.donation._id}`}
+                      aria-expanded="false"
+                      aria-controls="collapseExample"
+                      className="card-header d-flex justify-content-between align-items-baseline"
+                    >
+                      <div>
+                        Donation {donationAdditionalData.donationDisplayRef}
+                        <div className="text-small text-muted">
+                          Date : {donationAdditionalData.donationDate}
+                        </div>
                       </div>
-                    </div>
-                    {donation.donation.use_at === undefined ? (
-                      <span className="text-success">Disponible</span>
-                    ) : (
-                      <span className="text-info">Consommée</span>
-                    )}
-                  </div>
-                  <div className="card-body">
-                    <div className="d-md-flex align-items-baseline">
-                      <div className="donation-metas">
-                        <p className="mb-0">
-                          {role === 'donor' && <>Pour {donation.beneficiary.username}</>}
-                          {role === 'beneficiary' && (
-                            <>De la part de {donation.donation.donor.username}</>
-                          )}
-                          {role === 'shopkeeper' && (
-                            <>
-                              De {donation.donation.donor.username} à{' '}
-                              {donation.beneficiary.username}
-                            </>
-                          )}
-                        </p>
-                        Chez <a href="#">{donation.donation.shopkeeper.shopkeeper_name}</a>
-                      </div>
-                    </div>
-                    <p className="card-text mt-3 mb-0">
-                      <b>Récapitulatif :</b>
-                    </p>
-                    <table className="recap">
-                      <tbody>
-                        {donation.donation.products.map(product => {
-                          return (
-                            <tr>
-                              <td className="product-item">1 {product.name}</td>
-                              <td>{role !== 'beneficiary' && <span>{product.price}€</span>}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                      {role !== 'beneficiary' && (
-                        <tfoot>
-                          <th>
-                            <td>
-                              <b>Total</b>
-                            </td>
-                          </th>
-                          <th>
-                            <td>{sumOfProducts(donation.donation.products)}€</td>
-                          </th>
-                        </tfoot>
+                      {donation.donation.use_at === undefined ? (
+                        <span className="text-success">Disponible</span>
+                      ) : (
+                        <span className="text-info">Consommée</span>
                       )}
-                    </table>
-                    <p className="card-text mt-3">Référence : {donation.donation._id}</p>
-                  </div>
-                  {role === 'shopkeeper' && (
-                    <div className="card-footer">
-                      <a href="#" className="btn btn-primary">
-                        Valider la transaction
-                      </a>
                     </div>
-                  )}
-                </div>
-              );
+                    <div
+                      className="card-body text-center collapse"
+                      id={`collapseDonation-${donation.donation._id}`}
+                    >
+                      <div className="d-md-flex align-items-baseline">
+                        <div className="donation-metas">
+                          <div className="my-3 text-center text-muted">
+                            {role === 'donor' && (
+                              <>
+                                <span>Votre donation pour</span>
+                                <h5 className="text-dark">{donation.beneficiary.username}</h5>
+                              </>
+                            )}
+                            {role === 'beneficiary' && (
+                              <>
+                                De la part de{' '}
+                                <h5 className="text-dark">{donation.donation.donor.username}</h5>
+                              </>
+                            )}
+                            {role === 'shopkeeper' && (
+                              <>
+                                De {donation.donation.donor.username} à{' '}
+                                {donation.beneficiary.username}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      <table className="recap my-3 text-left">
+                        <tbody>
+                          {donation.donation.products.map(product => {
+                            return (
+                              <tr>
+                                <td
+                                  className="product-item"
+                                  className={role === 'beneficiary' ? 'text-center' : ''}
+                                >
+                                  1 {product.name}
+                                </td>
+                                <td className="text-right">
+                                  {role !== 'beneficiary' && <span>{product.price}€</span>}
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                        {role !== 'beneficiary' && (
+                          <tfoot>
+                            <tr>
+                              <td>
+                                <b>Total</b>
+                              </td>
+                              <td className="text-right">
+                                {donationAdditionalData.sumOfProducts}€
+                              </td>
+                            </tr>
+                          </tfoot>
+                        )}
+                      </table>
+                      <div>
+                        <span className="text-muted text-small">
+                          {donationAdditionalData.used === true ? (
+                            role === 'beneficiary' || role === 'donor' ? (
+                              <>
+                                Consommée le 17/07/2019
+                                <br /> chez
+                                <a href="#"> {donation.donation.shopkeeper.shopkeeper_name}</a>
+                              </>
+                            ) : role === 'shopkeeper' ? (
+                              <>Consommée le 17/08/2019</>
+                            ) : null
+                          ) : role === 'beneficiary' || role === 'donor' ? (
+                            <>
+                              Disponible chez <br />
+                              <a href="#"> {donation.donation.shopkeeper.shopkeeper_name}</a>
+                            </>
+                          ) : role === 'shopkeeper' ? (
+                            <a href="#" className="btn btn-primary mb-3 text-white">
+                              Valider la transaction
+                            </a>
+                          ) : null}
+                        </span>
+                      </div>
+                      {donationAdditionalData.used === false && role === 'beneficiary' && (
+                        <div class="mt-4">
+                          <span className="text-muted">Référence à rappeler :</span>
+                          <h4>{donationAdditionalData.donationDisplayRef}</h4>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              }
             })}
           </div>
         </div>
