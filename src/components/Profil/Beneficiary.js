@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Beneficiary = ({ currentUser }) => {
   return (
     <>
@@ -29,9 +31,9 @@ const Beneficiary = ({ currentUser }) => {
 
           {/* Manque le bouton  */}
           <div className="d-flex col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-            <button type="submit" className="d-block mt-4 btn btn-custom-accent">
+            <Link className="d-block mt-4 btn btn-custom-accent" to="/donations">
               Voir les dons
-            </button>
+            </Link>
           </div>
         </div>
       </div>

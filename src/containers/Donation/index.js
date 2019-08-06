@@ -6,7 +6,8 @@ import { decodedToken } from 'utils';
 
 const mapStateToProps = state => ({
   donations: state.donation.donations,
-  role: decodedToken(state.user.currentUser.token),
+  beneficiary: state.donation.beneficiary,
+  role: decodedToken(state.user.currentUser.token).role,
 });
 
 const mapDispatchToProps = dispatch => ({});

@@ -8,7 +8,6 @@ import Error403 from 'components/Error403';
 import './profil.scss';
 
 const Profil = ({ currentUser, role }) => {
-  const roleProvisoir = 'shopkeeper';
   if (currentUser.user !== undefined) {
     return (
       <div>

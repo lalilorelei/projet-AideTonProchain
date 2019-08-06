@@ -8,10 +8,12 @@ export const serializeFormData = form => {
 };
 
 export const decodedToken = token => {
+  let id = 'null';
+  let role = 'null';
   if (!token) {
-    return;
+    return { id, role };
   }
-  let role;
+
   jwt.verify(token, 'aidetonprochain', (err, decoded) => {
     if (err) {
       if (err.message) {
@@ -19,12 +21,11 @@ export const decodedToken = token => {
       }
     }
     if (decoded !== undefined) {
+      id = decoded._id;
       role = decoded.role;
-    } else {
-      role = 'null';
     }
   });
-  return role;
+  return { id, role };
 };
 
 export const calculateDistance = (from, to) => {
@@ -120,4 +121,8 @@ export const itemsDistance = (self, km = 9999, items, lat, long, itemsOrderedByD
   self.setState({
     itemsOrderedByDistance: itemsFilter,
   });
+};
+
+export const sumOfProducts = obj => {
+  return obj.reduce((a, b) => a.price + b.price);
 };

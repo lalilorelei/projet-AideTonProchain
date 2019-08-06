@@ -67,7 +67,7 @@ const Home = () => (
               For doing some work for us "pro bono" will really add to your portfolio i promise nor
               can my website be in english?. In an ideal world give us a complimentary.
             </p>
-            <Link key="donorRegistration" className="text-accent" to="/register/donor">
+            <Link exact key="donorRegistration" className="text-accent" to="/register/donor">
               Nous rejoindre
             </Link>
           </div>
@@ -79,7 +79,12 @@ const Home = () => (
               For doing some work for us "pro bono" will really add to your portfolio i promise nor
               can my website be in english?. In an ideal world give us a complimentary.
             </p>
-            <Link key="beneficiaryRegistration" className="text-accent" to="/register/beneficiary">
+            <Link
+              exact
+              key="beneficiaryRegistration"
+              className="text-accent"
+              to="/register/beneficiary"
+            >
               Nous rejoindre
             </Link>
           </div>
@@ -91,7 +96,12 @@ const Home = () => (
               For doing some work for us "pro bono" will really add to your portfolio i promise nor
               can my website be in english?. In an ideal world give us a complimentary.
             </p>
-            <Link key="shopkeeperRegistration" className="text-accent" to="/register/shopkeeper">
+            <Link
+              exact
+              key="shopkeeperRegistration"
+              className="text-accent"
+              to="/register/shopkeeper"
+            >
               Nous rejoindre
             </Link>
           </div>

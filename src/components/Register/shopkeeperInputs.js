@@ -45,7 +45,7 @@ const RegisterShopkeeper = ({ addressError }) => (
           id="restauration"
           name="categories"
         />
-        <label className="form-check-label" for="restauration">
+        <label className="form-check-label" htmlFor="restauration">
           Restauration
         </label>
       </div>
@@ -57,7 +57,7 @@ const RegisterShopkeeper = ({ addressError }) => (
           value="Habillement"
           id="habillement"
         />
-        <label className="form-check-label" for="habillement">
+        <label className="form-check-label" htmlFor="habillement">
           Habillement
         </label>
       </div>
@@ -69,7 +69,7 @@ const RegisterShopkeeper = ({ addressError }) => (
           value="Hôtellerie"
           id="hotellerie"
         />
-        <label className="form-check-label" for="hotellerie">
+        <label className="form-check-label" htmlFor="hotellerie">
           Hôtellerie
         </label>
       </div>

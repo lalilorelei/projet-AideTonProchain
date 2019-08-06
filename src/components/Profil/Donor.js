@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const Donor = ({ currentUser }) => {
   return (
     <>
@@ -22,15 +24,15 @@ const Donor = ({ currentUser }) => {
             </div>
           </div>
           <div className="col-sm-6 col-md-4">
-            <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+            <Link className="mt-4 btn btn-custom-accent btn-block" to="/profil-update">
               Editer profil
-            </button>
-            <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+            </Link>
+            <Link className="mt-4 btn btn-custom-accent btn-block" to="/donations">
               Voir les dons
-            </button>
-            <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+            </Link>
+            <Link className="mt-4 btn btn-custom-accent btn-block" to="/add-product">
               Ajouter un produit
-            </button>
+            </Link>
           </div>
         </div>
       </div>

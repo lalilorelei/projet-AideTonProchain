@@ -23,7 +23,7 @@ const user = (state = initialState, action = {}) => {
     case REGISTER_MESSAGE:
       return {
         ...state,
-        message: action.data,
+        message: { success: action.data.success, error: action.data.error },
       };
     default:
       return state;

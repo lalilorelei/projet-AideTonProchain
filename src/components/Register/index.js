@@ -14,8 +14,6 @@ import registerBackgroundImage from 'assets/img/welcome.jpg';
 const Register = props => {
   const { submitRegister, message } = props;
 
-  console.log(message);
-
   const role = props.match.params.role;
   let roleTitle = '';
 
@@ -26,7 +24,6 @@ const Register = props => {
 
     let localisation = { lat: '', lon: '', address: '' };
     const jsonObject = serializeFormData(event.target);
-    console.log(event.target.streetAddress.value);
     const { streetAddress, postCode, city } = event.target;
     if (streetAddress.value !== '' && postCode.value !== '' && city.value !== '') {
       /* 1 - Je récupère les données de l'adresse entrée */
@@ -46,6 +43,14 @@ const Register = props => {
               lon,
               address: stringAddress,
             };
+            if (typeof jsonObject.categories !== 'object') {
+              console.log('une seule cat');
+              jsonObject.categories = [jsonObject.categories];
+            }
+            delete jsonObject.city;
+            delete jsonObject.streetAddress;
+            delete jsonObject.postCode;
+            jsonObject.description = '';
             jsonObject.localisation = localisation;
             submitRegister(jsonObject, role);
           } else {
@@ -76,9 +81,6 @@ const Register = props => {
         theme="dark"
         backgroundImage={registerBackgroundImage}
       />
-
-      {message.success !== '' && <div className="alert alert-success">{message.success}</div>}
-      {message.error !== '' && <div className="alert alert-danger">{message.error}</div>}
 
       <div className="container register">
         <div className="row justify-content-center">

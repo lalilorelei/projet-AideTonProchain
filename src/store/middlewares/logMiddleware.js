@@ -7,13 +7,17 @@ import axios from 'axios';
 const logMiddleware = store => next => action => {
   switch (action.type) {
     case SUBMIT_REGISTER:
+      console.log('data', action.data);
       axios
         .post(`http://95.142.175.77:3000/api/${action.role}/register`, action.data)
         .then(response => {
           store.dispatch(registerMessage({ succes: 'Profil enregistré avec succès', error: '' }));
         })
+        .then(response => {
+          window.location = '/login';
+        })
         .catch(e => {
-          store.dispatch(registerMessage({ succes: '', error: 'Profil enregistré avec succès' }));
+          store.dispatch(registerMessage({ succes: '', error: "Erreur lors de l'enregistrement" }));
           console.log(e.message);
         });
       break;
