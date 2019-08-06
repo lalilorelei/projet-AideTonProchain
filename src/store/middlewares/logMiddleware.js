@@ -1,7 +1,8 @@
-import { SUBMIT_LOGIN, SUBMIT_REGISTER } from 'store/actionMiddleware';
+import { SUBMIT_LOGIN, SUBMIT_REGISTER, DECONNEXION } from 'store/actionMiddleware';
 import { recieveCurrentUser, registerMessage } from 'store/reducers/user';
+import { decodedToken } from 'utils';
+
 import axios from 'axios';
-// import { SUBMIT_CONTACT } from './reducers/sharedReducer';
 
 const logMiddleware = store => next => action => {
   switch (action.type) {
@@ -26,8 +27,33 @@ const logMiddleware = store => next => action => {
           console.log(e.message);
         });
 
-      //axios.post('aider-son-prochain/api/connexion', data, {headers: {Authorization: `Bearer ${token}`}})
-      /*
+      break;
+    case DECONNEXION:
+      console.log(action.role, action.token);
+      axios
+        .post(
+          `http://95.142.175.77:3000/api/${action.role}/logout`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${action.token}` },
+          },
+        )
+        .then(response => {
+          store.dispatch(recieveCurrentUser({}));
+        })
+        .catch(e => {
+          console.log(e.message);
+        });
+      break;
+    default:
+      next(action);
+  }
+};
+
+export default logMiddleware;
+
+//axios.post('aider-son-prochain/api/connexion', data, {headers: {Authorization: `Bearer ${token}`}})
+/*
     const jwtSecret = process.env.JWT_SECRET;
 
     url=aider-son-prochain/api/
@@ -55,10 +81,3 @@ const logMiddleware = store => next => action => {
         }
       });
       */
-      break;
-    default:
-      next(action);
-  }
-};
-
-export default logMiddleware;

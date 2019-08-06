@@ -1,11 +1,13 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
+import CurrentUser from './CurrentUser';
+
 import './nav.scss';
 import logo_dark from '../../assets/img/logo-atp-blanc.png';
 import logo_light from '../../assets/img/logo-atp-black.png';
 
-const Nav = ({ currentUser, role, theme }) => (
+const Nav = ({ currentUser, role, theme, deconnexion }) => (
   <nav className={`navbar navbar-expand-lg navbar-${theme}`}>
     <Link key="/logo" className="navbar-brand" to="/">
       {theme === 'dark' ? (
@@ -63,6 +65,9 @@ const Nav = ({ currentUser, role, theme }) => (
               </NavLink>
             </li>
           </>
+        )}
+        {currentUser.user !== undefined && (
+          <CurrentUser currentUser={currentUser} role={role} deconnexion={deconnexion} />
         )}
       </ul>
     </div>
