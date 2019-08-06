@@ -7,7 +7,7 @@ import backgroundDonations from 'assets/img/donations.jpg';
 import { getDonationData } from 'utils/donationUtils';
 
 const Donations = ({ currentUser, role, donations }) => {
-  role = 'shopkeeper';
+  role = 'donor';
   let title = '';
   switch (role) {
     case 'beneficiary':
@@ -30,7 +30,6 @@ const Donations = ({ currentUser, role, donations }) => {
           <div className="col col-md-6">
             {donations.map(donation => {
               const donationAdditionalData = getDonationData(donation);
-              console.log('add data', donationAdditionalData);
 
               if (true) {
                 return (
@@ -43,7 +42,8 @@ const Donations = ({ currentUser, role, donations }) => {
                       className="card-header d-flex justify-content-between align-items-baseline"
                     >
                       <div>
-                        Donation {donationAdditionalData.donationDisplayRef}
+                        {role === 'donor' || role === 'beneficiary' ? 'Donation ' : 'Transaction '}
+                        {donationAdditionalData.donationDisplayRef}
                         <div className="text-small text-muted">
                           Date : {donationAdditionalData.donationDate}
                         </div>
