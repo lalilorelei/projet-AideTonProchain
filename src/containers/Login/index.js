@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Form from '../../components/Login';
 
-import { submitLogin } from 'store/reducers/user';
+import { submitLogin } from 'store/actionMiddleware';
 
 const mapStateToProps = state => ({});
 

@@ -1,25 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import Header from 'components/Header';
 import Input from 'components/Input';
 import RegisterShopkeeper from './shopkeeperInputs';
+import RegisterBeneficiary from './beneficiaryInputs';
 import { serializeFormData } from 'utils';
 import './register.scss';
 import registerBackgroundImage from 'assets/img/welcome.jpg';
 
 const Register = props => {
   console.log(props);
-  const { submitRegister, addressError } = props;
+  const { submitRegister, message } = props;
 
   const role = props.match.params.role;
   let roleTitle = '';
 
+  const [addressError, setAddressError] = useState(false);
+
   const submitRegisterForm = event => {
     event.preventDefault();
+
+    let localisation = { lat: '', lon: '', address: '' };
     const jsonObject = serializeFormData(event.target);
-    submitRegister(jsonObject, role);
+    console.log(event.target.streetAddress.value);
+    const { streetAddress, postCode, city } = event.target;
+    if (streetAddress.value !== '' && postCode.value !== '' && city.value !== '') {
+      /* 1 - Je récupère les données de l'adresse entrée */
+      const stringAddress = streetAddress.value + ' ' + postCode.value + ' ' + city.value;
+
+      // setShopkeeperLocalisation(false);
+      /* 2 - Je teste l'adresse en geocoding */
+      axios
+        .get(
+          `https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=${stringAddress}&limit=1`,
+        )
+        .then(response => {
+          if (response.data[0] !== undefined) {
+            const { lat, lon } = response.data[0];
+            localisation = {
+              lat,
+              lon,
+              address: stringAddress,
+            };
+            jsonObject.localisation = localisation;
+            submitRegister(jsonObject, role);
+          } else {
+            console.log("erreur dans l'adresse, à gérer");
+            setAddressError(true);
+          }
+        })
+        .catch(e => {
+          console.log(e.message);
+          setAddressError(true);
+        });
+    } else {
+      submitRegister(jsonObject, role);
+    }
   };
 
   role === 'beneficiary'
@@ -36,14 +75,13 @@ const Register = props => {
         theme="dark"
         backgroundImage={registerBackgroundImage}
       />
+
+      {message.success !== '' && <div className="alert alert-success">{message.success}</div>}
+      {message.error !== '' && <div className="alert alert-danger">{message.error}</div>}
+
       <div className="container register">
         <div className="row justify-content-center">
           <div className="col-md-12 col-lg-6">
-            {addressError && (
-              <div className="alert alert-danger">
-                L'adresse saisie n'a pas pu être reconnue, veuillez réessayer.
-              </div>
-            )}
             <form onSubmit={submitRegisterForm}>
               <h3>Vos identifiants</h3>
               <Input
@@ -86,7 +124,8 @@ const Register = props => {
                 placeholder="ex: Dubois"
                 required={false}
               />
-              {role === 'shopkeeper' ? <RegisterShopkeeper /> : null}
+              {role === 'shopkeeper' ? <RegisterShopkeeper addressError={addressError} /> : null}
+              {role === 'beneficiary' ? <RegisterBeneficiary addressError={addressError} /> : null}
 
               <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
                 Continuer

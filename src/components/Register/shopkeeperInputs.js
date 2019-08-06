@@ -2,7 +2,7 @@ import React from 'react';
 
 import Input from 'components/Input';
 
-const RegisterShopkeeper = () => (
+const RegisterShopkeeper = ({ addressError }) => (
   <>
     <h3 className="topSectionH3 mt-5">Votre commerce</h3>
     <Input
@@ -13,6 +13,11 @@ const RegisterShopkeeper = () => (
       placeholder="ex: Café de la gare"
       required={true}
     />
+    {addressError && (
+      <div className="alert alert-danger">
+        L'adresse saisie n'a pas pu être reconnue, veuillez réessayer.
+      </div>
+    )}
     <Input
       type="text"
       label="Numéro et rue de votre commerce"

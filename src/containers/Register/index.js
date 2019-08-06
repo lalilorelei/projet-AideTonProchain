@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 
 import Register from 'components/Register';
 
-import { submitRegister } from 'store/reducers/user';
+import { submitRegister } from 'store/actionMiddleware';
 
 const mapStateToProps = state => ({
   addressError: state.user.addressError,
+  message: state.user.message
 });
 
 const mapDispatchToProps = dispatch => ({
