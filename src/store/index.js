@@ -18,6 +18,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 
 import reducer from './reducers/index';
 import logMiddleware from './middlewares/logMiddleware';
@@ -27,6 +28,7 @@ import locationMiddleware from './middlewares/locationMiddleware';
 const persistConfig = {
   key: 'root',
   storage,
+  stateReconciler: autoMergeLevel1,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -12,8 +12,9 @@ import './register.scss';
 import registerBackgroundImage from 'assets/img/welcome.jpg';
 
 const Register = props => {
-  console.log(props);
   const { submitRegister, message } = props;
+
+  console.log(message);
 
   const role = props.match.params.role;
   let roleTitle = '';

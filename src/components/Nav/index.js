@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-import CurrentUser from './CurrentUser';
+import CurrentUser from './currentUser';
 
 import './nav.scss';
 import logo_dark from '../../assets/img/logo-atp-blanc.png';

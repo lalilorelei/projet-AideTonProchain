@@ -7,6 +7,7 @@ import backgroundDonations from 'assets/img/donations.jpg';
 
 const Donations = ({ role, donations }) => {
   console.log(role);
+  role = 'shopkeeper';
   let title = '';
   switch (role) {
     case 'beneficiary':
@@ -28,100 +29,147 @@ const Donations = ({ role, donations }) => {
         <div className="row justify-content-center">
           <div className="col col-lg-8">
             <h2 className="text-center">En cours</h2>
-            <p>Pour le bénéficiaire : </p>
-            <div className="card my-5">
-              <div className="card-header text-muted">Par (donor.username) le (donation.date)</div>
-              <div className="card-body">
-                <h4 className="card-title mb-0">1 café et un autre produit</h4>
-                <a href="#">(shop.name)</a> - (shop.distance) km
-                <p className="card-text mt-3">Référence : (donation._id)</p>
-              </div>
-              <Link to={`/donations/2121212`} className="stretched-link" />
-              <div className="card-footer bg-transparent">
-                <Link to={`/donation/2121212`}> Voir les détails... </Link>
-              </div>
-            </div>
-            <p>Pour le doneur : </p>
+            {role}
             <div className="card my-5 donation">
-              <div className="card-header text-muted">
-                Pour (beneficiary.username) le (donation.date)
+              <div className="card-header d-flex justify-content-between align-items-baseline">
+                <div>
+                  <h5 className="mb-1">
+                    Donation <b>(donation._id)</b>
+                  </h5>
+                  <div className="text-muted">
+                    <table className="text-small">
+                      <tbody>
+                        <tr>
+                          <td>Effectuée : </td>
+                          <td className="text-right"> (donation.created_at)</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <span className="text-success">Disponible</span>
               </div>
               <div className="card-body">
-                <div className="d-flex align-items-baseline">
+                <div className="d-md-flex align-items-baseline">
                   <div className="donation-metas">
-                    <h4 className="card-title mb-0">1 café et un autre produit</h4>
+                    <p className="mb-0">
+                      {role == 'donor' && <>Pour (beneficiary.username)</>}
+                      {role == 'beneficiary' && <>De la part de (donor.username)</>}
+                      {role == 'shopkeeper' && <>De (donor.username) à (beneficiary.username)</>}
+                    </p>
                     <a href="#">(shop.name)</a> - (shop.distance) km
                   </div>
-                  <span className="donation-value text-center">3€</span>
                 </div>
+                <p className="card-text mt-3 mb-0">
+                  <b>Récapitulatif :</b>
+                </p>
+                <table className="recap">
+                  <tbody>
+                    <tr>
+                      <td className="product-item">1 café</td>
+                      <td>{role !== 'beneficiary' && <span>1€50</span>}</td>
+                    </tr>
+                    <tr>
+                      <td className="product-item">1 très long café</td>
+                      <td>{role !== 'beneficiary' && <span>1€50</span>}</td>
+                    </tr>
+                  </tbody>
+                  {role !== 'beneficiary' && (
+                    <tfoot>
+                      <th>
+                        <td>
+                          <b>Total</b>
+                        </td>
+                      </th>
+                      <th>
+                        <td>(total)</td>
+                      </th>
+                    </tfoot>
+                  )}
+                </table>
                 <p className="card-text mt-3">Référence : (donation._id)</p>
               </div>
-              <div className="card-footer bg-transparent">
-                <a href="#">Voir les détails...</a>
-              </div>
-            </div>
-            <p>Pour le commerçant : </p>
+              {role === 'shopkeeper' && (
+                <div className="card-footer">
+                  <a href="#" className="btn btn-primary">
+                    Valider la transaction
+                  </a>
+                </div>
+              )}
+            </div>{' '}
+            {/* -- end .card */}
             <div className="card my-5 donation">
-              <div className="card-header text-muted">
-                De (donor.username) à (beneficiary.username)
-              </div>
-              <div className="card-body">
-                <div className="d-flex align-items-baseline">
-                  <div className="donation-metas">
-                    <h4 className="card-title mb-0">1 café et un autre produit</h4>
-                    (shop.name) - le (donation.date)
+              <div className="card-header d-flex justify-content-between align-items-baseline">
+                <div>
+                  <h5 className="mb-1">
+                    Donation <b>(donation._id)</b>
+                  </h5>
+                  <div className="text-muted">
+                    <table className="text-small">
+                      <tbody>
+                        <tr>
+                          <td>Effectuée : </td>
+                          <td className="text-right">(donation.created_at)</td>
+                        </tr>
+                        <tr>
+                          <td>Validée : </td>
+                          <td className="text-right">(donation.validated_at)</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <span className="donation-value text-center">3€</span>
                 </div>
-                <p className="card-text mt-3">Référence : (donation._id)</p>
-              </div>
-              <div className="card-footer bg-transparent">
-                <a href="#" className="text-success mr-3">
-                  Valider
-                </a>
-                <a href="#">Voir les détails...</a>
-              </div>
-            </div>
-            <h2>Consommées/expirées</h2>
-            <div className="card my-5 donation expired">
-              <div className="card-header text-muted">
-                Pour (beneficiary.username) le (donation.date)
+                <span className="text-info">Utilisée</span>
               </div>
               <div className="card-body">
-                <div className="d-flex align-items-baseline">
+                <div className="d-md-flex align-items-baseline">
                   <div className="donation-metas">
-                    <h4 className="card-title mb-0">1 café et un autre produit</h4>
+                    <p className="mb-0">
+                      {role == 'donor' && <>Pour (beneficiary.username)</>}
+                      {role == 'beneficiary' && <>De la part de (donor.username)</>}
+                      {role == 'shopkeeper' && <>De (donor.username) à (beneficiary.username)</>}
+                    </p>
                     <a href="#">(shop.name)</a> - (shop.distance) km
                   </div>
-                  <span className="donation-value text-center">3€</span>
                 </div>
+                <p className="card-text mt-3 mb-0">
+                  <b>Récapitulatif :</b>
+                </p>
+                <table className="recap">
+                  <tbody>
+                    <tr>
+                      <td className="product-item">1 café</td>
+                      <td>{role !== 'beneficiary' && <span>1€50</span>}</td>
+                    </tr>
+                    <tr>
+                      <td className="product-item">1 très long café</td>
+                      <td>{role !== 'beneficiary' && <span>1€50</span>}</td>
+                    </tr>
+                  </tbody>
+                  {role !== 'beneficiary' && (
+                    <tfoot>
+                      <th>
+                        <td>
+                          <b>Total</b>
+                        </td>
+                      </th>
+                      <th>
+                        <td>(total)</td>
+                      </th>
+                    </tfoot>
+                  )}
+                </table>
                 <p className="card-text mt-3">Référence : (donation._id)</p>
               </div>
-              <div className="card-footer bg-transparent">
-                <a href="#">Voir les détails...</a>
-              </div>
-            </div>
-
-            {/* <h2 className="text-center">Consommées</h2>
-            <table className="table text-left">
-              <tbody>
-                <tr>
-                  <td>Pour Toto le 28/07/2019</td>
-                  <td rowspan="4" className="text-center">
-                    2€
-                  </td>
-                </tr>
-                <tr>
-                  <td>1 sandwich</td>
-                </tr>
-                <tr>
-                  <td>Café des amis</td>
-                </tr>
-                <tr>
-                  <td>Ref: ATP-2019-41</td>
-                </tr>
-              </tbody>
-            </table> */}
+              {role === 'shopkeeper' && (
+                <div className="card-footer">
+                  <a href="#" className="btn btn-primary">
+                    Valider la transaction
+                  </a>
+                </div>
+              )}
+            </div>{' '}
+            {/* -- end .card */}
           </div>
         </div>
       </div>

@@ -23,6 +23,9 @@ const logMiddleware = store => next => action => {
         .then(response => {
           store.dispatch(recieveCurrentUser(response.data));
         })
+        .then(response => {
+          window.location = '/profil';
+        })
         .catch(e => {
           console.log(e.message);
         });
