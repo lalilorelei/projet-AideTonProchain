@@ -8,6 +8,7 @@ import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import Header from 'components/Header';
 import Input from 'components/Input';
 import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
+import { getAllShops } from 'utils/shopkeeperUtils';
 
 class Shopkeeper extends React.Component {
   state = {
@@ -18,15 +19,19 @@ class Shopkeeper extends React.Component {
     getLocationErrorMessage: false,
     shops: [],
   };
-  // Avant d'afficher le composant on récupère la localisation via le navigateur
+  // Avant d'afficher le composant on récupère la localisation via le navigateur et l'ensemble des shops
   componentDidMount() {
     const { lat, long, isGeoLocAccessible } = this.state;
+    const { role, currentUser } = this.props;
+    getAllShops(this, currentUser, role);
     initGeolocalisation(this, lat, long, this.itemsDistance, isGeoLocAccessible);
   }
 
   itemsDistance = () => {
     const { lat, long, itemsOrderedByDistance } = this.state;
-    const { shops } = this.props;
+
+    const { shops } = this.state;
+    console.log(this.state);
     itemsDistance(this, 9999, shops, lat, long, itemsOrderedByDistance);
   };
 
@@ -48,11 +53,16 @@ class Shopkeeper extends React.Component {
   onChangeSelect = evt => {
     const { value } = evt.target;
     const { lat, long, shopsOrderedByDistance } = this.state;
-    const { shops } = this.props;
+    const { shops } = this.state;
     itemsDistance(this, value, shops, lat, long, shopsOrderedByDistance);
   };
 
   render() {
+    let { shops } = '';
+    if (this.state.shops.length > 0) {
+      shops = this.state.shops;
+    }
+
     return (
       <>
         <Header
@@ -173,21 +183,20 @@ class Shopkeeper extends React.Component {
             <div className="row">
               {this.state.itemsOrderedByDistance.map(shop => {
                 return (
-                  <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop.user._id}>
+                  <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop._id}>
                     <div className="card">
                       <img
                         className="card-img-top"
-                        src={`https://picsum.photos/300/200?var=${shop.user.shopkeeper_name}`}
-                        alt={shop.user.shopkeeper_name}
+                        src={`https://picsum.photos/300/200?var=${shop.shopkeeper_name}`}
+                        alt={shop.shopkeeper_name}
                       />
                       <div className="card-body">
-                        <h3 className="card-title f2nt-3eight-bold">{shop.user.shopkeeper_name}</h3>
+                        <h3 className="card-title f2nt-3eight-bold">{shop.shopkeeper_name}</h3>
                         <h6 className="card-subtitle mb-2 text-muted">
-                          {/* {shop.category} - {shop.distance} km */}
                           category - {shop.distance} km
                         </h6>
                       </div>
-                      <Link to={`/shopkeeper/${shop.user._id}`} className="stretched-link" />
+                      <Link to={`/shopkeeper/${shop._id}`} className="stretched-link" />
                     </div>
                   </div>
                 );
@@ -200,7 +209,7 @@ class Shopkeeper extends React.Component {
   }
 }
 
-Shopkeeper.propTypes = {
+/*Shopkeeper.propTypes = {
   lat: PropTypes.number.isRequired,
   long: PropTypes.number.isRequired,
   isGeoLocAccessible: PropTypes.bool.isRequired,
@@ -208,6 +217,6 @@ Shopkeeper.propTypes = {
   getLocationErrorMessage: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
   shops: PropTypes.string.isRequired,
-};
+};*/
 
 export default Shopkeeper;

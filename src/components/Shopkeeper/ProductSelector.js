@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { serializeFormData } from 'utils';
 
-const ProductSelector = ({ products, role, clickDeleteProduct }) => {
-  //const submitProductSelector = props.submitProductSelector;
-
+const ProductSelector = ({ products, role, total, clickDeleteProduct, changeDonationTotal }) => {
   const handleSubmitProductSelector = event => {
     event.preventDefault();
     const jsonObject = serializeFormData(event.target);
@@ -28,42 +26,53 @@ const ProductSelector = ({ products, role, clickDeleteProduct }) => {
         )}
       </div>
 
-      <form className="my-3" onSubmit={handleSubmitProductSelector}>
+      <form className="my-3" onSubmit={handleSubmitProductSelector} onInput={changeDonationTotal}>
         <table className="table text-left">
           <thead>
             <tr>
               <th scope="col">Produit</th>
-              <th scope="col">Prix</th>
-              <th scope="col">
-                {role === 'donor' ? 'Quantité' : role === 'shopkeeper' ? 'Action' : 'Quantité'}
-              </th>
+
+              {role !== 'beneficiary' && (
+                <>
+                  <th scope="col">Prix</th>
+                  <th scope="col">
+                    {role === 'donor' ? 'Quantité' : role === 'shopkeeper' ? 'Action' : 'Quantité'}
+                  </th>
+                </>
+              )}
             </tr>
           </thead>
           <tbody>
             {products.map(product => (
               <tr className="product-row" key={product._id}>
                 <td>{product.name}</td>
-                <td>{product.price}€</td>
-                <td className="selector">
-                  {role === 'donor' && (
-                    <select
-                      className="form-control form-control-sm"
-                      name={product.id}
-                      id={product.id}
-                    >
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                    </select>
-                  )}
-                  {role === 'shopkeeper' && (
-                    <div className="action-links">
-                      <a href="#">Editer</a>
-                      <a href="#" onClick={clickDeleteProduct} data-id={product._id}>
-                        Supprimer
-                      </a>
-                    </div>
-                  )}
-                </td>
+                {role !== 'beneficiary' && (
+                  <>
+                    <td>{product.price}€</td>
+                    <td className="selector">
+                      {role === 'donor' && (
+                        <select
+                          className="form-control form-control-sm"
+                          name={product._id}
+                          id={product._id}
+                          data-id={product._id}
+                          data-price={product.price}
+                        >
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                        </select>
+                      )}
+                      {role === 'shopkeeper' && (
+                        <div className="action-links">
+                          <a href="#">Editer</a>
+                          <a href="#" onClick={clickDeleteProduct} data-id={product._id}>
+                            Supprimer
+                          </a>
+                        </div>
+                      )}
+                    </td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>
@@ -71,7 +80,7 @@ const ProductSelector = ({ products, role, clickDeleteProduct }) => {
             <tfoot>
               <tr>
                 <th scope="row">Total</th>
-                <td>8€</td>
+                <td>{total}€</td>
                 <td />
               </tr>
             </tfoot>

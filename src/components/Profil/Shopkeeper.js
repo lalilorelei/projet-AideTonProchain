@@ -23,11 +23,12 @@ class Shopkeeper extends React.Component {
     const { role } = this.props;
     let { products, shop } = '';
 
-    if (this.state) {
+    if (this.state && this.state.products && this.state.shop) {
       products = this.state.products;
       shop = this.state.shop;
     }
     const date = new Date();
+    // ggglyke-shopkeeper23 shop id : 5d4995862b16280cfc317f90
 
     return (
       <>
@@ -38,7 +39,6 @@ class Shopkeeper extends React.Component {
                 <>
                   <ProductSelector
                     products={products}
-                    //submitProductSelector={submitProductSelector}
                     role={role}
                     clickDeleteProduct={this.clickDeleteProduct}
                   />
@@ -54,7 +54,15 @@ class Shopkeeper extends React.Component {
                       <br />
                       <span>{shop.localisation.address}</span>
                       <br />
-                      <a href="#">Voir sur la carte</a>
+                      <a
+                        href={`https://maps.google.com/?q=${shop.localisation.lat},${
+                          shop.localisation.lon
+                        }`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Voir sur la carte
+                      </a>
                     </p>
 
                     <span className="font-weight-bold text-small d-block mb-2">Horaires : </span>

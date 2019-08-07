@@ -23,6 +23,11 @@
   vertical-align: middle;
 }
 table {
+  thead {
+    th {
+      border: none;
+    }
+  }
   td {
     &.selector {
       width: 84px;

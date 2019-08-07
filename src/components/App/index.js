@@ -49,7 +49,12 @@ const App = () => (
           return <Login />;
         }}
       />
-      <Route exact key="/register" path="/register/:role(donor|beneficiary|shopkeeper)" component={Register} />
+      <Route
+        exact
+        key="/register"
+        path="/register/:role(donor|beneficiary|shopkeeper)"
+        component={Register}
+      />
       <Route
         exact
         key="/profil"
