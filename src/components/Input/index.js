@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ type, label, name, id, placeholder, required }) => (
+const Input = ({ type, label, name, id, placeholder, required, value }) => (
   <div className="form-group">
     <label htmlFor={id}>
       {label}
@@ -14,11 +14,12 @@ const Input = ({ type, label, name, id, placeholder, required }) => (
         id={id}
         name={name}
         placeholder={placeholder}
+        value={value}
         required
       />
     )}
     {!required && (
-      <input type={type} className="form-control" id={id} name={name} placeholder={placeholder} />
+      <input type={type} className="form-control" id={id} name={name} placeholder={placeholder} value={value} />
     )}
   </div>
 );

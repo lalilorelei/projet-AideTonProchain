@@ -6,7 +6,6 @@ import './App.scss';
 /* Pages */
 /* Components */
 import Home from 'components/Home';
-import ProfilUpdate from 'components/ProfilUpdate';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
 import Error404 from 'components/Error404';
@@ -17,6 +16,7 @@ import Login from 'containers/Login';
 import Register from 'containers/Register';
 import AddProduct from 'containers/Shopkeeper/addProduct';
 import Profil from 'containers/Profil';
+import ProfilUpdate from 'containers/ProfilUpdate';
 import Beneficiary from 'containers/Beneficiary';
 import Shopkeeper from 'containers/Shopkeeper';
 import ShopkeeperDetails from 'containers/ShopkeeperDetails';
