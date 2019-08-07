@@ -12,7 +12,7 @@ const Error403 = () => (
         <div className="col col-lg-8 text-left">
           <h2 className="text-center">Oops!</h2>
           <h2>Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés</h2>
-          <Link key="/" className="link-403 text-center mt-5" to="/login">
+          <Link key="/" className="btn btn-custom-accent btn-block mt-5" to="/login">
             Retour à la page connexion
           </Link>
         </div>
