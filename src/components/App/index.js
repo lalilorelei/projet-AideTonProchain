@@ -10,6 +10,7 @@ import ProfilUpdate from 'components/ProfilUpdate';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
 import Error404 from 'components/Error404';
+import TestAutocomplete from 'components/tests/testAutocomplete';
 
 /* Containers */
 import Contact from 'containers/Contact';
@@ -25,6 +26,16 @@ import Donations from 'containers/Donation';
 const App = () => (
   <>
     <Switch>
+      {/* test temporaire */}
+      <Route
+        exact
+        key="/test-autocomplete"
+        path="/test-autocomplete"
+        render={() => {
+          return <TestAutocomplete />;
+        }}
+      />
+      {/* fin du test */}
       <Route
         exact
         key="/"
@@ -49,7 +60,12 @@ const App = () => (
           return <Login />;
         }}
       />
-      <Route exact key="/register" path="/register/:role(donor|beneficiary|shopkeeper)" component={Register} />
+      <Route
+        exact
+        key="/register"
+        path="/register/:role(donor|beneficiary|shopkeeper)"
+        component={Register}
+      />
       <Route
         exact
         key="/profil"

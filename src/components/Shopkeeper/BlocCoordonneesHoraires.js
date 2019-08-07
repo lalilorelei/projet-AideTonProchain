@@ -2,7 +2,6 @@ import React from 'react';
 
 const BlocCoordonneesHoraires = ({ shop }) => {
   const date = new Date();
-  console.log('shop bch', shop);
   return (
     <div className="card">
       <div className="card-body">

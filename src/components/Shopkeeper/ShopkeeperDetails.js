@@ -9,6 +9,15 @@ import shopKeeperBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import { getTempProducts, getTempShopDetails } from 'utils/shopkeeperUtils';
 
 class ShopkeeperDetails extends Component {
+  state = {
+    selectedProductsTotal: 0,
+    donation: {
+      shopkeeper: this.props.match.params.id,
+      beneficiary: 1110264,
+      donor: this.props.currentUser.user._id,
+      products: [],
+    },
+  };
   componentDidMount() {
     const { role } = this.props;
     const { currentUser } = this.props;
@@ -17,13 +26,40 @@ class ShopkeeperDetails extends Component {
     getTempProducts(this, shopkeeperId);
   }
 
+  changeDonationTotal = evt => {
+    if (evt.target.value !== '0') {
+      const tempTotal = this.state.selectedProductsTotal + parseFloat(evt.target.dataset.price);
+      this.setState({
+        selectedProductsTotal: Math.round(tempTotal * 100) / 100,
+        donation: {
+          ...this.state.donation,
+          products: [...this.state.donation.products, evt.target.dataset.id],
+        },
+      });
+    } else {
+      const tempTotal = this.state.selectedProductsTotal - parseFloat(evt.target.dataset.price);
+      const tempProducts = this.state.donation.products;
+      var index = tempProducts.indexOf(evt.target.dataset.id);
+      if (index > -1) {
+        tempProducts.splice(index, 1);
+      }
+      this.setState({
+        selectedProductsTotal: Math.round(tempTotal * 100) / 100,
+        donation: {
+          ...this.state.donation,
+          products: tempProducts,
+        },
+      });
+    }
+  };
+
   render() {
+    console.log(this.state);
     const { role } = this.props;
     let { products, shop } = '';
     if (this.state && this.state.products && this.state.shop) {
       products = this.state.products;
       shop = this.state.shop;
-      console.log(shop);
     }
 
     return (
@@ -43,8 +79,10 @@ class ShopkeeperDetails extends Component {
                 (role === 'beneficiary' || role === 'shopkeeper' || role === 'donor') && (
                   <ProductSelector
                     products={products}
+                    changeDonationTotal={this.changeDonationTotal}
                     //submitProductSelector={submitProductSelector}
                     role={role}
+                    total={this.state.selectedProductsTotal}
                   />
                 )}
             </div>
