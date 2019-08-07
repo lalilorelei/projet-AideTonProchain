@@ -12,9 +12,9 @@ const Profil = ({ currentUser, role }) => {
     return (
       <div>
         <ProfilHeader title={`${currentUser.user.username} (${role})`} user={currentUser} />
-        {role === 'beneficiary' && <Beneficiary currentUser={currentUser} />}
-        {role === 'shopkeeper' && <Shopkeeper currentUser={currentUser} />}
-        {role === 'donor' && <Donor currentUser={currentUser} />}
+        {role === 'beneficiary' && <Beneficiary currentUser={currentUser} role={role} />}
+        {role === 'shopkeeper' && <Shopkeeper currentUser={currentUser} role={role} />}
+        {role === 'donor' && <Donor currentUser={currentUser} role={role} />}
       </div>
     );
   } else {

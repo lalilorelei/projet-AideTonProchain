@@ -16,7 +16,7 @@ export const getDonationData = ({ donation }) => {
     '/' +
     date.getFullYear();
 
-  const used = donation.use_at !== undefined;
+  const used = donation.used_at !== undefined;
 
   return {
     used,
