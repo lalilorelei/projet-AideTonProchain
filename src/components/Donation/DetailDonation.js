@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
 import backgroundDonations from 'assets/img/donations.jpg';
@@ -33,4 +34,9 @@ const DetailDonation = ({ role }) => {
     </>
   );
 };
+
+DetailDonation.propTypes = {
+  role: PropTypes.func.isRequired,
+};
+
 export default DetailDonation;

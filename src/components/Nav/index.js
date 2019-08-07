@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 
 import CurrentUser from './currentUser';
@@ -73,5 +74,11 @@ const Nav = ({ currentUser, role, theme, deconnexion }) => (
     </div>
   </nav>
 );
+
+Nav.propTypes = {
+  currentUser: PropTypes.func.isRequired,
+  role: PropTypes.func.isRequired,
+  deconnexion: PropTypes.func.isRequired
+};
 
 export default Nav;
