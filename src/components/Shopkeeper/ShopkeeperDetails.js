@@ -23,14 +23,18 @@ class ShopkeeperDetails extends Component {
     if (this.state && this.state.products && this.state.shop) {
       products = this.state.products;
       shop = this.state.shop;
+      console.log(shop);
     }
+
     return (
       <>
-        <Header
-          title="Le café des amigos"
-          backgroundImage={shopKeeperBackgroundImage}
-          theme="dark"
-        />
+        {shop && (
+          <Header
+            title={shop.shopkeeper_name}
+            backgroundImage={shopKeeperBackgroundImage}
+            theme="dark"
+          />
+        )}
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col-md-12 col-lg-8">
