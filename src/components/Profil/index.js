@@ -18,9 +18,7 @@ const Profil = ({ currentUser, role }) => {
       </div>
     );
   } else {
-    return (
-      <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />
-    );
+    return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
   }
 };
 
