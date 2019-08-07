@@ -13,10 +13,15 @@ class ShopkeeperDetails extends Component {
 
   render() {
     const { products, match, getProducts, shop, currentUser, role } = this.props;
+    console.log(this.props);
     const date = new Date();
     return (
       <>
-        <Header title="Le café des amis" backgroundImage={shopKeeperBackgroundImage} theme="dark" />
+        <Header
+          title="Le café des amigos"
+          backgroundImage={shopKeeperBackgroundImage}
+          theme="dark"
+        />
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col-md-12 col-lg-8">

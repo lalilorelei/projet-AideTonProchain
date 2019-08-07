@@ -10,13 +10,12 @@ import ProfilUpdate from 'components/ProfilUpdate';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
 import Error404 from 'components/Error404';
-import AddProduct from 'components/AddProduct';
 
 /* Containers */
 import Contact from 'containers/Contact';
 import Login from 'containers/Login';
 import Register from 'containers/Register';
-
+import AddProduct from 'containers/Shopkeeper/addProduct';
 import Profil from 'containers/Profil';
 import Beneficiary from 'containers/Beneficiary';
 import Shopkeeper from 'containers/Shopkeeper';

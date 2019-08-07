@@ -9,7 +9,7 @@ const mapStateToProps = state => {
     products: state.product.products,
     shop: state.product.shop.user,
     currentUser: state.user.currentUser,
-    role: decodedToken(state.user.currentUser.token),
+    role: decodedToken(state.user.currentUser.token).role,
   };
 };
 

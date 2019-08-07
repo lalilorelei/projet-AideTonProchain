@@ -105,7 +105,7 @@ const initialState = {
           },
         ],
         _id: '5d49a61f2b16280cfc324h56t',
-        use_at: '2019-08-05T15:51:00.992Z',
+        used_at: '2019-08-05T15:51:00.992Z',
         donor: {
           _id: '5d4293a7bbjrfger5g1ere6ee',
           username: 'Phil',

@@ -48,7 +48,7 @@ const Donations = ({ currentUser, role, donations }) => {
                           Date : {donationAdditionalData.donationDate}
                         </div>
                       </div>
-                      {donation.donation.use_at === undefined ? (
+                      {donationAdditionalData.used === false ? (
                         <span className="text-success">Disponible</span>
                       ) : (
                         <span className="text-info">Consommée</span>

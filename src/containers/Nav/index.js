@@ -7,7 +7,6 @@ import { deconnexion } from 'store/actionMiddleware';
 import { decodedToken } from 'utils';
 
 const mapStateToProps = state => {
-  console.log(decodedToken(state.user.currentUser.token));
   return {
     currentUser: state.user.currentUser,
     role: decodedToken(state.user.currentUser.token).role,

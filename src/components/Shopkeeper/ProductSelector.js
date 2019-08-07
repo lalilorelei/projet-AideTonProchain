@@ -1,11 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { serializeFormData } from 'utils';
 
-const ProductSelector = props => {
+const ProductSelector = ({ products, role, clickDeleteProduct }) => {
   //const submitProductSelector = props.submitProductSelector;
-  const products = props.products;
-  const role = props.role;
 
   const handleSubmitProductSelector = event => {
     event.preventDefault();
@@ -18,7 +17,14 @@ const ProductSelector = props => {
       <div className="mb-5 table-header d-flex justify-content-between align-items-center">
         <h2>Produits disponibles</h2>
         {role === 'shopkeeper' && (
-          <button className="btn btn-custom-accent ">Ajouter un produit</button>
+          <Link
+            exact="true"
+            to="/add-product"
+            path="/add-product"
+            className="btn btn-custom-accent"
+          >
+            Ajouter un produit
+          </Link>
         )}
       </div>
 
@@ -33,7 +39,7 @@ const ProductSelector = props => {
           </thead>
           <tbody>
             {products.map(product => (
-              <tr key={product.id}>
+              <tr key={product._id}>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td className="selector">
@@ -43,17 +49,16 @@ const ProductSelector = props => {
                       name={product.id}
                       id={product.id}
                     >
+                      <option value="0">0</option>
                       <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
                     </select>
                   )}
                   {role === 'shopkeeper' && (
                     <>
                       <a href="#">Editer</a>
-                      <a href="#">Supprimer</a>
+                      <a href="#" onClick={clickDeleteProduct} data-id={product._id}>
+                        Supprimer
+                      </a>
                     </>
                   )}
                 </td>

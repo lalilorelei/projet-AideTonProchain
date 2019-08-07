@@ -1,7 +1,7 @@
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
 export const DECONNEXION = 'DECONNEXION';
-export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const ADD_PRODUCT = 'ADD_PRODUCT';
 
 export const submitLogin = data => ({
   type: SUBMIT_LOGIN,
@@ -20,8 +20,8 @@ export const deconnexion = (token, role) => ({
   role,
 });
 
-export const createProduct = (token, data) => ({
-  type: CREATE_PRODUCT,
-  token,
+export const createProduct = (data, token) => ({
+  type: ADD_PRODUCT,
   data,
+  token,
 });
