@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 // import Media from 'react-media';
@@ -172,5 +173,17 @@ class Beneficiary extends React.Component {
     );
   }
 }
+
+Beneficiary.propTypes = {
+  submitLogin: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+  lat: PropTypes.number.isRequired,
+  long: PropTypes.number.isRequired,
+  isGeoLocAccessible: PropTypes.bool.isRequired,
+  itemsOrderedByDistance: PropTypes.func.isRequired,
+  getLocationErrorMessage: PropTypes.bool.isRequired,
+  beneficiariesOrderedByDistance: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
+};
 
 export default Beneficiary;

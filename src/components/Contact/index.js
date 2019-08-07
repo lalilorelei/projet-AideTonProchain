@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
@@ -92,6 +93,10 @@ const Contact = ({ submitContact }) => {
       </div>
     </>
   );
+};
+
+Contact.propTypes = {
+  submitContact: PropTypes.func.isRequired,
 };
 
 export default Contact;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Header from 'components/Header';
@@ -153,6 +154,12 @@ const Donations = ({ currentUser, role, donations }) => {
       </div>
     </>
   );
+};
+
+Donations.propTypes = {
+  currentUser: PropTypes.func.isRequired,
+  role: PropTypes.func.isRequired,
+  donations: PropTypes.string.isRequired
 };
 
 export default Donations;

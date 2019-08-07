@@ -63,6 +63,7 @@ const Login = ({ submitLogin, message }) => {
 
 Login.propTypes = {
   submitLogin: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 export default Login;
