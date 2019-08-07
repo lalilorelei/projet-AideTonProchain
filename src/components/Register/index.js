@@ -24,8 +24,16 @@ const Register = props => {
 
     let localisation = { lat: '', lon: '', address: '' };
     const jsonObject = serializeFormData(event.target);
+
     const { streetAddress, postCode, city } = event.target;
-    if (streetAddress.value !== '' && postCode.value !== '' && city.value !== '') {
+    if (
+      streetAddress &&
+      postCode &&
+      city &&
+      streetAddress.value !== '' &&
+      postCode.value !== '' &&
+      city.value !== ''
+    ) {
       /* 1 - Je récupère les données de l'adresse entrée */
       const stringAddress = streetAddress.value + ' ' + postCode.value + ' ' + city.value;
 

@@ -34,14 +34,16 @@ const ProductSelector = ({ products, role, clickDeleteProduct }) => {
             <tr>
               <th scope="col">Produit</th>
               <th scope="col">Prix</th>
-              <th scope="col">Quantité</th>
+              <th scope="col">
+                {role === 'donor' ? 'Quantité' : role === 'shopkeeper' ? 'Action' : 'Quantité'}
+              </th>
             </tr>
           </thead>
           <tbody>
             {products.map(product => (
-              <tr key={product._id}>
+              <tr className="product-row" key={product._id}>
                 <td>{product.name}</td>
-                <td>{product.price}</td>
+                <td>{product.price}€</td>
                 <td className="selector">
                   {role === 'donor' && (
                     <select
@@ -54,12 +56,12 @@ const ProductSelector = ({ products, role, clickDeleteProduct }) => {
                     </select>
                   )}
                   {role === 'shopkeeper' && (
-                    <>
+                    <div className="action-links">
                       <a href="#">Editer</a>
                       <a href="#" onClick={clickDeleteProduct} data-id={product._id}>
                         Supprimer
                       </a>
-                    </>
+                    </div>
                   )}
                 </td>
               </tr>

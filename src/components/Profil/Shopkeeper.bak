@@ -1,27 +1,63 @@
 import React from 'react';
+import axios from 'axios';
 
 import ProductSelector from 'components/Shopkeeper/ProductSelector';
-import { getProducts, getShopDetails, deleteProduct } from 'utils/shopkeeperUtils';
+//import { getProductse } from 'utils/shopkeeperUtils';
 
 class Shopkeeper extends React.Component {
-  componentDidMount() {
-    const shopkeeperId = this.props.currentUser.user._id;
-    getShopDetails(this, this.props.currentUser);
-    getProducts(this, shopkeeperId);
-  }
-
-  clickDeleteProduct = evt => {
-    const confirmDelete = window.confirm('Voulez-vous vraiement supprimer ce produit ?');
-    if (confirmDelete) {
-      const { currentUser } = this.props;
-      const productId = evt.target.dataset.id;
-      deleteProduct(this, currentUser, productId);
-    }
+  getProfile = currentUser => {
+    axios
+      .get(`http://95.142.175.77:3000/api/shopkeeper/profil/`, {
+        headers: { Authorization: `Bearer ${currentUser.token}` },
+      })
+      .then(response => {
+        this.setState({
+          shop: response.data.user,
+        });
+      })
+      .catch(e => {
+        console.log('erreur shop', e);
+      });
   };
 
+  getProducts = shopkeeperId => {
+    axios
+      .get(`http://95.142.175.77:3000/api/product/${shopkeeperId}`)
+      .then(response => {
+        this.setState({
+          products: response.data.products,
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  deleteProduct = (currentUser, productId) => {
+    axios
+      .delete(`http://95.142.175.77:3000/api/product/delete/${productId}`, {
+        headers: { Authorization: `Bearer ${currentUser.token}` },
+      })
+      .then(response => {
+        console.log(response);
+        this.getProducts(currentUser.user._id);
+      })
+      .catch(e => {
+        console.log('Impossible de supprimer le produit', e);
+        this.getProducts(this, currentUser._id);
+      });
+  };
+
+  componentDidMount() {
+    const shopkeeperId = this.props.currentUser.user._id;
+    this.getProducts(shopkeeperId);
+    this.getProfile(this.props.currentUser);
+  }
+
   render() {
-    const { role } = this.props;
+    const { currentUser } = this.props;
     let { products, shop } = '';
+    const { role } = this.props;
 
     if (this.state) {
       products = this.state.products;
@@ -29,18 +65,27 @@ class Shopkeeper extends React.Component {
     }
     const date = new Date();
 
+    const clickDeleteProduct = evt => {
+      evt.preventDefault();
+      const productId = evt.target.dataset.id;
+      console.log(productId);
+      this.deleteProduct(currentUser, productId);
+    };
+
+    console.log('shop', shop);
+
     return (
       <>
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col-md-12 col-lg-8">
-              {products && shop && (role === 'shopkeeper' || role === 'donor') && (
+              {products && this.state && (role === 'shopkeeper' || role === 'donor') && (
                 <>
                   <ProductSelector
                     products={products}
                     //submitProductSelector={submitProductSelector}
                     role={role}
-                    clickDeleteProduct={this.clickDeleteProduct}
+                    clickDeleteProduct={clickDeleteProduct}
                   />
                 </>
               )}

@@ -6,8 +6,6 @@ import { decodedToken } from 'utils';
 
 const mapStateToProps = state => {
   return {
-    products: state.product.products,
-    shop: state.product.shop.user,
     currentUser: state.user.currentUser,
     role: decodedToken(state.user.currentUser.token).role,
   };
