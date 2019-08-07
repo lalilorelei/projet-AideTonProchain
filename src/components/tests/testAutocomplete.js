@@ -37,7 +37,7 @@ const getSuggestions = value => {
 const getSuggestionValue = suggestion => suggestion.name;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = suggestion => <div>{suggestion.name}</div>;
+const renderSuggestion = suggestion => <div data-id={suggestion.id}>{suggestion.name}</div>;
 
 class testAutocomplete extends React.Component {
   // Autosuggest is a controlled component.
@@ -53,6 +53,7 @@ class testAutocomplete extends React.Component {
   onChange = (event, { newValue }) => {
     this.setState({
       value: newValue,
+      id: 'oui',
     });
   };
 
@@ -61,6 +62,14 @@ class testAutocomplete extends React.Component {
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value),
+    });
+  };
+
+  onSuggestionSelected = (event, { suggestion }) => {
+    this.setState({
+      donation: {
+        beneficiary: suggestion.id,
+      },
     });
   };
 
@@ -90,6 +99,7 @@ class testAutocomplete extends React.Component {
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
           getSuggestionValue={getSuggestionValue}
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
