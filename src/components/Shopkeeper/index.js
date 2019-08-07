@@ -8,6 +8,7 @@ import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import Header from 'components/Header';
 import Input from 'components/Input';
 import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
+import { getAllShops } from 'utils/shopkeeperUtils';
 
 class Shopkeeper extends React.Component {
   state = {
@@ -25,8 +26,10 @@ class Shopkeeper extends React.Component {
   }
 
   itemsDistance = () => {
+    console.log('props : ', this.props);
     const { lat, long, itemsOrderedByDistance } = this.state;
-    const { shops } = this.props;
+    const { role, currentUser } = this.props;
+    const shops = getAllShops(this, currentUser, role);
     itemsDistance(this, 9999, shops, lat, long, itemsOrderedByDistance);
   };
 
@@ -53,6 +56,7 @@ class Shopkeeper extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <>
         <Header

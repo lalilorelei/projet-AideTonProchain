@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 
 import Shopkeeper from 'components/Shopkeeper';
+import { decodedToken } from 'utils';
 
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
-  shops: state.shopkeeper.shopkeepers,
+  role: decodedToken(state.user.currentUser.token).role,
 });
 
 const mapDispatchToProps = {};
