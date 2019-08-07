@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 // import Media from 'react-media';
@@ -198,5 +199,15 @@ class Shopkeeper extends React.Component {
     );
   }
 }
+
+Shopkeeper.propTypes = {
+  lat: PropTypes.number.isRequired,
+  long: PropTypes.number.isRequired,
+  isGeoLocAccessible: PropTypes.bool.isRequired,
+  itemsOrderedByDistance: PropTypes.func.isRequired,
+  getLocationErrorMessage: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  shops: PropTypes.string.isRequired,
+};
 
 export default Shopkeeper;
