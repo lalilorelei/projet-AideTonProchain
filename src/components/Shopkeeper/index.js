@@ -8,7 +8,6 @@ import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import Header from 'components/Header';
 import Input from 'components/Input';
 import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
-import { getAllShops } from 'utils/shopkeeperUtils';
 
 class Shopkeeper extends React.Component {
   state = {
@@ -17,21 +16,22 @@ class Shopkeeper extends React.Component {
     isGeoLocAccessible: true,
     itemsOrderedByDistance: [],
     getLocationErrorMessage: false,
-    shops: [],
   };
   // Avant d'afficher le composant on récupère la localisation via le navigateur et l'ensemble des shops
   componentDidMount() {
     const { lat, long, isGeoLocAccessible } = this.state;
-    const { role, currentUser } = this.props;
-    getAllShops(this, currentUser, role);
+    const { role, token, getShops, shops } = this.props;
+    if (shops.length <= 0) {
+      getShops(role, token);
+    }
     initGeolocalisation(this, lat, long, this.itemsDistance, isGeoLocAccessible);
   }
 
   itemsDistance = () => {
     const { lat, long, itemsOrderedByDistance } = this.state;
 
-    const { shops } = this.state;
-    console.log(this.state);
+    const { shops } = this.props;
+
     itemsDistance(this, 9999, shops, lat, long, itemsOrderedByDistance);
   };
 
@@ -53,15 +53,15 @@ class Shopkeeper extends React.Component {
   onChangeSelect = evt => {
     const { value } = evt.target;
     const { lat, long, shopsOrderedByDistance } = this.state;
-    const { shops } = this.state;
+    const { shops } = this.props;
     itemsDistance(this, value, shops, lat, long, shopsOrderedByDistance);
   };
 
   render() {
-    let { shops } = '';
-    if (this.state.shops.length > 0) {
-      shops = this.state.shops;
-    }
+    // const { shops } = this.props;
+    // if (shops.length > 0) {
+    //   shops = this.state.shops;
+    // }
 
     return (
       <>
@@ -116,7 +116,7 @@ class Shopkeeper extends React.Component {
                         className="form-control form-control-sm"
                         id="selectDistance"
                         onChange={this.onChangeSelect}
-                        defaultValue={10}
+                        defaultValue={9999}
                       >
                         <option value="1">1 km</option>
                         <option value="2">2 km</option>

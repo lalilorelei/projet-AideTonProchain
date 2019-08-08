@@ -1,46 +1,12 @@
 const initialState = {
-  prods: [
-    {
-      tintin: 'oui',
-    },
-  ],
-  products: [
-    {
-      _id: {
-        $oid: '5d49a1c42b16280cfc317fac',
-      },
-      name: 'thé',
-      price: 3,
-      available: true,
-      updated_at: {
-        $date: '2019-08-06T15:50:28.805Z',
-      },
-      shopkeeper: {
-        $oid: '5d4995862b16280cfc317f90',
-      },
-      __v: 0,
-    },
-    {
-      _id: {
-        $oid: '5d49a1e42b16280cfc317fad',
-      },
-      name: 'café',
-      price: 2,
-      available: true,
-      updated_at: {
-        $date: '2019-08-06T15:51:00.992Z',
-      },
-      shopkeeper: {
-        $oid: '5d4995862b16280cfc317f90',
-      },
-      __v: 0,
-    },
-  ],
+  products: [],
+  shop: {},
 };
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const RECIEVE_PRODUCTS = 'RECIEVE_PRODUCTS';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const DELETED_PRODUCT = 'DELETED_PRODUCT';
 
 const product = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -49,6 +15,11 @@ const product = (state = initialState, action = {}) => {
         ...state,
         products: action.products,
         shop: { ...action.shop },
+      };
+    case DELETED_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter(product => product !== action.data),
       };
     default:
       return state;
@@ -70,6 +41,11 @@ export const addProduct = (data, token) => ({
   type: ADD_PRODUCT,
   data,
   token,
+});
+
+export const getDeletedProduct = data => ({
+  type: DELETED_PRODUCT,
+  data,
 });
 
 export default product;

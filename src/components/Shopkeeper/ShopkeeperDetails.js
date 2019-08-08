@@ -6,7 +6,6 @@ import ProductSelector from './ProductSelector';
 import BlocCoordonneesHoraires from './BlocCoordonneesHoraires';
 import './shopkeeper.scss';
 import shopKeeperBackgroundImage from 'assets/img/background-shopkeepers.jpg';
-import { getTempProducts, getTempShopDetails } from 'utils/shopkeeperUtils';
 
 class ShopkeeperDetails extends Component {
   state = {
@@ -19,11 +18,10 @@ class ShopkeeperDetails extends Component {
     },
   };
   componentDidMount() {
-    const { role } = this.props;
-    const { currentUser } = this.props;
+    const { token, role, getShop, getProducts } = this.props;
     const shopkeeperId = this.props.match.params.id;
-    getTempShopDetails(this, role, currentUser, shopkeeperId);
-    getTempProducts(this, shopkeeperId);
+    getShop(role, token, shopkeeperId);
+    getProducts(shopkeeperId);
   }
 
   changeDonationTotal = evt => {
@@ -54,13 +52,7 @@ class ShopkeeperDetails extends Component {
   };
 
   render() {
-    console.log(this.state);
-    const { role } = this.props;
-    let { products, shop } = '';
-    if (this.state && this.state.products && this.state.shop) {
-      products = this.state.products;
-      shop = this.state.shop;
-    }
+    const { role, products, shop } = this.props;
 
     return (
       <>

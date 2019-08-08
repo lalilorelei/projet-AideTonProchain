@@ -1,34 +1,31 @@
 import React from 'react';
 
 import ProductSelector from 'components/Shopkeeper/ProductSelector';
-import { getProducts, getShopDetails, deleteProduct } from 'utils/shopkeeperUtils';
+// import { getProducts, getShopDetails, deleteProduct } from 'utils/shopkeeperUtils';
 
 class Shopkeeper extends React.Component {
   componentDidMount() {
+    const { getProducts } = this.props;
     const shopkeeperId = this.props.currentUser.user._id;
-    getShopDetails(this, this.props.currentUser);
-    getProducts(this, shopkeeperId);
+    getProducts(shopkeeperId);
   }
 
   clickDeleteProduct = evt => {
     const confirmDelete = window.confirm('Voulez-vous vraiement supprimer ce produit ?');
     if (confirmDelete) {
-      const { currentUser } = this.props;
+      const { token, deleteProduct, getProducts } = this.props;
       const productId = evt.target.dataset.id;
-      deleteProduct(this, currentUser, productId);
+      deleteProduct(token, productId);
+      const shopkeeperId = this.props.currentUser.user._id;
+      getProducts(shopkeeperId);
     }
   };
 
   render() {
-    const { role } = this.props;
-    let { products, shop } = '';
+    const { role, products } = this.props;
+    const shop = this.props.currentUser.user;
 
-    if (this.state && this.state.products && this.state.shop) {
-      products = this.state.products;
-      shop = this.state.shop;
-    }
     const date = new Date();
-    // ggglyke-shopkeeper23 shop id : 5d4995862b16280cfc317f90
 
     return (
       <>

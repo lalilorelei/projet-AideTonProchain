@@ -65,9 +65,13 @@ const ProductSelector = ({ products, role, total, clickDeleteProduct, changeDona
                       {role === 'shopkeeper' && (
                         <div className="action-links">
                           <a href="#">Editer</a>
-                          <a href="#" onClick={clickDeleteProduct} data-id={product._id}>
+                          <span
+                            className="text-primary"
+                            onClick={clickDeleteProduct}
+                            data-id={product._id}
+                          >
                             Supprimer
-                          </a>
+                          </span>
                         </div>
                       )}
                     </td>

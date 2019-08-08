@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import ShopkeeperDetails from 'components/Shopkeeper/ShopkeeperDetails';
-import { getShop, getProducts } from 'store/actionMiddleware';
+import ShopkeeperDetails from 'components/Profil/Shopkeeper';
+import { getShop, getProducts, deleteProduct } from 'store/actionMiddleware';
 import { decodedToken } from 'utils';
 
 const mapStateToProps = state => {
@@ -21,11 +21,14 @@ const mapDispatchToProps = dispatch => ({
   getProducts: shopkeeperId => {
     dispatch(getProducts(shopkeeperId));
   },
+  deleteProduct: (token, productId) => {
+    dispatch(deleteProduct(token, productId));
+  },
 });
 
-const ShopkeeperDetailsContainer = connect(
+const ProfilShopkeeperContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(ShopkeeperDetails);
 
-export default ShopkeeperDetailsContainer;
+export default ProfilShopkeeperContainer;
