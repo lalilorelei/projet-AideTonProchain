@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Input from 'components/Input';
+import './profilUpdate.scss';
+
 const DonorProfilUpdate = ({ currentUser }) => {
   return (
     <>
@@ -8,7 +11,10 @@ const DonorProfilUpdate = ({ currentUser }) => {
           <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
             <form className="mb-4">
               <div className="form-group">
-                <input
+                <label className="form-group-label" htmlFor="Votre pénom">
+                  Votre pénom
+                </label>
+                <Input
                   type="text"
                   name="firstname"
                   placeholder="votre prénom"
@@ -17,7 +23,10 @@ const DonorProfilUpdate = ({ currentUser }) => {
                 />
               </div>
               <div className="form-group">
-                <input
+                <label className="form-group-label" htmlFor="Votre nom">
+                  Votre nom
+                </label>
+                <Input
                   type="text"
                   name="lastname"
                   className="form-control"
@@ -26,10 +35,16 @@ const DonorProfilUpdate = ({ currentUser }) => {
                 />
               </div>
               <div className="form-group">
-                <input type="password" name="password" className="form-control" placeholder="Nouveau mot de passe" />
+                <label className="form-group-label" htmlFor="Votre mot de passe">
+                  Votre mot de passe
+                </label>
+                <Input type="password" name="password" className="form-control" placeholder="Nouveau mot de passe" />
               </div>
               <div className="form-group">
-                <input
+                <label className="form-group-label" htmlFor="confirmer votre nouveau mot de passe">
+                  Confirmer votre nouveau mot de passe
+                </label>
+                <Input
                   type="password"
                   name="password_confirm"
                   className="form-control"
