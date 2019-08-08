@@ -16,6 +16,7 @@ class ShopkeeperDetails extends Component {
       donor: this.props.currentUser.user._id,
       products: [],
     },
+    donationIsReady: false,
   };
   componentDidMount() {
     const { token, role, getShop, getProducts } = this.props;
@@ -24,31 +25,64 @@ class ShopkeeperDetails extends Component {
     getProducts(shopkeeperId);
   }
 
-  changeDonationTotal = evt => {
-    if (evt.target.value !== '0') {
-      const tempTotal = this.state.selectedProductsTotal + parseFloat(evt.target.dataset.price);
+  isDonationReady = () => {
+    console.log();
+    if (
+      this.state.donation.beneficiary !== '' &&
+      this.state.donation.shopkeeper !== '' &&
+      this.state.donation.donor !== '' &&
+      this.state.donation.products.length > 0 &&
+      this.state.selectedProductsTotal > 0
+    ) {
       this.setState({
-        selectedProductsTotal: Math.round(tempTotal * 100) / 100,
-        donation: {
-          ...this.state.donation,
-          products: [...this.state.donation.products, evt.target.dataset.id],
-        },
+        ...this.state,
+        donationIsReady: true,
       });
     } else {
-      const tempTotal = this.state.selectedProductsTotal - parseFloat(evt.target.dataset.price);
-      const tempProducts = this.state.donation.products;
-      var index = tempProducts.indexOf(evt.target.dataset.id);
-      if (index > -1) {
-        tempProducts.splice(index, 1);
-      }
       this.setState({
-        selectedProductsTotal: Math.round(tempTotal * 100) / 100,
-        donation: {
-          ...this.state.donation,
-          products: tempProducts,
-        },
+        ...this.state,
+        donationIsReady: false,
       });
     }
+  };
+
+  changeDonationTotal = evt => {
+    if (evt.target.type === 'checkbox')
+      if (evt.target.checked) {
+        const tempTotal = this.state.selectedProductsTotal + parseFloat(evt.target.dataset.price);
+        this.setState(
+          {
+            selectedProductsTotal: Math.round(tempTotal * 100) / 100,
+            donation: {
+              ...this.state.donation,
+              products: [...this.state.donation.products, evt.target.dataset.id],
+            },
+          },
+          () => {
+            this.isDonationReady();
+          },
+        );
+        console.log(this.state);
+      } else {
+        const tempTotal = this.state.selectedProductsTotal - parseFloat(evt.target.dataset.price);
+        const tempProducts = this.state.donation.products;
+        var index = tempProducts.indexOf(evt.target.dataset.id);
+        if (index > -1) {
+          tempProducts.splice(index, 1);
+        }
+        this.setState(
+          {
+            selectedProductsTotal: Math.round(tempTotal * 100) / 100,
+            donation: {
+              ...this.state.donation,
+              products: tempProducts,
+            },
+          },
+          () => {
+            this.isDonationReady();
+          },
+        );
+      }
   };
 
   render() {
@@ -75,6 +109,7 @@ class ShopkeeperDetails extends Component {
                     //submitProductSelector={submitProductSelector}
                     role={role}
                     total={this.state.selectedProductsTotal}
+                    isDonationReady={this.state.donationIsReady}
                   />
                 )}
             </div>

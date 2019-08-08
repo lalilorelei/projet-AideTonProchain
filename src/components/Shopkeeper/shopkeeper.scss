@@ -25,7 +25,9 @@
 table {
   thead {
     th {
-      border: none;
+      border-bottom: none !important;
+      text-transform: uppercase;
+      font-weight: normal;
     }
   }
   td {
