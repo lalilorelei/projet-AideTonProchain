@@ -25,8 +25,8 @@ const Profil = ({ currentUser, role }) => {
 };
 
 Profil.propTypes = {
-  currentUser: PropTypes.func.isRequired,
-  role: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
 };
 
 export default Profil;

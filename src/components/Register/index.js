@@ -150,6 +150,7 @@ const Register = props => {
 
 Register.propTypes = {
   submitRegister: PropTypes.func.isRequired,
+  message: PropTypes.object,
 };
 
 export default withRouter(Register);
