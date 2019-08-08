@@ -11,7 +11,14 @@ class ProductSelector extends React.Component {
   };
 
   render() {
-    const { products, role, total, clickDeleteProduct, changeDonationTotal } = this.props;
+    const {
+      products,
+      role,
+      total,
+      clickDeleteProduct,
+      changeDonationTotal,
+      inputSearchBeneficiary,
+    } = this.props;
 
     return (
       <>
@@ -102,7 +109,7 @@ class ProductSelector extends React.Component {
               <p className="font-weight-bold">2 - Affectez votre don à un bénéficiaire</p>
               <div className="d-flex mt-2 align-items-start" style={{ width: '100%' }}>
                 <div className="d-flex flex-column">
-                  <div class="form-group">
+                  <div className="form-group">
                     <label htmlFor="beneficiary">Bénéficiaire : </label>
                     <input
                       type="text"
@@ -111,9 +118,10 @@ class ProductSelector extends React.Component {
                       name="beneficiary"
                       placeholder="ex : Jane Doe"
                       aria-describedby="beneficiaryHelp"
+                      onChange={inputSearchBeneficiary}
                     />
                   </div>
-                  <small id="beneficiaryHelp" class="form-text text-muted">
+                  <small id="beneficiaryHelp" className="form-text text-muted">
                     Entrez le nom d'utilisateur ou un nom libre.
                   </small>
                 </div>

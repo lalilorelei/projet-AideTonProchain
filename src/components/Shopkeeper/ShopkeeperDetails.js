@@ -46,6 +46,11 @@ class ShopkeeperDetails extends Component {
     }
   };
 
+  inputSearchBeneficiary = evt => {
+    const searchBeneficiary = this.props;
+    console.log(evt.target.value);
+  };
+
   changeDonationTotal = evt => {
     if (evt.target.type === 'checkbox')
       if (evt.target.checked) {
@@ -110,6 +115,7 @@ class ShopkeeperDetails extends Component {
                     role={role}
                     total={this.state.selectedProductsTotal}
                     isDonationReady={this.state.donationIsReady}
+                    inputSearchBeneficiary={this.inputSearchBeneficiary}
                   />
                 )}
             </div>

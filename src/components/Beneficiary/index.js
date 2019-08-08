@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 // import Media from 'react-media';
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import './beneficiary.scss';

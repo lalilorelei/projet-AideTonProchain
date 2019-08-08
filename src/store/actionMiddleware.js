@@ -59,3 +59,12 @@ export const getShop = (role, token, shopkeeperId) => ({
   token,
   shopkeeperId,
 });
+
+// donor search beneficiary middleware
+
+export const SEARCH_BENEFICIARY = 'SEARCH_BENEFICIARY';
+
+export const searchBeneficiary = textValue => ({
+  type: SEARCH_BENEFICIARY,
+  textValue,
+});

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import Header from 'components/Header';
 import './donations.scss';
@@ -159,7 +158,7 @@ const Donations = ({ currentUser, role, donations }) => {
 Donations.propTypes = {
   currentUser: PropTypes.object.isRequired,
   role: PropTypes.string.isRequired,
-  donations: PropTypes.array.isRequired
+  donations: PropTypes.array.isRequired,
 };
 
 export default Donations;

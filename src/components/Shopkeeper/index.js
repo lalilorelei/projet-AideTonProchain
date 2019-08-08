@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-// import Media from 'react-media';
+
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 
 import Header from 'components/Header';
@@ -213,10 +212,10 @@ class Shopkeeper extends React.Component {
   lat: PropTypes.number.isRequired,
   long: PropTypes.number.isRequired,
   isGeoLocAccessible: PropTypes.bool.isRequired,
-  itemsOrderedByDistance: PropTypes.func.isRequired,
-  getLocationErrorMessage: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired,
-  shops: PropTypes.string.isRequired,
+  itemsOrderedByDistance: PropTypes.array.isRequired,
+  getLocationErrorMessage: PropTypes.func.isRequired,
+  //value: PropTypes.string.isRequired,
+  shops: PropTypes.array.isRequired,
 };*/
 
 export default Shopkeeper;
