@@ -4,12 +4,6 @@ import { Link } from 'react-router-dom';
 import { serializeFormData } from 'utils';
 
 class ProductSelector extends React.Component {
-  handleSubmitProductSelector = event => {
-    event.preventDefault();
-    const jsonObject = serializeFormData(event.target);
-    //submitProductSelector(jsonObject);
-  };
-
   render() {
     const {
       products,
@@ -18,6 +12,9 @@ class ProductSelector extends React.Component {
       clickDeleteProduct,
       changeDonationTotal,
       inputSearchBeneficiary,
+      beneficiariesSuggests,
+      clickSuggest,
+      submitDonation,
     } = this.props;
 
     return (
@@ -38,8 +35,9 @@ class ProductSelector extends React.Component {
 
         <form
           className="mt-2 mb-4 form-inline"
-          onSubmit={this.handleSubmitProductSelector}
+          onSubmit={submitDonation}
           onInput={changeDonationTotal}
+          autocomplete="off"
         >
           <table className="table text-left">
             <thead>
@@ -110,16 +108,32 @@ class ProductSelector extends React.Component {
               <div className="d-flex mt-2 align-items-start" style={{ width: '100%' }}>
                 <div className="d-flex flex-column">
                   <div className="form-group">
-                    <label htmlFor="beneficiary">Bénéficiaire : </label>
-                    <input
-                      type="text"
-                      className="form-control mx-2"
-                      id="beneficiary"
-                      name="beneficiary"
-                      placeholder="ex : Jane Doe"
-                      aria-describedby="beneficiaryHelp"
-                      onChange={inputSearchBeneficiary}
-                    />
+                    <label htmlFor="beneficiary-search-input">Bénéficiaire : </label>
+                    <div className="suggests-container">
+                      <input
+                        type="text"
+                        className="form-control mx-2"
+                        id="beneficiary-search-input"
+                        name="beneficiary"
+                        placeholder="ex : Jane Doe"
+                        aria-describedby="beneficiaryHelp"
+                        onChange={inputSearchBeneficiary}
+                      />
+                      <div className="suggests d-none">
+                        {beneficiariesSuggests.map(suggest => {
+                          return (
+                            <div
+                              className="suggest"
+                              key={suggest._id}
+                              onClick={clickSuggest}
+                              data-id={suggest._id}
+                            >
+                              {suggest.username}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                   <small id="beneficiaryHelp" className="form-text text-muted">
                     Entrez le nom d'utilisateur ou un nom libre.

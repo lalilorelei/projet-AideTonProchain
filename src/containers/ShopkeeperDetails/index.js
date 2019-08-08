@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 
 import ShopkeeperDetails from 'components/Shopkeeper/ShopkeeperDetails';
-import { getShop, getProducts, searchBeneficiary } from 'store/actionMiddleware';
+import { getShop, getProducts, searchBeneficiary, sendDonation } from 'store/actionMiddleware';
 import { decodedToken } from 'utils';
 
 const mapStateToProps = state => {
+  console.log(state.donation);
   return {
     currentUser: state.user.currentUser,
     role: decodedToken(state.user.currentUser.token).role,
     token: state.user.currentUser.token,
     shop: state.shopkeeper.shopkeeper,
     products: state.product.products,
-    beneficiariesSuggests: state.donor,
+    beneficiariesSuggests: state.beneficiary.beneficiaries,
+    donationConfirmMessage: state.donation.donationConfirmMessage,
   };
 };
 
@@ -22,8 +24,11 @@ const mapDispatchToProps = dispatch => ({
   getProducts: shopkeeperId => {
     dispatch(getProducts(shopkeeperId));
   },
-  searchBeneficiary: textValue => {
-    dispatch(searchBeneficiary(textValue));
+  searchBeneficiary: (textValue, token) => {
+    dispatch(searchBeneficiary(textValue, token));
+  },
+  sendDonation: (data, token) => {
+    dispatch(sendDonation(data, token));
   },
 });
 

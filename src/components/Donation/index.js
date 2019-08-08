@@ -7,7 +7,6 @@ import backgroundDonations from 'assets/img/donations.jpg';
 import { getDonationData } from 'utils/donationUtils';
 
 const Donations = ({ currentUser, role, donations }) => {
-  role = 'donor';
   let title = '';
   switch (role) {
     case 'beneficiary':

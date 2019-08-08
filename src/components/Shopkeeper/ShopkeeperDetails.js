@@ -12,12 +12,13 @@ class ShopkeeperDetails extends Component {
     selectedProductsTotal: 0,
     donation: {
       shopkeeper: this.props.match.params.id,
-      beneficiary: 1110264,
+      beneficiary: '',
       donor: this.props.currentUser.user._id,
       products: [],
     },
     donationIsReady: false,
   };
+
   componentDidMount() {
     const { token, role, getShop, getProducts } = this.props;
     const shopkeeperId = this.props.match.params.id;
@@ -25,8 +26,33 @@ class ShopkeeperDetails extends Component {
     getProducts(shopkeeperId);
   }
 
+  componentDidUpdate() {
+    const input = document.querySelector('#beneficiary-search-input');
+    input.addEventListener('blur', function() {
+      setTimeout(function() {
+        document.querySelector('.suggests').classList.remove('d-block');
+        document.querySelector('.suggests').classList.add('d-none');
+      }, 50);
+    });
+  }
+
+  clickSuggest = evt => {
+    document.querySelector('#beneficiary-search-input').value = evt.target.innerHTML;
+    this.setState(
+      {
+        ...this.state,
+        donation: {
+          ...this.state.donation,
+          beneficiary: evt.target.dataset.id,
+        },
+      },
+      () => {
+        this.isDonationReady();
+      },
+    );
+  };
+
   isDonationReady = () => {
-    console.log();
     if (
       this.state.donation.beneficiary !== '' &&
       this.state.donation.shopkeeper !== '' &&
@@ -47,8 +73,26 @@ class ShopkeeperDetails extends Component {
   };
 
   inputSearchBeneficiary = evt => {
-    const searchBeneficiary = this.props;
-    console.log(evt.target.value);
+    if (evt.target.value.length < 1) {
+      document.querySelector('.suggests').classList.remove('d-block');
+      //document.querySelector('.suggests').classList.add('d-none');
+    } else {
+      document.querySelector('.suggests').classList.remove('d-none');
+      document.querySelector('.suggests').classList.add('d-block');
+    }
+    const { searchBeneficiary, token } = this.props;
+    this.setState(
+      {
+        donation: {
+          ...this.state.donation,
+          beneficiary: evt.target.value,
+        },
+      },
+      () => {
+        this.isDonationReady();
+      },
+    );
+    searchBeneficiary(evt.target.value, token);
   };
 
   changeDonationTotal = evt => {
@@ -67,7 +111,6 @@ class ShopkeeperDetails extends Component {
             this.isDonationReady();
           },
         );
-        console.log(this.state);
       } else {
         const tempTotal = this.state.selectedProductsTotal - parseFloat(evt.target.dataset.price);
         const tempProducts = this.state.donation.products;
@@ -90,37 +133,110 @@ class ShopkeeperDetails extends Component {
       }
   };
 
-  render() {
-    const { role, products, shop } = this.props;
+  submitDonation = evt => {
+    evt.preventDefault();
+    const { sendDonation, token } = this.props;
+    sendDonation(this.state.donation, token);
+  };
 
+  render() {
+    const { shop, products, role, beneficiariesSuggests, donationConfirmMessage } = this.props;
+    const date = new Date();
     return (
       <>
-        {shop && (
-          <Header
-            title={shop.shopkeeper_name}
-            backgroundImage={shopKeeperBackgroundImage}
-            theme="dark"
-          />
-        )}
+        <Header
+          title={shop.shopkeeper_name}
+          backgroundImage={shopKeeperBackgroundImage}
+          theme="dark"
+        />
+
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col-md-12 col-lg-8">
+              {donationConfirmMessage && (
+                <div className={`alert alert-${donationConfirmMessage.type}`}>
+                  {donationConfirmMessage.message}
+                </div>
+              )}
               {products &&
                 shop &&
                 (role === 'beneficiary' || role === 'shopkeeper' || role === 'donor') && (
                   <ProductSelector
                     products={products}
                     changeDonationTotal={this.changeDonationTotal}
-                    //submitProductSelector={submitProductSelector}
+                    submitDonation={this.submitDonation}
                     role={role}
                     total={this.state.selectedProductsTotal}
                     isDonationReady={this.state.donationIsReady}
                     inputSearchBeneficiary={this.inputSearchBeneficiary}
+                    beneficiariesSuggests={beneficiariesSuggests}
+                    clickSuggest={this.clickSuggest}
                   />
                 )}
             </div>
             <div className="col-md-12 col-lg-4">
-              {shop && <BlocCoordonneesHoraires shop={shop} />}
+              {/* {shop && <BlocCoordonneesHoraires shop={shop} />} */}
+              {shop.localisation && (
+                <div className="card">
+                  <div className="card-body">
+                    <p className="text-small">
+                      <span className="font-weight-bold">Adresse : </span>
+                      <br />
+                      <span>{shop.localisation.address}</span>
+                      <br />
+                      <a
+                        href={`https://maps.google.com/?q=${shop.localisation.lat},${
+                          shop.localisation.lon
+                        }`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Voir sur la carte
+                      </a>
+                    </p>
+
+                    <span className="font-weight-bold text-small d-block mb-2">Horaires : </span>
+
+                    <table className="mb-3 text-small">
+                      <tbody>
+                        <tr className={date.getDay() === 1 ? 'font-weight-bold' : null}>
+                          <td>Lundi</td>
+                          <td className="px-2">10:00 - 17:00</td>
+                          <td>19:00 - 23:00</td>
+                        </tr>
+                        <tr className={date.getDay() === 2 ? 'font-weight-bold' : null}>
+                          <td>Mardi</td>
+                          <td className="px-2">10:00 - 17:00</td>
+                          <td>19:00 - 23:00</td>
+                        </tr>
+                        <tr className={date.getDay() === 3 ? 'font-weight-bold' : null}>
+                          <td>Mercredi</td>
+                          <td className="px-2">10:00 - 17:00</td>
+                          <td>19:00 - 23:00</td>
+                        </tr>
+                        <tr className={date.getDay() === 4 ? 'font-weight-bold' : null}>
+                          <td>Jeudi</td>
+                          <td className="px-2">10:00 - 17:00</td>
+                          <td>19:00 - 23:00</td>
+                        </tr>
+                        <tr className={date.getDay() === 5 ? 'font-weight-bold' : null}>
+                          <td>Vendredi</td>
+                          <td className="px-2">10:00 - 17:00</td>
+                          <td>19:00 - 23:00</td>
+                        </tr>
+                        <tr className={date.getDay() === 6 ? 'font-weight-bold' : null}>
+                          <td>Samedi</td>
+                          <td className="px-2">10:00 - 23:00</td>
+                        </tr>
+                        <tr className={date.getDay() === 7 ? 'current-day' : null}>
+                          <td>Dimanche</td>
+                          <td className="px-2">Fermé</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -4,11 +4,12 @@ import reducer from './reducers/index';
 import logMiddleware from './middlewares/logMiddleware';
 import productMiddleware from './middlewares/productMiddleware';
 import shopkeeperMiddleware from './middlewares/shopkeeperMiddleware';
+import donationMiddleware from './middlewares/donationMiddleware';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(logMiddleware, productMiddleware, shopkeeperMiddleware),
+  applyMiddleware(logMiddleware, productMiddleware, donationMiddleware, shopkeeperMiddleware),
 );
 
 function saveToLocalStorage(state) {
