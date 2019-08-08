@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './header.scss';
 import Nav from 'containers/Nav';
@@ -56,10 +55,5 @@ class Header extends React.Component {
     );
   }
 }
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-};
 
 export default Header;

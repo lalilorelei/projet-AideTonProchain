@@ -29,7 +29,6 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
 };
 
 export default Input;

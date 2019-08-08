@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import ProfilHeader from 'components/Profil/ProfilHeader';
 import BeneficiaryProfilUpdate from './BeneficiaryProfilUpdate';
 import DonorProfilUpdate from './DonorProfilUpdate';
@@ -21,6 +21,11 @@ const ProfilUpdate = ({ currentUser, role }) => {
   } else {
     return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
   }
+};
+
+ProfilUpdate.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
 };
 
 export default ProfilUpdate;

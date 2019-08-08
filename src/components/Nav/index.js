@@ -76,8 +76,8 @@ const Nav = ({ currentUser, role, theme, deconnexion }) => (
 );
 
 Nav.propTypes = {
-  currentUser: PropTypes.func.isRequired,
-  role: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
   deconnexion: PropTypes.func.isRequired
 };
 
