@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 
-import CurrentUser from './currentUser';
+import CurrentUser from './CurrentUser';
 
 import './nav.scss';
 import logo_dark from '../../assets/img/logo-atp-blanc.png';
@@ -76,9 +76,9 @@ const Nav = ({ currentUser, role, theme, deconnexion }) => (
 );
 
 Nav.propTypes = {
-  currentUser: PropTypes.func.isRequired,
-  role: PropTypes.func.isRequired,
-  deconnexion: PropTypes.func.isRequired
+  currentUser: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
+  deconnexion: PropTypes.func.isRequired,
 };
 
 export default Nav;

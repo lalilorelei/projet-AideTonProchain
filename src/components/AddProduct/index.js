@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { serializeFormData } from 'utils';
 import { Link } from 'react-router-dom';
 
@@ -57,6 +58,12 @@ const AddProduct = ({ currentUser, submitAddProductForm, message }) => {
       </div>
     </>
   );
+};
+
+AddProduct.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  submitAddProductForm: PropTypes.func.isRequired,
+  message: PropTypes.object.isRequired,
 };
 
 export default AddProduct;

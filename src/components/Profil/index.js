@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ProfilHeader from './ProfilHeader';
 import Donor from './Donor';
 import Beneficiary from './Beneficiary';
-import Shopkeeper from './Shopkeeper';
+import Shopkeeper from 'containers/Profil/shopkeeperDetails';
 import Error403 from 'components/Error403';
 import './profil.scss';
 
@@ -18,13 +18,15 @@ const Profil = ({ currentUser, role }) => {
       </div>
     );
   } else {
-    return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
+    return (
+      <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />
+    );
   }
 };
 
 Profil.propTypes = {
-  currentUser: PropTypes.func.isRequired,
-  role: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
 };
 
 export default Profil;

@@ -102,28 +102,25 @@ export const geoCode = (
     });
 };
 
-export const itemsDistance = (self, km = 9999, items, lat, long, itemsOrderedByDistance) => {
-  console.log('items distance', items);
+export const itemsDistance = (self, km, items, lat, long, itemsOrderedByDistance) => {
+  // console.log(items);
   const itemsWithDistance = items.map(item => {
-    return {
-      // calcul de la distance du shop par rapport au currentUser
-      ...item,
-      distance: calculateDistance(
-        {
-          latitude: lat,
-          longitude: long,
-        },
-        {
-          latitude: item.localisation.lat,
-          longitude: item.localisation.lon,
-        },
-      ),
-    };
+    // calcul de la distance du shop par rapport au currentUser
+    item.distance = calculateDistance(
+      {
+        latitude: lat,
+        longitude: long,
+      },
+      {
+        latitude: item.localisation.lat,
+        longitude: item.localisation.lon,
+      },
+    );
+    return item;
   });
 
   const itemsFilter = itemsWithDistance.sort(compare).filter(item => item.distance <= km);
   self.setState({
     itemsOrderedByDistance: itemsFilter,
   });
-  console.log(self.state);
 };

@@ -157,9 +157,9 @@ const Donations = ({ currentUser, role, donations }) => {
 };
 
 Donations.propTypes = {
-  currentUser: PropTypes.func.isRequired,
-  role: PropTypes.func.isRequired,
-  donations: PropTypes.string.isRequired
+  currentUser: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
+  donations: PropTypes.array.isRequired
 };
 
 export default Donations;
