@@ -14,7 +14,7 @@ const beneficiaryMiddleware = store => next => action => {
           headers: { Authorization: `Bearer ${action.token}` },
         })
         .then(response => {
-          store.dispatch(recieveBeneficiaries(response.data));
+          store.dispatch(recieveBeneficiaries(response.data, action.location, action.maxDist));
         })
         .catch(e => {
           console.log('Impossible de récupérer les bénéficiaires', e);

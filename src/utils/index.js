@@ -75,6 +75,27 @@ export const initGeolocalisation = (self, lat, long, itemsDistance, isGeoLocAcce
   }
 };
 
+export const initGeolocalisation2 = () => {
+  console.log('init geoloc 2');
+  let location = {
+    lat: '',
+    long: '',
+  };
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        location.lat = position.coords.latitude;
+        location.long = position.coords.longitude;
+        console.log(position, location.lat);
+      },
+      err => {},
+    );
+    return { location };
+  } else {
+    return { location };
+  }
+};
+
 export const geoCode = (
   self,
   value,
@@ -123,4 +144,25 @@ export const itemsDistance = (self, km, items, lat, long, itemsOrderedByDistance
   self.setState({
     itemsOrderedByDistance: itemsFilter,
   });
+};
+
+export const itemsDistance2 = (km = 9999, items, lat, long) => {
+  // console.log(items);
+  const itemsWithDistance = items.map(item => {
+    // calcul de la distance du shop par rapport au currentUser
+    item.distance = calculateDistance(
+      {
+        latitude: lat,
+        longitude: long,
+      },
+      {
+        latitude: item.localisation.lat,
+        longitude: item.localisation.lon,
+      },
+    );
+    return item;
+  });
+
+  const itemsFilter = itemsWithDistance.sort(compare).filter(item => item.distance <= km);
+  return itemsFilter;
 };

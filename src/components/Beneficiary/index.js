@@ -11,7 +11,7 @@ import Input from 'components/Input';
 import EmptyState from 'components/UtilsComponents/EmptyState';
 
 /* utils */
-import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
+import { initGeolocation, geoCode } from 'utils/geolocationUtils';
 
 /* Css */
 import './beneficiary.scss';
@@ -27,62 +27,34 @@ class Beneficiary extends React.Component {
     itemsOrderedByDistance: [],
     getLocationErrorMessage: false,
   };
-  // Avant d'afficher le composant on récupère la localisation via le navigateur
-  componentDidMount() {
-    const { lat, long, isGeoLocAccessible } = this.state;
-    const { role, token, getBeneficiaries, beneficiaries } = this.props;
-    if (beneficiaries.length <= 0) {
-      getBeneficiaries(role, token);
-    }
-
-    /*console.log(beneficiaries);
-    const beneficiariesWithDistance = beneficiaries.filter(beneficiary => {
-      return beneficiary.localisation !== {};
-    });
-    console.log(beneficiariesWithDistance);
-    initGeolocalisation(this, lat, long, this.itemsDistance, isGeoLocAccessible);*/
-  }
-
-  componentDidUpdate() {
-    const { beneficiaries } = this.props;
-    if (beneficiaries.length > 0) {
-      const beneficiariesWithDistance = beneficiaries.filter(beneficiary => {
-        return beneficiary.localisation.latitude !== 0;
-      });
-      console.log(beneficiariesWithDistance);
-    }
-  }
-
-  itemsDistance = () => {
-    const { lat, long, itemsOrderedByDistance } = this.state;
-    const { beneficiaries } = this.props;
-    itemsDistance(this, 9999, beneficiaries, lat, long, itemsOrderedByDistance);
+  // Avant d'afficher le composant on récupère la localisation via le navigateur et l'ensemble des shops
+  componentDidMount = () => {
+    initGeolocation(this);
   };
 
-  // Soumission du formulaire avec adresse manuelle
   submitAskLocation = evt => {
     evt.preventDefault();
-    const { lat, long, isGeoLocAccessible, getLocationErrorMessage } = this.state;
-    geoCode(
-      this,
-      evt.target.locationAddress.value,
-      lat,
-      long,
-      isGeoLocAccessible,
-      this.itemsDistance,
-      getLocationErrorMessage,
-    );
+    geoCode(this, evt.target.locationAddress.value);
   };
 
   onChangeSelect = evt => {
-    const { value } = evt.target;
-    const { lat, long, beneficiariesOrderedByDistance } = this.state;
-    const { beneficiaries } = this.props;
-    itemsDistance(this, value, beneficiaries, lat, long, beneficiariesOrderedByDistance);
+    const maxDist = evt.target.value;
+    const { location } = this.state;
+    const { getBeneficiaries, role, token } = this.props;
+    getBeneficiaries(role, token, location, maxDist);
   };
 
+  componentDidUpdate() {
+    const { beneficiaries, getBeneficiaries, role, token } = this.props;
+    const { location } = this.state;
+
+    if (beneficiaries.length <= 0 && location) {
+      getBeneficiaries(role, token, location, 9997);
+    }
+  }
+
   render() {
-    console.log('render props', this.props);
+    console.log(this.props);
     return (
       <>
         <Header
@@ -90,7 +62,7 @@ class Beneficiary extends React.Component {
           backgroundImage={shopKeepersBackgroundImage}
           theme="dark"
         />
-        {!this.state.isGeoLocAccessible ? (
+        {!this.state.isGeoLocAccessible && (
           <div className="container py-5 shopkeeper-list">
             <div className="row">
               <div className="col">
@@ -122,78 +94,66 @@ class Beneficiary extends React.Component {
               </div>
             </div>
           </div>
-        ) : (
+        )}
+        {this.props.beneficiaries.length > 0 ? (
           <div className="container py-5 beneficiary-list">
-            {this.state.lat !== '' && this.state.long !== '' && (
-              <form className="form-inline d-flex justify-content-between">
-                <div className="row my-3">
-                  <div className="col-12">
-                    <div className="form-group">
-                      <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
-                        Distance maxi :
-                      </label>
-                      <select
-                        className="form-control form-control-sm"
-                        id="selectDistance"
-                        onChange={this.onChangeSelect}
-                        defaultValue={10}
-                      >
-                        <option value="1">1 km</option>
-                        <option value="2">2 km</option>
-                        <option value="3">3 km</option>
-                        <option value="4">4 km</option>
-                        <option value="5">5 km</option>
-                        <option value="10">10 km</option>
-                        <option value="20">20 km</option>
-                        <option value="30">30 km</option>
-                        <option value="9999">Illimitée</option>
-                      </select>
-                    </div>
+            <form className="form-inline d-flex justify-content-between">
+              <div className="row my-3">
+                <div className="col-12">
+                  <div className="form-group">
+                    <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
+                      Distance maxi :
+                    </label>
+                    <select
+                      className="form-control form-control-sm"
+                      id="selectDistance"
+                      onChange={this.onChangeSelect}
+                      defaultValue={10}
+                    >
+                      <option value="1">1 km</option>
+                      <option value="2">2 km</option>
+                      <option value="3">3 km</option>
+                      <option value="4">4 km</option>
+                      <option value="5">5 km</option>
+                      <option value="10">10 km</option>
+                      <option value="20">20 km</option>
+                      <option value="30">30 km</option>
+                      <option value="9999">Illimitée</option>
+                    </select>
                   </div>
                 </div>
-              </form>
-            )}
-
-            {this.state.lat !== '' &&
-              this.state.long !== '' &&
-              this.state.itemsOrderedByDistance <= 0 && (
-                <EmptyState
-                  className="mt-5"
-                  message="Oops, aucun bénéficiaire n'a été trouvé dans la zone selectionnée"
-                />
-              )}
+              </div>
+            </form>
             <div className="row">
-              {this.state.itemsOrderedByDistance.map(beneficiary => {
+              {this.props.beneficiaries.map(beneficiary => {
                 return (
-                  <div
-                    className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4"
-                    key={beneficiary.user._id}
-                  >
+                  <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={beneficiary._id}>
                     <div className="card">
                       <img
                         className="card-img-top"
-                        src={`https://picsum.photos/300/200?var=${
-                          beneficiary.user.shopkeeper_name
-                        }`}
-                        alt={beneficiary.user.shopkeeper_name}
+                        src={`https://picsum.photos/300/200?var=${beneficiary.username}`}
+                        alt={beneficiary.username}
                       />
                       <div className="card-body">
-                        <h3 className="card-title f2nt-3eight-bold">{beneficiary.user.username}</h3>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          {/* {shop.category} - {shop.distance} km */}
-                          {beneficiary.distance} km
-                        </h6>
+                        <h3 className="card-title f2nt-3eight-bold">{beneficiary.username}</h3>
+                        {beneficiary.distance && (
+                          <h6 className="card-subtitle mb-2 text-muted">
+                            {beneficiary.distance} km
+                          </h6>
+                        )}
                       </div>
-                      <Link
-                        to={`/beneficiary/${beneficiary.user._id}`}
-                        className="stretched-link"
-                      />
+                      <Link to={`/beneficiary/${beneficiary._id}`} className="stretched-link" />
                     </div>
                   </div>
                 );
               })}
             </div>
           </div>
+        ) : (
+          <EmptyState
+            className="mt-5"
+            message="Oops, aucun bénéficiaire n'a été trouvé dans la zone selectionnée"
+          />
         )}
       </>
     );

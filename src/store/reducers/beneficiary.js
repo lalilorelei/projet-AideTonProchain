@@ -13,11 +13,14 @@ const beneficiary = (state = initialState, action = {}) => {
       return {
         ...state,
         beneficiaries: action.data.beneficiaries,
+        location: action.location,
+        maxDist: action.maxDist,
       };
     case RECIEVE_BENEFICIARY:
       return {
         ...state,
         beneficiary: action.data.beneficiary,
+        location: action.location,
       };
     case RECIEVE_BENEFICIARIES_SUGGESTS:
       return {
@@ -29,9 +32,11 @@ const beneficiary = (state = initialState, action = {}) => {
   }
 };
 
-export const recieveBeneficiaries = data => ({
+export const recieveBeneficiaries = (data, location, maxDist) => ({
   type: RECIEVE_BENEFICIARIES,
   data,
+  location,
+  maxDist,
 });
 
 export const recieveBeneficiary = data => ({
