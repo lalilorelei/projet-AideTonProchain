@@ -45,7 +45,7 @@ const Login = ({ submitLogin, message }) => {
                 name="password"
                 required={true}
               />
-              <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+              <button type="submit" className="mt-4 btn btn-primary btn-block">
                 Se connecter
               </button>
             </form>

@@ -19,7 +19,7 @@ const ProductSelector = ({ products, role, total, clickDeleteProduct, changeDona
             exact="true"
             to="/add-product"
             path="/add-product"
-            className="btn btn-custom-accent"
+            className="btn btn-primary" 
           >
             Ajouter un produit
           </Link>
@@ -93,7 +93,7 @@ const ProductSelector = ({ products, role, total, clickDeleteProduct, changeDona
         {role === 'donor' && (
           <input
             type="submit"
-            className="btn btn-custom-accent btn-lg btn-block"
+            className="btn btn-primary btn-lg btn-block"
             name="submitProductSelector"
             value="Valider"
           />

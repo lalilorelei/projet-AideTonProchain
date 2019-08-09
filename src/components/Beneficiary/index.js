@@ -85,7 +85,7 @@ class Beneficiary extends React.Component {
                   <input
                     type="submit"
                     value="valider"
-                    className="btn btn-custom-accent"
+                    className="btn btn-primary"
                     name="submitAskLocation"
                   />
                 </form>
