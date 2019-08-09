@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import emptyStateImage from 'assets/img/emptyState.png';
 import './emptyState.scss';
 
-const EmptyState = ({ message, link = '' }) => (
+const EmptyState = ({ message, link = '', className = '' }) => (
   <>
-    <div className="text-center emptyState">
+    <div className={`text-center emptyState ${className}`}>
       <img alt="binoculars" className="mb-5" src={emptyStateImage} />
       <p className="text-muted">{message}</p>
       {link !== '' && (

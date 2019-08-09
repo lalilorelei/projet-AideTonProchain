@@ -1,12 +1,20 @@
+/* React */
 import React from 'react';
+
+/* Packages */
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
-
+/* Local Components */
 import Header from 'components/Header';
 import Input from 'components/Input';
+import EmptyState from 'components/UtilsComponents/EmptyState';
+
+/* utils */
 import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
+
+/* medias */
+import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 
 class Shopkeeper extends React.Component {
   state = {
@@ -104,8 +112,8 @@ class Shopkeeper extends React.Component {
         ) : (
           <div className="container py-5 shopkeeper-list">
             {this.state.lat !== '' && this.state.long !== '' && (
-              <form className="form-inline d-flex justify-content-between">
-                <div className="row my-3">
+              <div className="row my-3">
+                <form className="form-inline d-flex justify-content-between">
                   <div className="col-md-4">
                     <div className="form-group">
                       <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
@@ -167,17 +175,16 @@ class Shopkeeper extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div>
-              </form>
+                </form>
+              </div>
             )}
             {this.state.lat !== '' &&
               this.state.long !== '' &&
               this.state.itemsOrderedByDistance <= 0 && (
-                <div className="row">
-                  <div className="col">
-                    <p className="text-muted">Aucun commerçant trouvé dans la zone selectionnée</p>
-                  </div>
-                </div>
+                <EmptyState
+                  className="mt-5"
+                  message="Oops, aucun commerçant n'a été trouvé dans la zone selectionnée"
+                />
               )}
             <div className="row">
               {this.state.itemsOrderedByDistance.map(shop => {

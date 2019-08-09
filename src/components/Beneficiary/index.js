@@ -1,12 +1,23 @@
+/* React */
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import Media from 'react-media';
-import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
-import './beneficiary.scss';
 
+/* Packages */
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+/* Local Components */
 import Header from 'components/Header';
 import Input from 'components/Input';
+import EmptyState from 'components/UtilsComponents/EmptyState';
+
+/* utils */
 import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
+
+/* Css */
+import './beneficiary.scss';
+
+/* medias */
+import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 
 class Beneficiary extends React.Component {
   state = {
@@ -15,12 +26,31 @@ class Beneficiary extends React.Component {
     isGeoLocAccessible: true,
     itemsOrderedByDistance: [],
     getLocationErrorMessage: false,
-    beneficiaries: [],
   };
   // Avant d'afficher le composant on récupère la localisation via le navigateur
   componentDidMount() {
     const { lat, long, isGeoLocAccessible } = this.state;
-    initGeolocalisation(this, lat, long, this.itemsDistance, isGeoLocAccessible);
+    const { role, token, getBeneficiaries, beneficiaries } = this.props;
+    if (beneficiaries.length <= 0) {
+      getBeneficiaries(role, token);
+    }
+
+    /*console.log(beneficiaries);
+    const beneficiariesWithDistance = beneficiaries.filter(beneficiary => {
+      return beneficiary.localisation !== {};
+    });
+    console.log(beneficiariesWithDistance);
+    initGeolocalisation(this, lat, long, this.itemsDistance, isGeoLocAccessible);*/
+  }
+
+  componentDidUpdate() {
+    const { beneficiaries } = this.props;
+    if (beneficiaries.length > 0) {
+      const beneficiariesWithDistance = beneficiaries.filter(beneficiary => {
+        return beneficiary.localisation.latitude !== 0;
+      });
+      console.log(beneficiariesWithDistance);
+    }
   }
 
   itemsDistance = () => {
@@ -52,6 +82,7 @@ class Beneficiary extends React.Component {
   };
 
   render() {
+    console.log('render props', this.props);
     return (
       <>
         <Header
@@ -126,13 +157,10 @@ class Beneficiary extends React.Component {
             {this.state.lat !== '' &&
               this.state.long !== '' &&
               this.state.itemsOrderedByDistance <= 0 && (
-                <div className="row">
-                  <div className="col">
-                    <p className="text-muted">
-                      Aucun bénéficiaire trouvé dans la zone selectionnée
-                    </p>
-                  </div>
-                </div>
+                <EmptyState
+                  className="mt-5"
+                  message="Oops, aucun bénéficiaire n'a été trouvé dans la zone selectionnée"
+                />
               )}
             <div className="row">
               {this.state.itemsOrderedByDistance.map(beneficiary => {

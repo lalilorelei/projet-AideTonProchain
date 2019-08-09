@@ -83,7 +83,7 @@ class Donations extends React.Component {
                               {role === 'beneficiary' && (
                                 <>
                                   De la part de{' '}
-                                  <h5 className="text-dark">{donation.donation.donor.username}</h5>
+                                  <h5 className="text-dark">{donation.donor.username}</h5>
                                 </>
                               )}
                               {role === 'shopkeeper' && (
