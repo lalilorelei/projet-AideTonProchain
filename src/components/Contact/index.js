@@ -67,7 +67,7 @@ const Contact = ({ submitContact }) => {
 
               <input
                 type="submit"
-                className="btn btn-lg btn-custom-accent mt-3"
+                className="btn btn-lg btn-primary mt-3"
                 value="Envoyer"
                 name="submitContact"
               />

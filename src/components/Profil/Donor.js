@@ -18,10 +18,13 @@ const Donor = ({ currentUser }) => {
             <a href="mailto:contact@aidetonprochain.com" className="d-block mt-3">
               mon-email@mail.com
             </a>
-            <Link className="mt-4 btn btn-custom-accent btn-block" to="/donations">
+            <Link className="mt-4 btn btn-primary btn-block" to="/profil-update">
+              Editer profil
+            </Link>
+            <Link className="mt-4 btn btn-primary btn-block" to="/donations">
               Voir les dons
             </Link>
-            <Link className="mt-4 btn btn-custom-accent btn-block" to="/add-product">
+            <Link className="mt-4 btn btn-primary btn-block" to="/add-product">
               Ajouter un produit
             </Link>
           </div>

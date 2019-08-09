@@ -34,7 +34,7 @@ const Payment = () => {
               id="exampleInputUserName1"
               placeholder="CCV"
             />
-            <button type="button" className="btn btn-secondary btn-lg btn-block mt-4">
+            <button type="button" className="btn btn-primary btn-lg btn-block mt-4">
               Payer
             </button>
             <p>Bénéficiaire</p>

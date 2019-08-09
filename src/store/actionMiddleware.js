@@ -59,3 +59,30 @@ export const getShop = (role, token, shopkeeperId) => ({
   token,
   shopkeeperId,
 });
+
+// donor search beneficiary middleware
+
+export const SEARCH_BENEFICIARY = 'SEARCH_BENEFICIARY';
+
+export const searchBeneficiary = (textValue, token) => ({
+  type: SEARCH_BENEFICIARY,
+  textValue,
+  token,
+});
+
+// donation middleware
+
+export const SEND_DONATION = 'SEND_DONATION';
+
+export const sendDonation = (data, token) => ({
+  type: SEND_DONATION,
+  data,
+  token,
+});
+
+export const GET_DONATIONS = 'GET_DONATIONS';
+export const getDonations = (role, token) => ({
+  type: GET_DONATIONS,
+  role,
+  token,
+});

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 // import Media from 'react-media';
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import './beneficiary.scss';
@@ -85,7 +84,7 @@ class Beneficiary extends React.Component {
                   <input
                     type="submit"
                     value="valider"
-                    className="btn btn-custom-accent"
+                    className="btn btn-primary"
                     name="submitAskLocation"
                   />
                 </form>

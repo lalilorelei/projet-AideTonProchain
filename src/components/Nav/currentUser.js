@@ -24,23 +24,23 @@ const CurrentUser = ({ currentUser, role, deconnexion }) => {
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             {role === 'donor' && (
               <>
-                <Link exact to="/beneficiary" className="nav-link">
+                <Link exact={true} to="/beneficiary" className="nav-link">
                   Personnes&nbsp;à&nbsp;proximité
                 </Link>
-                <Link exact to="/shopkeeper" className="nav-link">
+                <Link exact={true} to="/shopkeeper" className="nav-link">
                   Commerces&nbsp;à&nbsp;proximité
                 </Link>
-                <Link exact to="/donations" className="nav-link">
+                <Link exact={true} to="/donations" className="nav-link">
                   Mes&nbsp;dons
                 </Link>
               </>
             )}
             {role === 'shopkeeper' && (
               <>
-                <Link exact to="/products" className="nav-link">
+                <Link exact={true} to="/products" className="nav-link">
                   Gérer&nbsp;mes&nbsp;produits
                 </Link>
-                <Link exact to="/donations" className="nav-link">
+                <Link exact={true} to="/donations" className="nav-link">
                   Suivi&nbsp;des&nbsp;transactions
                 </Link>
               </>

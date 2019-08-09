@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ShopkeeperDetails from 'components/Shopkeeper/ShopkeeperDetails';
-import { getShop, getProducts } from 'store/actionMiddleware';
+import { getShop, getProducts, searchBeneficiary, sendDonation } from 'store/actionMiddleware';
 import { decodedToken } from 'utils';
 
 const mapStateToProps = state => {
@@ -11,6 +11,8 @@ const mapStateToProps = state => {
     token: state.user.currentUser.token,
     shop: state.shopkeeper.shopkeeper,
     products: state.product.products,
+    beneficiariesSuggests: state.beneficiary.beneficiaries,
+    donationConfirmMessage: state.donation.donationConfirmMessage,
   };
 };
 
@@ -20,6 +22,12 @@ const mapDispatchToProps = dispatch => ({
   },
   getProducts: shopkeeperId => {
     dispatch(getProducts(shopkeeperId));
+  },
+  searchBeneficiary: (textValue, token) => {
+    dispatch(searchBeneficiary(textValue, token));
+  },
+  sendDonation: (data, token) => {
+    dispatch(sendDonation(data, token));
   },
 });
 

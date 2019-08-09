@@ -1,4 +1,4 @@
-export const getDonationData = ({ donation }) => {
+export const getDonationData = donation => {
   // get sum of products
   const sumOfProducts = donation.products.reduce(function(a, b) {
     return a + b.price;
@@ -10,7 +10,10 @@ export const getDonationData = ({ donation }) => {
   // change date format
   const date = new Date(donation.created_at);
   const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-  const month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
+  const month =
+    parseInt(date.getMonth() + 1) < 10
+      ? '0' + parseInt(date.getMonth() + 1)
+      : parseInt(date.getMonth() + 1);
   const donationDate = day + '/' + month + '/' + date.getFullYear();
 
   const used = donation.used_at !== undefined;

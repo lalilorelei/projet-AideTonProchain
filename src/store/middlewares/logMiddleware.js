@@ -1,6 +1,6 @@
 import { SUBMIT_LOGIN, SUBMIT_REGISTER, DECONNEXION } from 'store/actionMiddleware';
 import { recieveCurrentUser, registerMessage } from 'store/reducers/user';
-import { decodedToken } from 'utils';
+//import { decodedToken } from 'utils';
 
 import axios from 'axios';
 

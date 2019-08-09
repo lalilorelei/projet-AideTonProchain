@@ -12,7 +12,7 @@ const Error404 = () => (
         <div className="col col-lg-8 text-left">
           <h2 className="text-center">Oops!</h2>
           <h2>La page que vous recherchez n'a pas été trouvée.</h2>
-          <Link key="/" className="btn btn-custom-accent btn-block mt-5" to="/">
+          <Link key="/" className="btn btn-primary btn-block mt-5" to="/">
             Retour à l'accueil
           </Link>
         </div>

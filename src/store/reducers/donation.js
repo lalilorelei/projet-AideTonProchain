@@ -1,152 +1,38 @@
 const initialState = {
-  donations: [
-    {
-      donation: {
-        products: [
-          {
-            _id: '5d49a1e42b16280cfcdispo',
-            name: 'poulet rôti',
-            price: 7,
-            available: true,
-            updated_at: '2019-08-04T15:51:00.992Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-          {
-            _id: '5d49a1e42b16280cfcdispo',
-            name: 'canard laqué',
-            price: 9,
-            available: true,
-            updated_at: '2019-08-04T15:51:00.992Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-          {
-            _id: '5d49a1e42b16280cfcdispo',
-            name: 'verre de muscadet',
-            price: 2,
-            available: true,
-            updated_at: '2019-08-04T15:51:00.992Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-
-          {
-            _id: '5d49a1e42b16280cfcr24cf',
-            name: 'café',
-            price: 2,
-            available: true,
-            updated_at: '2019-08-04T15:51:00.992Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-          {
-            _id: '5d49a1e42b16280cfcdispo',
-            name: 'porc aux olives',
-            price: 2,
-            available: true,
-            updated_at: '2019-08-04T15:51:00.992Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-          {
-            _id: '5d49a1c42b16280cfc317fac',
-            name: 'thé',
-            price: 3,
-            available: true,
-            updated_at: '2019-08-06T15:50:28.805Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-        ],
-        _id: '5d49a61f2b16280cfc378fds',
-        donor: {
-          _id: '5d4293a7bb396f07a1aae6ee',
-          username: 'greg',
-        },
-        beneficiary: '5d48548b625a0204a20548dd',
-        shopkeeper: {
-          localisation: {
-            lat: '48.8781816',
-            lon: '2.3956631',
-            address: '18 rue des Lilas 75019 Paris',
-          },
-          _id: '5d4995862b16280cfc317f90',
-          shopkeeper_name: 'Ashely Prince',
-        },
-        created_at: '2019-08-06T16:09:03.171Z',
-        __v: 0,
-      },
-      beneficiary: {
-        id: '5d48548b625a0204a20548dd',
-        username: 'ggglyke-beneficiary',
-      },
-    },
-    {
-      donation: {
-        products: [
-          {
-            _id: '5d49a1c42b16280cfc317fac',
-            name: 'thé',
-            price: 3,
-            available: true,
-            updated_at: '2019-08-06T15:50:28.805Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-          {
-            _id: '5d49a1e42b16280cfc317fad',
-            name: 'café',
-            price: 2,
-            available: true,
-            updated_at: '2019-08-04T15:51:00.992Z',
-            shopkeeper: '5d4995862b16280cfc317f90',
-            __v: 0,
-          },
-        ],
-        _id: '5d49a61f2b16280cfc324h56t',
-        used_at: '2019-08-05T15:51:00.992Z',
-        donor: {
-          _id: '5d4293a7bbjrfger5g1ere6ee',
-          username: 'Phil',
-        },
-        beneficiary: '5d48548b625a0204a20548dd',
-        shopkeeper: {
-          localisation: {
-            lat: '48.8781816',
-            lon: '2.3956631',
-            address: '18 rue des Lilas 75019 Paris',
-          },
-          _id: '5d4995862b16280cfc317f90',
-          shopkeeper_name: 'Ashely Prince',
-        },
-        created_at: '2019-08-06T16:09:03.171Z',
-        __v: 0,
-      },
-      beneficiary: {
-        id: '5d48548b625a0204a20548dd',
-        username: 'ggglyke-beneficiary',
-      },
-    },
-  ],
+  donations: [],
+  donationConfirmMessage: {},
 };
 
-export const FAKE = 'FAKE';
+export const CONFIRM_DONATION = 'CONFIRM_DONATION';
+export const RECIEVE_DONATIONS = 'RECIEVE_DONATIONS';
 
 const donation = (state = initialState, action = {}) => {
   switch (action.type) {
-    case FAKE:
+    case CONFIRM_DONATION:
       return {
         ...state,
+        donationConfirmMessage: {
+          type: 'success',
+          message: 'Donation validée, merci beaucoup !',
+        },
+      };
+    case RECIEVE_DONATIONS:
+      return {
+        ...state,
+        donations: action.data,
       };
     default:
       return state;
   }
 };
 
-export const fake = data => ({
-  type: FAKE,
-  data,
+export const confirmDonation = () => ({
+  type: CONFIRM_DONATION,
+});
+
+export const recieveDonations = donations => ({
+  type: RECIEVE_DONATIONS,
+  data: donations,
 });
 
 export default donation;

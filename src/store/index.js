@@ -1,15 +1,55 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 import reducer from './reducers/index';
+
+/* middlewares */
 import logMiddleware from './middlewares/logMiddleware';
 import productMiddleware from './middlewares/productMiddleware';
-import locationMiddleware from './middlewares/locationMiddleware';
 import shopkeeperMiddleware from './middlewares/shopkeeperMiddleware';
+import donationMiddleware from './middlewares/donationMiddleware';
+import beneficiaryMiddleware from './middlewares/beneficiaryMiddleware';
+
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
+  whitelist: ['user'],
+};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(logMiddleware, productMiddleware, locationMiddleware, shopkeeperMiddleware),
+  applyMiddleware(
+    logMiddleware,
+    productMiddleware,
+    donationMiddleware,
+    shopkeeperMiddleware,
+    beneficiaryMiddleware,
+  ),
+);
+
+const pReducer = persistReducer(persistConfig, reducer);
+
+export const store = createStore(pReducer, enhancers);
+export const persistor = persistStore(store);
+
+export default store;
+
+/* import { createStore, applyMiddleware, compose } from 'redux';
+
+import reducer from './reducers/index';
+import logMiddleware from './middlewares/logMiddleware';
+import productMiddleware from './middlewares/productMiddleware';
+import shopkeeperMiddleware from './middlewares/shopkeeperMiddleware';
+import donationMiddleware from './middlewares/donationMiddleware';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancers = composeEnhancers(
+  applyMiddleware(logMiddleware, productMiddleware, donationMiddleware, shopkeeperMiddleware),
 );
 
 function saveToLocalStorage(state) {
@@ -38,7 +78,7 @@ const store = createStore(reducer, persistedState, enhancers);
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
 
-export default store;
+export default store;*/
 
 // import { createStore, applyMiddleware, compose } from 'redux';
 // import { persistStore, persistReducer } from 'redux-persist';
@@ -48,7 +88,7 @@ export default store;
 // import reducer from './reducers/index';
 // import logMiddleware from './middlewares/logMiddleware';
 // import productMiddleware from './middlewares/productMiddleware';
-// import locationMiddleware from './middlewares/locationMiddleware';
+// import donationMiddleware from './middlewares/donationMiddleware';
 
 // const persistConfig = {
 //   key: 'root',
@@ -59,7 +99,7 @@ export default store;
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // const enhancers = composeEnhancers(
-//   applyMiddleware(logMiddleware, productMiddleware, locationMiddleware),
+//   applyMiddleware(logMiddleware, productMiddleware, donationMiddleware, shopkeeperMiddleware),
 // );
 
 // const persistedReducer = persistReducer(persistConfig, reducer);
