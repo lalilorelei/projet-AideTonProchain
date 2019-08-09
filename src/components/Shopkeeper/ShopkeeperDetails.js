@@ -64,11 +64,13 @@ class ShopkeeperDetails extends Component {
         ...this.state,
         donationIsReady: true,
       });
+      return true;
     } else {
       this.setState({
         ...this.state,
         donationIsReady: false,
       });
+      return false;
     }
   };
 
