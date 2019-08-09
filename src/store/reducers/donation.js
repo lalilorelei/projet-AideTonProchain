@@ -4,6 +4,7 @@ const initialState = {
 };
 
 export const CONFIRM_DONATION = 'CONFIRM_DONATION';
+export const RECIEVE_DONATIONS = 'RECIEVE_DONATIONS';
 
 const donation = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -15,6 +16,11 @@ const donation = (state = initialState, action = {}) => {
           message: 'Donation validée, merci beaucoup !',
         },
       };
+    case RECIEVE_DONATIONS:
+      return {
+        ...state,
+        donations: action.data,
+      };
     default:
       return state;
   }
@@ -22,6 +28,11 @@ const donation = (state = initialState, action = {}) => {
 
 export const confirmDonation = () => ({
   type: CONFIRM_DONATION,
+});
+
+export const recieveDonations = donations => ({
+  type: RECIEVE_DONATIONS,
+  data: donations,
 });
 
 export default donation;

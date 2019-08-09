@@ -79,3 +79,10 @@ export const sendDonation = (data, token) => ({
   data,
   token,
 });
+
+export const GET_DONATIONS = 'GET_DONATIONS';
+export const getDonations = (role, token) => ({
+  type: GET_DONATIONS,
+  role,
+  token,
+});

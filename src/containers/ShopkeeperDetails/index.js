@@ -5,7 +5,6 @@ import { getShop, getProducts, searchBeneficiary, sendDonation } from 'store/act
 import { decodedToken } from 'utils';
 
 const mapStateToProps = state => {
-  console.log(state.donation);
   return {
     currentUser: state.user.currentUser,
     role: decodedToken(state.user.currentUser.token).role,

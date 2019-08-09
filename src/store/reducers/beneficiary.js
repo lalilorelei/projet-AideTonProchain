@@ -7,7 +7,6 @@ export const RECIEVE_BENEFICIARIES_SUGGESTS = 'RECIEVE_BENEFICIARIES_SUGGESTS';
 const beneficiary = (state = initialState, action = {}) => {
   switch (action.type) {
     case RECIEVE_BENEFICIARIES_SUGGESTS:
-      console.log('ad', action.data);
       return {
         ...state,
         beneficiaries: action.data,
