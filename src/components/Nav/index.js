@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 
 import CurrentUser from './currentUser';
+import RegisterDropdown from './RegisterDropdown';
 
 import './nav.scss';
 import logo_dark from '../../assets/img/logo-atp-blanc.png';
@@ -11,7 +12,11 @@ import logo_light from '../../assets/img/logo-atp-black.png';
 const Nav = ({ currentUser, role, theme, deconnexion }) => (
   <nav className={`navbar navbar-expand-lg navbar-${theme}`}>
     <Link key="/logo" className="navbar-brand" to="/">
-      {theme === 'dark' ? <img src={logo_dark} alt="logo-atp" /> : <img src={logo_light} alt="logo-atp" />}
+      {theme === 'dark' ? (
+        <img src={logo_dark} alt="logo-atp" />
+      ) : (
+        <img src={logo_light} alt="logo-atp" />
+      )}
     </Link>
     <button
       className="navbar-toggler"
@@ -51,11 +56,7 @@ const Nav = ({ currentUser, role, theme, deconnexion }) => (
       <ul className="navbar-nav ml-auto">
         {currentUser.user === undefined && (
           <>
-            <li className="nav-item">
-              <NavLink exact to="/register" key="/register" className="nav-link">
-                Inscription
-              </NavLink>
-            </li>
+            <RegisterDropdown />
             <li className="nav-item">
               <NavLink exact to="/login" key="/login" className="nav-link">
                 Connexion

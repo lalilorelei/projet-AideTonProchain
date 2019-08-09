@@ -28,12 +28,14 @@ class ShopkeeperDetails extends Component {
 
   componentDidUpdate() {
     const input = document.querySelector('#beneficiary-search-input');
-    input.addEventListener('blur', function() {
-      setTimeout(function() {
-        document.querySelector('.suggests').classList.remove('d-block');
-        document.querySelector('.suggests').classList.add('d-none');
-      }, 50);
-    });
+    if (input) {
+      input.addEventListener('blur', function() {
+        setTimeout(function() {
+          document.querySelector('.suggests').classList.remove('d-block');
+          document.querySelector('.suggests').classList.add('d-none');
+        }, 50);
+      });
+    }
   }
 
   clickSuggest = evt => {
@@ -158,6 +160,11 @@ class ShopkeeperDetails extends Component {
               {donationConfirmMessage && (
                 <div className={`alert alert-${donationConfirmMessage.type}`}>
                   {donationConfirmMessage.message}
+                  {donationConfirmMessage.link && (
+                    <a href={donationConfirmMessage.link.url} className="alert-link">
+                      {' ' + donationConfirmMessage.link.label}
+                    </a>
+                  )}
                 </div>
               )}
               {products &&

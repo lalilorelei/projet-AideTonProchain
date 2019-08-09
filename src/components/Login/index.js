@@ -49,9 +49,12 @@ const Login = ({ submitLogin, message }) => {
                 Se connecter
               </button>
             </form>
-            <div className="mt-3 text-right">
+            <div className="mt-3 d-flex justify-content-between">
               <a href="#" className="text-small">
                 Mot de passe oublié ?
+              </a>
+              <a href="#" className="text-small">
+                Inscription
               </a>
             </div>
           </div>

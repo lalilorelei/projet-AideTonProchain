@@ -14,6 +14,10 @@ const donation = (state = initialState, action = {}) => {
         donationConfirmMessage: {
           type: 'success',
           message: 'Donation validée, merci beaucoup !',
+          link: {
+            label: 'voir les donations',
+            url: '/donations',
+          },
         },
       };
     case RECIEVE_DONATIONS:

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import illustration_qsn from '../../assets/img/illustration-qsn.jpg';
-import mockup from '../../assets/img/mockup-donation.png';
+import illustration_qsn from 'assets/img/illustration-qsn.jpg';
+import mockup from 'assets/img/mockup-donation.png';
 
 import { Link } from 'react-router-dom';
 import Header from 'components/Header';

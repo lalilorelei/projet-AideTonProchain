@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
+import EmptyState from 'components/UtilsComponents/EmptyState';
 import './donations.scss';
 import backgroundDonations from 'assets/img/donations.jpg';
 import { getDonationData } from 'utils/donationUtils';
@@ -40,9 +41,8 @@ class Donations extends React.Component {
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
             <div className="col col-md-6">
-              {pimpedDonations &&
+              {pimpedDonations.length > 0 ? (
                 pimpedDonations.map(donation => {
-                  console.log(donation);
                   return (
                     <div className="card mb-4 donation">
                       <div
@@ -161,7 +161,27 @@ class Donations extends React.Component {
                       </div>
                     </div>
                   );
-                })}
+                })
+              ) : (
+                <>
+                  {role === 'donor' ? (
+                    <EmptyState
+                      message="Oops, vous n'avez pas fait de donation, Vous pouvez en faire une en visitant les commerces à proximité"
+                      link={{ url: '/shopkeeper', label: 'Voir les commerces' }}
+                    />
+                  ) : role === 'shopkeeper' ? (
+                    <EmptyState
+                      message="Oops, il n'y a pas de transaction en cours dans votre établissement"
+                      link={{ url: '/', label: "Retour à l'accueil" }}
+                    />
+                  ) : role === 'beneficiary' ? (
+                    <EmptyState
+                      message="Oops, vous n'avez pas encore reçu de don."
+                      link={{ url: '/', label: "Retour à l'accueil" }}
+                    />
+                  ) : null}
+                </>
+              )}
             </div>
           </div>
         </div>
