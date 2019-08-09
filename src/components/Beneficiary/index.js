@@ -67,8 +67,8 @@ class Beneficiary extends React.Component {
             <div className="row">
               <div className="col">
                 <p>
-                  Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre navigateur ou
-                  renseigner une adresse.
+                  Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre
+                  navigateur ou renseigner une adresse.
                 </p>
                 <form onSubmit={this.submitAskLocation}>
                   <Input
@@ -84,7 +84,12 @@ class Beneficiary extends React.Component {
                       L'adresse renseignée n'est pas valide, veuillez réessayer
                     </p>
                   )}
-                  <input type="submit" value="valider" className="btn btn-primary" name="submitAskLocation" />
+                  <input
+                    type="submit"
+                    value="valider"
+                    className="btn btn-primary"
+                    name="submitAskLocation"
+                  />
                 </form>
               </div>
             </div>
@@ -117,38 +122,17 @@ class Beneficiary extends React.Component {
                     </select>
                   </div>
                 </div>
-<<<<<<< HEAD
               </div>
             </form>
-=======
-              </form>
-            )}
-
-            {this.state.lat !== '' && this.state.long !== '' && this.state.itemsOrderedByDistance <= 0 && (
-              <EmptyState
-                className="mt-5"
-                message="Oops, aucun bénéficiaire n'a été trouvé dans la zone selectionnée"
-              />
-            )}
->>>>>>> 267414c32da28251c39ec0c260c4b1232e7b764e
             <div className="row">
               {this.props.beneficiaries.map(beneficiary => {
                 return (
-<<<<<<< HEAD
                   <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={beneficiary._id}>
                     <div className="card">
                       <img
                         className="card-img-top"
                         src={`https://picsum.photos/300/200?var=${beneficiary.username}`}
                         alt={beneficiary.username}
-=======
-                  <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={beneficiary.user._id}>
-                    <div className="card">
-                      <img
-                        className="card-img-top"
-                        src={`https://picsum.photos/300/200?var=${beneficiary.user.shopkeeper_name}`}
-                        alt={beneficiary.user.shopkeeper_name}
->>>>>>> 267414c32da28251c39ec0c260c4b1232e7b764e
                       />
                       <div className="card-body">
                         <h3 className="card-title f2nt-3eight-bold">{beneficiary.username}</h3>
@@ -158,11 +142,7 @@ class Beneficiary extends React.Component {
                           </h6>
                         )}
                       </div>
-<<<<<<< HEAD
                       <Link to={`/beneficiary/${beneficiary._id}`} className="stretched-link" />
-=======
-                      <Link to={`/beneficiary/${beneficiary.user._id}`} className="stretched-link" />
->>>>>>> 267414c32da28251c39ec0c260c4b1232e7b764e
                     </div>
                   </div>
                 );
