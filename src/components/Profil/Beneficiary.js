@@ -8,11 +8,13 @@ const Beneficiary = ({ currentUser }) => {
         <div className="row justify-content-center">
           <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
             <h2 className="font-weight-bold">Où me trouver</h2>
-            <h3>Mon quartier/arrondissement</h3>
-            <h3>Quartier de St-Michel / 6ème arrondissement</h3>
+            <h4>(Mon quartier/arrondissement)</h4>
+            <h4>(Quartier de St-Michel / 6ème arrondissement)</h4>
             <br />
             <h2 className="font-weight-bold mb-0">Mes besoins</h2>
-            <p>J'aurais besoin d'une couverture pour l'hiver, ainsi que des croquettes pour mon chien.</p>
+            <p className="my-2">
+              J'aurais besoin d'une couverture pour l'hiver, ainsi que des croquettes pour mon chien.
+            </p>
             <Link className="d-block mt-4 btn btn-primary" to="/donations">
               Voir les dons
             </Link>

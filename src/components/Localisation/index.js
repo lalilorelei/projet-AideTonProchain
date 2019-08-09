@@ -23,12 +23,7 @@ const Localisation = () => {
                 Votre adresse
               </span>
             </div>
-            <input
-              type="text"
-              class="form-control"
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
-            />
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" />
           </div>
 
           <button type="button" class="btn btn-primary btn-lg btn-block">
