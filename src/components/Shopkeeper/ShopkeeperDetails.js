@@ -148,11 +148,7 @@ class ShopkeeperDetails extends Component {
     const date = new Date();
     return (
       <>
-        <Header
-          title={shop.shopkeeper_name}
-          backgroundImage={shopKeeperBackgroundImage}
-          theme="dark"
-        />
+        <Header title={shop.shopkeeper_name} backgroundImage={shopKeeperBackgroundImage} theme="dark" />
 
         <div className="container mt-4 py-5">
           <div className="row justify-content-center">
@@ -167,21 +163,19 @@ class ShopkeeperDetails extends Component {
                   )}
                 </div>
               )}
-              {products &&
-                shop &&
-                (role === 'beneficiary' || role === 'shopkeeper' || role === 'donor') && (
-                  <ProductSelector
-                    products={products}
-                    changeDonationTotal={this.changeDonationTotal}
-                    submitDonation={this.submitDonation}
-                    role={role}
-                    total={this.state.selectedProductsTotal}
-                    isDonationReady={this.state.donationIsReady}
-                    inputSearchBeneficiary={this.inputSearchBeneficiary}
-                    beneficiariesSuggests={beneficiariesSuggests}
-                    clickSuggest={this.clickSuggest}
-                  />
-                )}
+              {products && shop && (role === 'beneficiary' || role === 'shopkeeper' || role === 'donor') && (
+                <ProductSelector
+                  products={products}
+                  changeDonationTotal={this.changeDonationTotal}
+                  submitDonation={this.submitDonation}
+                  role={role}
+                  total={this.state.selectedProductsTotal}
+                  isDonationReady={this.state.donationIsReady}
+                  inputSearchBeneficiary={this.inputSearchBeneficiary}
+                  beneficiariesSuggests={beneficiariesSuggests}
+                  clickSuggest={this.clickSuggest}
+                />
+              )}
             </div>
             <div className="col-md-12 col-lg-4">
               {/* {shop && <BlocCoordonneesHoraires shop={shop} />} */}
@@ -194,9 +188,7 @@ class ShopkeeperDetails extends Component {
                       <span>{shop.localisation.address}</span>
                       <br />
                       <a
-                        href={`https://maps.google.com/?q=${shop.localisation.lat},${
-                          shop.localisation.lon
-                        }`}
+                        href={`https://maps.google.com/?q=${shop.localisation.lat},${shop.localisation.lon}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >

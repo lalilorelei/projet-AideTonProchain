@@ -4,8 +4,11 @@ import AddProduct from 'components/AddProduct';
 
 import { createProduct } from 'store/actionMiddleware';
 
+import { decodedToken } from 'utils';
+
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
+  role: decodedToken(state.user.currentUser.token).role,
 });
 
 const mapDispatchToProps = dispatch => ({

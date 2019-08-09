@@ -15,6 +15,7 @@ import { initGeolocalisation, geoCode, itemsDistance } from 'utils';
 
 /* medias */
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
+import Error403 from 'components/Error403';
 
 class Shopkeeper extends React.Component {
   state = {
@@ -69,149 +70,125 @@ class Shopkeeper extends React.Component {
     // if (shops.length > 0) {
     //   shops = this.state.shops;
     // }
-
-    return (
-      <>
-        <Header
-          title="Commerces à proximité"
-          backgroundImage={shopKeepersBackgroundImage}
-          theme="dark"
-        />
-        {!this.state.isGeoLocAccessible ? (
-          <div className="container py-5 shopkeeper-list">
-            <div className="row">
-              <div className="col">
-                <p>
-                  Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre
-                  navigateur ou renseigner une adresse.
-                </p>
-                <form onSubmit={this.submitAskLocation}>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    label="Adresse complète"
-                    required={true}
-                    name="locationAddress"
-                    id="locationAddress"
-                  />
-                  {this.state.getLocationErrorMessage && (
-                    <p className="text-danger text-small mt-0">
-                      L'adresse renseignée n'est pas valide, veuillez réessayer
-                    </p>
-                  )}
-                  <input
-                    type="submit"
-                    value="valider"
-                    className="btn btn-custom-accent"
-                    name="submitAskLocation"
-                  />
-                </form>
+    const { currentUser, role } = this.props;
+    if (currentUser.user !== undefined && role !== 'shopkeeper') {
+      return (
+        <>
+          <Header title="Commerces à proximité" backgroundImage={shopKeepersBackgroundImage} theme="dark" />
+          {!this.state.isGeoLocAccessible ? (
+            <div className="container py-5 shopkeeper-list">
+              <div className="row">
+                <div className="col">
+                  <p>
+                    Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre navigateur ou
+                    renseigner une adresse.
+                  </p>
+                  <form onSubmit={this.submitAskLocation}>
+                    <Input
+                      type="text"
+                      className="form-control"
+                      label="Adresse complète"
+                      required={true}
+                      name="locationAddress"
+                      id="locationAddress"
+                    />
+                    {this.state.getLocationErrorMessage && (
+                      <p className="text-danger text-small mt-0">
+                        L'adresse renseignée n'est pas valide, veuillez réessayer
+                      </p>
+                    )}
+                    <input type="submit" value="valider" className="btn btn-custom-accent" name="submitAskLocation" />
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="container py-5 shopkeeper-list">
-            {this.state.lat !== '' && this.state.long !== '' && (
-              <div className="row my-3">
-                <form className="form-inline d-flex justify-content-between">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
-                        Distance maxi :
-                      </label>
-                      <select
-                        className="form-control form-control-sm"
-                        id="selectDistance"
-                        onChange={this.onChangeSelect}
-                        defaultValue={9999}
-                      >
-                        <option value="1">1 km</option>
-                        <option value="2">2 km</option>
-                        <option value="3">3 km</option>
-                        <option value="4">4 km</option>
-                        <option value="5">5 km</option>
-                        <option value="10">10 km</option>
-                        <option value="20">20 km</option>
-                        <option value="30">30 km</option>
-                        <option value="9999">Illimitée</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-md-8">
-                    <div className="form-group">
-                      <span className="inline-form-label">Produits :</span>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id="inlineCheckbox1"
-                          value="option1"
-                        />
-                        <label className="form-check-label" htmlFor="inlineCheckbox1">
-                          menus
+          ) : (
+            <div className="container py-5 shopkeeper-list">
+              {this.state.lat !== '' && this.state.long !== '' && (
+                <div className="row my-3">
+                  <form className="form-inline d-flex justify-content-between">
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
+                          Distance maxi :
                         </label>
-                      </div>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id="inlineCheckbox2"
-                          value="option2"
-                        />
-                        <label className="form-check-label" htmlFor="inlineCheckbox2">
-                          restauration rapide
-                        </label>
-                      </div>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          id="inlineCheckbox3"
-                          value="option3"
-                        />
-                        <label className="form-check-label" htmlFor="inlineCheckbox3">
-                          café
-                        </label>
+                        <select
+                          className="form-control form-control-sm"
+                          id="selectDistance"
+                          onChange={this.onChangeSelect}
+                          defaultValue={9999}
+                        >
+                          <option value="1">1 km</option>
+                          <option value="2">2 km</option>
+                          <option value="3">3 km</option>
+                          <option value="4">4 km</option>
+                          <option value="5">5 km</option>
+                          <option value="10">10 km</option>
+                          <option value="20">20 km</option>
+                          <option value="30">30 km</option>
+                          <option value="9999">Illimitée</option>
+                        </select>
                       </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-            )}
-            {this.state.lat !== '' &&
-              this.state.long !== '' &&
-              this.state.itemsOrderedByDistance <= 0 && (
+                    <div className="col-md-8">
+                      <div className="form-group">
+                        <span className="inline-form-label">Produits :</span>
+                        <div className="form-check form-check-inline">
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+                          <label className="form-check-label" htmlFor="inlineCheckbox1">
+                            menus
+                          </label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" />
+                          <label className="form-check-label" htmlFor="inlineCheckbox2">
+                            restauration rapide
+                          </label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
+                          <label className="form-check-label" htmlFor="inlineCheckbox3">
+                            café
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              )}
+              {this.state.lat !== '' && this.state.long !== '' && this.state.itemsOrderedByDistance <= 0 && (
                 <EmptyState
                   className="mt-5"
                   message="Oops, aucun commerçant n'a été trouvé dans la zone selectionnée"
                 />
               )}
-            <div className="row">
-              {this.state.itemsOrderedByDistance.map(shop => {
-                return (
-                  <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop._id}>
-                    <div className="card">
-                      <img
-                        className="card-img-top"
-                        src={`https://picsum.photos/300/200?var=${shop.shopkeeper_name}`}
-                        alt={shop.shopkeeper_name}
-                      />
-                      <div className="card-body">
-                        <h3 className="card-title f2nt-3eight-bold">{shop.shopkeeper_name}</h3>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          category - {shop.distance} km
-                        </h6>
+              <div className="row">
+                {this.state.itemsOrderedByDistance.map(shop => {
+                  return (
+                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={shop._id}>
+                      <div className="card">
+                        <img
+                          className="card-img-top"
+                          src={`https://picsum.photos/300/200?var=${shop.shopkeeper_name}`}
+                          alt={shop.shopkeeper_name}
+                        />
+                        <div className="card-body">
+                          <h3 className="card-title f2nt-3eight-bold">{shop.shopkeeper_name}</h3>
+                          <h6 className="card-subtitle mb-2 text-muted">category - {shop.distance} km</h6>
+                        </div>
+                        <Link to={`/shopkeeper/${shop._id}`} className="stretched-link" />
                       </div>
-                      <Link to={`/shopkeeper/${shop._id}`} className="stretched-link" />
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        )}
-      </>
-    );
+          )}
+        </>
+      );
+    } else {
+      return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
+    }
   }
 }
 

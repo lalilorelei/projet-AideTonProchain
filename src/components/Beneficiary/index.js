@@ -85,18 +85,14 @@ class Beneficiary extends React.Component {
     console.log('render props', this.props);
     return (
       <>
-        <Header
-          title="Bénéficiaires à proximité"
-          backgroundImage={shopKeepersBackgroundImage}
-          theme="dark"
-        />
+        <Header title="Bénéficiaires à proximité" backgroundImage={shopKeepersBackgroundImage} theme="dark" />
         {!this.state.isGeoLocAccessible ? (
           <div className="container py-5 shopkeeper-list">
             <div className="row">
               <div className="col">
                 <p>
-                  Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre
-                  navigateur ou renseigner une adresse.
+                  Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre navigateur ou
+                  renseigner une adresse.
                 </p>
                 <form onSubmit={this.submitAskLocation}>
                   <Input
@@ -112,12 +108,7 @@ class Beneficiary extends React.Component {
                       L'adresse renseignée n'est pas valide, veuillez réessayer
                     </p>
                   )}
-                  <input
-                    type="submit"
-                    value="valider"
-                    className="btn btn-primary"
-                    name="submitAskLocation"
-                  />
+                  <input type="submit" value="valider" className="btn btn-primary" name="submitAskLocation" />
                 </form>
               </div>
             </div>
@@ -154,27 +145,20 @@ class Beneficiary extends React.Component {
               </form>
             )}
 
-            {this.state.lat !== '' &&
-              this.state.long !== '' &&
-              this.state.itemsOrderedByDistance <= 0 && (
-                <EmptyState
-                  className="mt-5"
-                  message="Oops, aucun bénéficiaire n'a été trouvé dans la zone selectionnée"
-                />
-              )}
+            {this.state.lat !== '' && this.state.long !== '' && this.state.itemsOrderedByDistance <= 0 && (
+              <EmptyState
+                className="mt-5"
+                message="Oops, aucun bénéficiaire n'a été trouvé dans la zone selectionnée"
+              />
+            )}
             <div className="row">
               {this.state.itemsOrderedByDistance.map(beneficiary => {
                 return (
-                  <div
-                    className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4"
-                    key={beneficiary.user._id}
-                  >
+                  <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4" key={beneficiary.user._id}>
                     <div className="card">
                       <img
                         className="card-img-top"
-                        src={`https://picsum.photos/300/200?var=${
-                          beneficiary.user.shopkeeper_name
-                        }`}
+                        src={`https://picsum.photos/300/200?var=${beneficiary.user.shopkeeper_name}`}
                         alt={beneficiary.user.shopkeeper_name}
                       />
                       <div className="card-body">
@@ -184,10 +168,7 @@ class Beneficiary extends React.Component {
                           {beneficiary.distance} km
                         </h6>
                       </div>
-                      <Link
-                        to={`/beneficiary/${beneficiary.user._id}`}
-                        className="stretched-link"
-                      />
+                      <Link to={`/beneficiary/${beneficiary.user._id}`} className="stretched-link" />
                     </div>
                   </div>
                 );
