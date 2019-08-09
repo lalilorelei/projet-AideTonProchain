@@ -78,7 +78,7 @@ const BeneficiaryProfilUpdate = ({ currentUser }) => {
                 label="Modifier mes besoins"
                 placeholder="Modifier mes besoins"
               />
-              <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+              <button type="submit" className="mt-4 btn btn-primary btn-block">
                 Confirmer
               </button>
             </form>

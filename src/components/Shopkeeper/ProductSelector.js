@@ -150,10 +150,26 @@ class ProductSelector extends React.Component {
               </div>
             </>
           )}
+<<<<<<< HEAD
         </form>
       </>
     );
   }
 }
+=======
+        </table>
+        {role === 'donor' && (
+          <input
+            type="submit"
+            className="btn btn-primary btn-lg btn-block"
+            name="submitProductSelector"
+            value="Valider"
+          />
+        )}
+      </form>
+    </>
+  );
+};
+>>>>>>> 2d20ba5ba580d3d0901ccdfb372840ba5e4ab8ca
 
 export default ProductSelector;

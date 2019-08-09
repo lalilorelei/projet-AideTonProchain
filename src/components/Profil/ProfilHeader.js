@@ -14,7 +14,7 @@ const ProfilHeader = ({ title, user }) => (
         <div className="col-sm-12 col-md-8 d-flex flex-column profile-bio justify-content-start">
           <div className="d-flex align-items-center">
             <h1 className="d-inline mb-0 mr-3">{title}</h1>
-            <Link exact="true" to="/profile-update" className="btn btn-sm btn-custom-accent">
+            <Link exact="true" to="/profile-update" className="btn btn-sm btn-primary">
               Editer mon profil
             </Link>
           </div>

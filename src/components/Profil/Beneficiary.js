@@ -12,7 +12,7 @@ const Beneficiary = ({ currentUser }) => {
             <p>Quartier de St-Michel / 6ème arrondissement</p>
             <h2 className="font-weight-bold mb-0">Mes besoins</h2>
             <p>J'aurais besoin d'une couverture pour l'hiver, ainsi que des croquettes pour mon chien.</p>
-            <Link className="d-block mt-4 btn btn-custom-accent" to="/donations">
+            <Link className="d-block mt-4 btn btn-primary" to="/donations">
               Voir les dons
             </Link>
           </div>

@@ -137,7 +137,7 @@ const Register = props => {
               {role === 'shopkeeper' ? <RegisterShopkeeper addressError={addressError} /> : null}
               {role === 'beneficiary' ? <RegisterBeneficiary addressError={addressError} /> : null}
 
-              <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+              <button type="submit" className="mt-4 btn btn-primary btn-block">
                 Continuer
               </button>
             </form>

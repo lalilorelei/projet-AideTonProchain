@@ -46,7 +46,7 @@ const AddProduct = ({ currentUser, submitAddProductForm, message }) => {
                 id="description"
                 name="description"
               />
-              <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+              <button type="submit" className="mt-4 btn btn-primary btn-block">
                 Ajouter un produit
               </button>
               <Link to="/profil" exact path="/profil">

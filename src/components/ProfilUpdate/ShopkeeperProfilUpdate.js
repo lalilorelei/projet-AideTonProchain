@@ -89,7 +89,7 @@ const ShopkeeperProfilUpdate = () => {
                 id="password"
                 placeholder="Confirmer le nouveau mot de passe"
               />
-              <button type="submit" className="mt-4 btn btn-custom-accent btn-block">
+              <button type="submit" className="mt-4 btn btn-primary btn-block">
                 Confirmer
               </button>
             </form>
