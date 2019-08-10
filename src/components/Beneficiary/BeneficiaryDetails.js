@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import Header from 'components/Header';
 import BeneficiaryDetails from 'components/Profil/Beneficiary';
 
+import './beneficiary.scss';
+
 import beneficiaryBackgroundImage from 'assets/img/background-beneficiary.jpg';
 
 class ShopkeeperDetails extends Component {
