@@ -8,18 +8,29 @@ import Error403 from 'components/Error403';
 
 import './profilUpdate.scss';
 
-const ProfilUpdate = ({ currentUser, role }) => {
+const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
   if (currentUser.user !== undefined) {
     return (
       <div>
         <ProfilHeader title={`${currentUser.user.username} (${role})`} user={currentUser} />
-        {role === 'beneficiary' && <BeneficiaryProfilUpdate currentUser={currentUser} role={role} />}
+        {role === 'beneficiary' && (
+          <BeneficiaryProfilUpdate currentUser={currentUser} role={role} />
+        )}
         {role === 'shopkeeper' && <ShopkeeperProfilUpdate currentUser={currentUser} role={role} />}
-        {role === 'donor' && <DonorProfilUpdate currentUser={currentUser} role={role} />}
+        {role === 'donor' && (
+          <DonorProfilUpdate
+            currentUser={currentUser}
+            role={role}
+            updateProfil={updateProfil}
+            token={token}
+          />
+        )}
       </div>
     );
   } else {
-    return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
+    return (
+      <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />
+    );
   }
 };
 

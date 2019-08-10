@@ -109,3 +109,13 @@ export const getDonations = (role, token) => ({
   role,
   token,
 });
+
+// update profil
+export const UPDATE_PROFIL = 'UPDATE_PROFIL';
+
+export const updateProfil = (data, role, token) => ({
+  type: UPDATE_PROFIL,
+  data,
+  role,
+  token,
+});

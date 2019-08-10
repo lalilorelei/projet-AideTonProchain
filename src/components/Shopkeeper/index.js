@@ -26,14 +26,15 @@ class Shopkeeper extends React.Component {
     getLocationErrorMessage: false,
   };
   // Avant d'afficher le composant on récupère la localisation via le navigateur et l'ensemble des shops
-  componentDidMount() {
+  componentDidMount = async () => {
     const { lat, long, isGeoLocAccessible } = this.state;
     const { role, token, getShops, shops } = this.props;
-    if (shops.length <= 0) {
-      getShops(role, token);
-    }
+    // if (shops.length <= 0) {
+    //   getShops(role, token);
+    // }
+    await getShops(role, token);
     initGeolocalisation(this, lat, long, this.itemsDistance, isGeoLocAccessible);
-  }
+  };
 
   itemsDistance = () => {
     const { lat, long, itemsOrderedByDistance } = this.state;
@@ -74,14 +75,18 @@ class Shopkeeper extends React.Component {
     if (currentUser.user !== undefined && role !== 'shopkeeper') {
       return (
         <>
-          <Header title="Commerces à proximité" backgroundImage={shopKeepersBackgroundImage} theme="dark" />
+          <Header
+            title="Commerces à proximité"
+            backgroundImage={shopKeepersBackgroundImage}
+            theme="dark"
+          />
           {!this.state.isGeoLocAccessible ? (
             <div className="container py-5 shopkeeper-list">
               <div className="row">
                 <div className="col">
                   <p>
-                    Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre navigateur ou
-                    renseigner une adresse.
+                    Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre
+                    navigateur ou renseigner une adresse.
                   </p>
                   <form onSubmit={this.submitAskLocation}>
                     <Input
@@ -97,7 +102,12 @@ class Shopkeeper extends React.Component {
                         L'adresse renseignée n'est pas valide, veuillez réessayer
                       </p>
                     )}
-                    <input type="submit" value="valider" className="btn btn-custom-accent" name="submitAskLocation" />
+                    <input
+                      type="submit"
+                      value="valider"
+                      className="btn btn-custom-accent"
+                      name="submitAskLocation"
+                    />
                   </form>
                 </div>
               </div>
@@ -134,19 +144,34 @@ class Shopkeeper extends React.Component {
                       <div className="form-group">
                         <span className="inline-form-label">Produits :</span>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="inlineCheckbox1"
+                            value="option1"
+                          />
                           <label className="form-check-label" htmlFor="inlineCheckbox1">
                             menus
                           </label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" />
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="inlineCheckbox2"
+                            value="option2"
+                          />
                           <label className="form-check-label" htmlFor="inlineCheckbox2">
                             restauration rapide
                           </label>
                         </div>
                         <div className="form-check form-check-inline">
-                          <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="inlineCheckbox3"
+                            value="option3"
+                          />
                           <label className="form-check-label" htmlFor="inlineCheckbox3">
                             café
                           </label>
@@ -156,12 +181,14 @@ class Shopkeeper extends React.Component {
                   </form>
                 </div>
               )}
-              {this.state.lat !== '' && this.state.long !== '' && this.state.itemsOrderedByDistance <= 0 && (
-                <EmptyState
-                  className="mt-5"
-                  message="Oops, aucun commerçant n'a été trouvé dans la zone selectionnée"
-                />
-              )}
+              {this.state.lat !== '' &&
+                this.state.long !== '' &&
+                this.state.itemsOrderedByDistance <= 0 && (
+                  <EmptyState
+                    className="mt-5"
+                    message="Oops, aucun commerçant n'a été trouvé dans la zone selectionnée"
+                  />
+                )}
               <div className="row">
                 {this.state.itemsOrderedByDistance.map(shop => {
                   return (
@@ -174,7 +201,9 @@ class Shopkeeper extends React.Component {
                         />
                         <div className="card-body">
                           <h3 className="card-title f2nt-3eight-bold">{shop.shopkeeper_name}</h3>
-                          <h6 className="card-subtitle mb-2 text-muted">category - {shop.distance} km</h6>
+                          <h6 className="card-subtitle mb-2 text-muted">
+                            category - {shop.distance} km
+                          </h6>
                         </div>
                         <Link to={`/shopkeeper/${shop._id}`} className="stretched-link" />
                       </div>
@@ -187,7 +216,9 @@ class Shopkeeper extends React.Component {
         </>
       );
     } else {
-      return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
+      return (
+        <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />
+      );
     }
   }
 }

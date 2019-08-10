@@ -11,6 +11,7 @@ import productMiddleware from './middlewares/productMiddleware';
 import shopkeeperMiddleware from './middlewares/shopkeeperMiddleware';
 import donationMiddleware from './middlewares/donationMiddleware';
 import beneficiaryMiddleware from './middlewares/beneficiaryMiddleware';
+import updateProfilMiddleware from './middlewares/updateProfilMiddleware';
 
 const persistConfig = {
   key: 'root',
@@ -28,6 +29,7 @@ const enhancers = composeEnhancers(
     donationMiddleware,
     shopkeeperMiddleware,
     beneficiaryMiddleware,
+    updateProfilMiddleware,
   ),
 );
 
