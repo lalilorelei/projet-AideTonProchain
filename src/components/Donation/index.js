@@ -13,6 +13,18 @@ class Donations extends React.Component {
     const { role, token, getDonations } = this.props;
     getDonations(role, token);
   }
+  handleValidateTransaction = evt => {
+    evt.preventDefault();
+    const confirmValidateDonation = window.confirm(
+      'Voulez-vous vraiement valider cette transaction ?',
+    );
+    if (confirmValidateDonation) {
+      const { validateDonation, getDonations, role, token } = this.props;
+      const donationId = evt.target.dataset.id;
+      validateDonation(role, token, donationId);
+      getDonations(role, token);
+    }
+  };
   render() {
     const { role, donations, currentUser } = this.props;
     let title = '';
@@ -35,7 +47,6 @@ class Donations extends React.Component {
         additionalData: getDonationData(donation),
       };
     });
-    console.log('donations', pimpedDonations);
     if (currentUser.user !== undefined) {
       return (
         <>
@@ -46,7 +57,7 @@ class Donations extends React.Component {
                 {pimpedDonations.length > 0 ? (
                   pimpedDonations.map(donation => {
                     return (
-                      <div className="card mb-4 donation">
+                      <div className="card mb-4 donation" key={donation._id}>
                         <div
                           data-toggle="collapse"
                           data-target={`#collapseDonation-${donation._id}`}
@@ -55,9 +66,13 @@ class Donations extends React.Component {
                           className="card-header d-flex justify-content-between align-items-baseline"
                         >
                           <div>
-                            {role === 'donor' || role === 'beneficiary' ? 'Donation ' : 'Transaction '}
+                            {role === 'donor' || role === 'beneficiary'
+                              ? 'Donation '
+                              : 'Transaction '}
                             {donation.additionalData.donationDisplayRef}
-                            <div className="text-small text-muted">Date : {donation.additionalData.donationDate}</div>
+                            <div className="text-small text-muted">
+                              Date : {donation.additionalData.donationDate}
+                            </div>
                           </div>
                           {donation.additionalData.used === false ? (
                             <span className="text-success">Disponible</span>
@@ -65,7 +80,10 @@ class Donations extends React.Component {
                             <span className="text-info">Consommée</span>
                           )}
                         </div>
-                        <div className="card-body text-center collapse" id={`collapseDonation-${donation._id}`}>
+                        <div
+                          className="card-body text-center collapse"
+                          id={`collapseDonation-${donation._id}`}
+                        >
                           <div className="d-md-flex align-items-baseline">
                             <div className="donation-metas">
                               <div className="my-3 text-center text-muted">
@@ -77,7 +95,8 @@ class Donations extends React.Component {
                                 )}
                                 {role === 'beneficiary' && (
                                   <>
-                                    De la part de <h5 className="text-dark">{donation.donor.username}</h5>
+                                    De la part de{' '}
+                                    <h5 className="text-dark">{donation.donor.username}</h5>
                                   </>
                                 )}
                                 {role === 'shopkeeper' && (
@@ -92,9 +111,13 @@ class Donations extends React.Component {
                             <tbody>
                               {donation.products.map(product => {
                                 return (
-                                  <tr>
+                                  <tr key={product._id}>
                                     <td
-                                      className={role === 'beneficiary' ? 'product-item text-center' : 'product-item'}
+                                      className={
+                                        role === 'beneficiary'
+                                          ? 'product-item text-center'
+                                          : 'product-item'
+                                      }
                                     >
                                       1 {product.name}
                                     </td>
@@ -111,7 +134,9 @@ class Donations extends React.Component {
                                   <td>
                                     <b>Total</b>
                                   </td>
-                                  <td className="text-right">{donation.additionalData.sumOfProducts}€</td>
+                                  <td className="text-right">
+                                    {donation.additionalData.sumOfProducts}€
+                                  </td>
                                 </tr>
                               </tfoot>
                             )}
@@ -134,9 +159,13 @@ class Donations extends React.Component {
                                   <a href="#"> {donation.shopkeeper.shopkeeper_name}</a>
                                 </>
                               ) : role === 'shopkeeper' ? (
-                                <a href="#" className="btn btn-primary mb-3 text-white">
+                                <button
+                                  data-id={donation._id}
+                                  onClick={this.handleValidateTransaction}
+                                  className="btn btn-primary mb-3 text-white"
+                                >
                                   Valider la transaction
-                                </a>
+                                </button>
                               ) : null}
                             </span>
                           </div>
@@ -176,7 +205,9 @@ class Donations extends React.Component {
         </>
       );
     } else {
-      return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
+      return (
+        <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />
+      );
     }
   }
 }

@@ -17,6 +17,7 @@ const persistConfig = {
   storage: storage,
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
   whitelist: ['user'],
+  blacklist: ['donation'],
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

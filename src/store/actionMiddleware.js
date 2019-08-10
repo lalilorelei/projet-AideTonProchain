@@ -109,3 +109,11 @@ export const getDonations = (role, token) => ({
   role,
   token,
 });
+
+export const VALIDATE_DONATION = 'VALIDATE_DONATION';
+export const validateDonation = (role, token, donationId) => ({
+  type: VALIDATE_DONATION,
+  role,
+  token,
+  donationId,
+});

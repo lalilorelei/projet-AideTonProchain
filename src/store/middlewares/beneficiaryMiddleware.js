@@ -22,6 +22,7 @@ const beneficiaryMiddleware = store => next => action => {
       break;
 
     case GET_BENEFICIARY:
+      console.log('get benef from mddleware');
       axios
         .get(`http://95.142.175.77:3000/api/${action.role}/beneficiaries/${action.beneficiaryId}`, {
           headers: { Authorization: `Bearer ${action.token}` },
