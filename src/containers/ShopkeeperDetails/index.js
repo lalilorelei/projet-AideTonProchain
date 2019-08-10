@@ -12,7 +12,7 @@ const mapStateToProps = state => {
     shop: state.shopkeeper.shopkeeper,
     products: state.product.products,
     beneficiariesSuggests: state.beneficiary.beneficiaries,
-    donationConfirmMessage: state.donation.donationConfirmMessage,
+    donationConfirmMessage: state.shopkeeper.donationConfirmMessage,
   };
 };
 

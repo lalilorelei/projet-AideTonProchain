@@ -10,7 +10,7 @@ const shopkeeperMiddleware = store => next => action => {
           headers: { Authorization: `Bearer ${action.token}` },
         })
         .then(response => {
-          store.dispatch(recieveShops(response.data));
+          store.dispatch(recieveShops(response.data, action.location, action.maxDist));
         })
         .catch(e => {
           console.log('Impossible de récupérer les shops', e);

@@ -37,9 +37,6 @@ const CurrentUser = ({ currentUser, role, deconnexion }) => {
             )}
             {role === 'shopkeeper' && (
               <>
-                <Link exact={true} to="/products" className="nav-link">
-                  Gérer&nbsp;mes&nbsp;produits
-                </Link>
                 <Link exact={true} to="/donations" className="nav-link">
                   Suivi&nbsp;des&nbsp;transactions
                 </Link>

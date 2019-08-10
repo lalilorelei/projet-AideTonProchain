@@ -51,11 +51,9 @@ export const compare = (a, b) => {
 };
 
 export const initGeolocalisation = (self, lat, long, itemsDistance, isGeoLocAccessible) => {
-  console.log('init geoloc');
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       position => {
-        console.log('position ok');
         self.setState({
           lat: position.coords.latitude,
           long: position.coords.longitude,
@@ -76,7 +74,6 @@ export const initGeolocalisation = (self, lat, long, itemsDistance, isGeoLocAcce
 };
 
 export const initGeolocalisation2 = () => {
-  console.log('init geoloc 2');
   let location = {
     lat: '',
     long: '',
@@ -86,7 +83,6 @@ export const initGeolocalisation2 = () => {
       position => {
         location.lat = position.coords.latitude;
         location.long = position.coords.longitude;
-        console.log(position, location.lat);
       },
       err => {},
     );
@@ -124,7 +120,6 @@ export const geoCode = (
 };
 
 export const itemsDistance = (self, km, items, lat, long, itemsOrderedByDistance) => {
-  // console.log(items);
   const itemsWithDistance = items.map(item => {
     // calcul de la distance du shop par rapport au currentUser
     item.distance = calculateDistance(
@@ -147,7 +142,6 @@ export const itemsDistance = (self, km, items, lat, long, itemsOrderedByDistance
 };
 
 export const itemsDistance2 = (km = 9999, items, lat, long) => {
-  // console.log(items);
   const itemsWithDistance = items.map(item => {
     // calcul de la distance du shop par rapport au currentUser
     item.distance = calculateDistance(
