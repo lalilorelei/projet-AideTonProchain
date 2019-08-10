@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 
 import CurrentUser from './currentUser';
 import RegisterDropdown from './RegisterDropdown';
@@ -9,14 +9,10 @@ import './nav.scss';
 import logo_dark from '../../assets/img/logo-atp-blanc.png';
 import logo_light from '../../assets/img/logo-atp-black.png';
 
-const Nav = ({ currentUser, role, theme, deconnexion }) => (
+const Nav = ({ currentUser, role, theme, deconnexion, match }) => (
   <nav className={`navbar navbar-expand-lg navbar-${theme}`}>
     <Link key="/logo" className="navbar-brand" to="/">
-      {theme === 'dark' ? (
-        <img src={logo_dark} alt="logo-atp" />
-      ) : (
-        <img src={logo_light} alt="logo-atp" />
-      )}
+      {theme === 'dark' ? <img src={logo_dark} alt="logo-atp" /> : <img src={logo_light} alt="logo-atp" />}
     </Link>
     <button
       className="navbar-toggler"
@@ -37,16 +33,20 @@ const Nav = ({ currentUser, role, theme, deconnexion }) => (
             Accueil
           </NavLink>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="http://localhost:3000#qui-sommes-nous">
-            Qui sommes-nous
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="http://localhost:3000#comment-ca-marche">
-            Comment ça marche
-          </a>
-        </li>
+        {match.path === '/' && (
+          <li className="nav-item">
+            <a className="nav-link" href="#qui-sommes-nous">
+              Qui sommes-nous
+            </a>
+          </li>
+        )}
+        {match.path === '/' && (
+          <li className="nav-item">
+            <a className="nav-link" href="#comment-ca-marche">
+              Comment ça marche
+            </a>
+          </li>
+        )}
         <li className="nav-item">
           <NavLink exact to="/contact" key="/contact" className="nav-link" activeClassName="active">
             Contact
@@ -78,4 +78,4 @@ Nav.propTypes = {
   deconnexion: PropTypes.func.isRequired,
 };
 
-export default Nav;
+export default withRouter(Nav);
