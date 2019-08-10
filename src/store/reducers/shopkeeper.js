@@ -14,6 +14,8 @@ const shopkeeper = (state = initialState, action = {}) => {
       return {
         ...state,
         shopkeepers: action.data.shopkeepers,
+        location: action.location,
+        maxDist: action.maxDist,
       };
     case RECIEVE_SHOP:
       return {
@@ -22,7 +24,6 @@ const shopkeeper = (state = initialState, action = {}) => {
         donationConfirmMessage: {},
       };
     case CONFIRM_DONATION:
-      console.log('confirm');
       return {
         ...state,
         donationConfirmMessage: {
@@ -39,9 +40,11 @@ const shopkeeper = (state = initialState, action = {}) => {
   }
 };
 
-export const recieveShops = data => ({
+export const recieveShops = (data, location, maxDist) => ({
   type: RECIEVE_SHOPS,
   data,
+  location,
+  maxDist,
 });
 
 export const recieveShop = data => ({

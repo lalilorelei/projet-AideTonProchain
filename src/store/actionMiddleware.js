@@ -47,10 +47,12 @@ export const deleteProduct = (token, productId) => ({
 export const GET_SHOPS = 'GET_SHOPS';
 export const GET_SHOP = 'GET_SHOP';
 
-export const getShops = (role, token) => ({
+export const getShops = (role, token, location, maxDist) => ({
   type: GET_SHOPS,
   role,
   token,
+  location,
+  maxDist,
 });
 
 export const getShop = (role, token, shopkeeperId) => ({
@@ -66,7 +68,6 @@ export const GET_BENEFICIARIES = 'GET_BENEFICIARIES';
 export const GET_BENEFICIARY = 'GET_BENEFICIARY';
 
 export const getBeneficiaries = (role, token, location, maxDist) => {
-  console.log('action middleware', maxDist);
   return {
     type: GET_BENEFICIARIES,
     role,

@@ -20,26 +20,42 @@ const mapStateToProps = state => {
       beneficiary.localisation.address === '' &&
       beneficiary.localisation.longitude === 0,
   );
+
+  let beneficiariesToSend = '';
+  let beneficiariesFilteredByDistance = '';
   let beneficiariesWithDistance = '';
-  if (state.beneficiary.location !== undefined) {
-    beneficiariesWithDistance = addDistanceProperty(
-      beneficiariesWithLocation,
-      state.beneficiary.location,
-    );
+
+  if ([...beneficiariesWithLocation, ...beneficiariesWithoutLocation].length > 0) {
+    if (state.beneficiary.location !== undefined) {
+      beneficiariesWithDistance = addDistanceProperty(
+        beneficiariesWithLocation,
+        state.beneficiary.location,
+      );
+    }
+
+    if (state.beneficiary.maxDist !== undefined) {
+      beneficiariesFilteredByDistance = beneficiariesWithDistance
+        .sort(compare)
+        .filter(item => item.distance <= state.beneficiary.maxDist);
+    }
+
+    console.log(beneficiariesFilteredByDistance);
+
+    beneficiariesToSend =
+      [...beneficiariesFilteredByDistance, ...beneficiariesWithoutLocation].length > 0
+        ? [...beneficiariesFilteredByDistance, ...beneficiariesWithoutLocation]
+        : false;
+  } else {
+    beneficiariesToSend = undefined;
   }
 
-  let beneficiariesFilteredByDistance = '';
-  if (state.beneficiary.maxDist !== undefined) {
-    beneficiariesFilteredByDistance = beneficiariesWithDistance
-      .sort(compare)
-      .filter(item => item.distance <= state.beneficiary.maxDist);
-  }
+  console.log('sending', beneficiariesToSend);
 
   return {
     currentUser: state.user.currentUser,
     role: decodedToken(state.user.currentUser.token).role,
     token: state.user.currentUser.token,
-    beneficiaries: [...beneficiariesFilteredByDistance, ...beneficiariesWithoutLocation],
+    beneficiaries: beneficiariesToSend,
   };
 };
 
