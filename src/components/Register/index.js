@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -12,8 +12,8 @@ import './register.scss';
 import registerBackgroundImage from 'assets/img/welcome.jpg';
 
 const Register = props => {
-  const { submitRegister, message } = props;
-
+  const { initRegister, submitRegister, isRegistered } = props;
+  initRegister();
   const role = props.match.params.role;
   let roleTitle = '';
 
@@ -82,6 +82,20 @@ const Register = props => {
 
   return (
     <>
+      {isRegistered && (
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: {
+              registerConfirmMessage: {
+                type: 'success',
+                message:
+                  'Inscription validée, bienvenue parmi nous. Vous pouvez à présent vous connecter.',
+              },
+            },
+          }}
+        />
+      )}
       <Header
         title="Bienvenue chez vous !"
         subtitle={`Inscription ${roleTitle}`}

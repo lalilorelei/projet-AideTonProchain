@@ -39,8 +39,6 @@ const mapStateToProps = state => {
         .filter(item => item.distance <= state.beneficiary.maxDist);
     }
 
-    console.log(beneficiariesFilteredByDistance);
-
     beneficiariesToSend =
       [...beneficiariesFilteredByDistance, ...beneficiariesWithoutLocation].length > 0
         ? [...beneficiariesFilteredByDistance, ...beneficiariesWithoutLocation]
@@ -48,8 +46,6 @@ const mapStateToProps = state => {
   } else {
     beneficiariesToSend = undefined;
   }
-
-  console.log('sending', beneficiariesToSend);
 
   return {
     currentUser: state.user.currentUser,

@@ -4,9 +4,7 @@ import Form from '../../components/Login';
 
 import { submitLogin } from 'store/actionMiddleware';
 
-const mapStateToProps = state => ({
-  message: state.user.message,
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   submitLogin: data => {

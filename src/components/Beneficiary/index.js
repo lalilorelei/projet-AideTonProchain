@@ -53,14 +53,12 @@ class Beneficiary extends React.Component {
     const { location } = this.state;
 
     if (beneficiaries === undefined) {
-      console.log('go get benefs !');
       getBeneficiaries(role, token, location, 9999);
     }
   }
 
   render() {
     const { beneficiaries } = this.props;
-    console.log('rdr', beneficiaries);
     const { currentUser, role } = this.props;
     if (currentUser.user !== undefined && role !== 'shopkeeper') {
       return (

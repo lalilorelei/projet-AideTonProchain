@@ -1,29 +1,30 @@
+import { INIT_REGISTER } from 'store/actionMiddleware';
+
 const initialState = {
   currentUser: {},
-  message: {
-    success: '',
-    error: '',
-  },
+  isRegistered: false,
 };
 
 export const RECIEVE_CURRENT_USER = 'RECIEVE_CURRENT_USER';
-export const REGISTER_MESSAGE = 'REGISTER_MESSAGE';
+export const CONFIRM_REGISTER = 'CONFIRM_REGISTER';
 
 const user = (state = initialState, action = {}) => {
   switch (action.type) {
     case RECIEVE_CURRENT_USER:
-      console.log({
-        ...state,
-        currentUser: action.data,
-      });
       return {
         ...state,
         currentUser: action.data,
       };
-    case REGISTER_MESSAGE:
+    case INIT_REGISTER:
+      console.log('init register !');
       return {
         ...state,
-        message: { success: action.data.success, error: action.data.error },
+        isRegistered: false,
+      };
+    case CONFIRM_REGISTER:
+      return {
+        ...state,
+        isRegistered: true,
       };
     default:
       return state;
@@ -35,9 +36,12 @@ export const recieveCurrentUser = data => ({
   data,
 });
 
-export const registerMessage = data => ({
-  type: REGISTER_MESSAGE,
-  data,
+export const confirmRegister = () => ({
+  type: CONFIRM_REGISTER,
+});
+
+export const initRegister = () => ({
+  type: INIT_REGISTER,
 });
 
 export default user;

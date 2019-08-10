@@ -49,14 +49,12 @@ class Shopkeeper extends React.Component {
     const { location } = this.state;
 
     if (shops === undefined) {
-      console.log('go get shops !');
       getShops(role, token, location, 9999);
     }
   }
 
   render() {
     const { shops } = this.props;
-    console.log('render shops', shops);
     const { currentUser, role } = this.props;
     if (currentUser.user !== undefined && role !== 'shopkeeper') {
       return (

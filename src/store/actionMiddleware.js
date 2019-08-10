@@ -1,6 +1,7 @@
 // log middleware
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
+export const INIT_REGISTER = 'INIT_REGISTER';
 export const DECONNEXION = 'DECONNEXION';
 
 export const submitLogin = data => ({
@@ -12,6 +13,10 @@ export const submitRegister = (data, role) => ({
   type: SUBMIT_REGISTER,
   data,
   role,
+});
+
+export const initRegister = () => ({
+  type: INIT_REGISTER,
 });
 
 export const deconnexion = (token, role) => ({
