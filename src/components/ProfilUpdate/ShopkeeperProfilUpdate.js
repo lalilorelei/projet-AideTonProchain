@@ -1,29 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/Input';
 import './profilUpdate.scss';
 
-const ShopkeeperProfilUpdate = ({ currentUser }) => {
+const ShopkeeperProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
+  const [img, setImg] = useState({});
+
+  const handleFile = e => {
+    console.log(e.target.files[0]);
+    setImg(e.target.files[0]);
+  };
+
+  const onUpdate = e => {
+    e.preventDefault();
+
+    const data = {
+      opening_hours: {
+        monday: {
+          morning_open: Number(e.target.monday__morning_open.value),
+          morning_close: Number(e.target.monday__morning_close.value),
+          afternoon_open: Number(e.target.monday__afternoon_open.value),
+          afternoon_close: Number(e.target.monday__afternoon_close.value),
+        },
+        tuesday: {
+          morning_open: Number(e.target.tuesday__morning_open.value),
+          morning_close: Number(e.target.tuesday__morning_close.value),
+          afternoon_open: Number(e.target.tuesday__afternoon_open.value),
+          afternoon_close: Number(e.target.tuesday__afternoon_close.value),
+        },
+        thursday: {
+          morning_open: Number(e.target.wednesday__morning_open.value),
+          morning_close: Number(e.target.wednesday__morning_close.value),
+          afternoon_open: Number(e.target.wednesday__afternoon_open.value),
+          afternoon_close: Number(e.target.wednesday__afternoon_close.value),
+        },
+        wednesday: {
+          morning_open: Number(e.target.thursday__morning_open.value),
+          morning_close: Number(e.target.thursday__morning_close.value),
+          afternoon_open: Number(e.target.thursday__afternoon_open.value),
+          afternoon_close: Number(e.target.thursday__afternoon_close.value),
+        },
+        friday: {
+          morning_open: Number(e.target.friday__morning_open.value),
+          morning_close: Number(e.target.friday__morning_close.value),
+          afternoon_open: Number(e.target.friday__afternoon_open.value),
+          afternoon_close: Number(e.target.friday__afternoon_close.value),
+        },
+        saturday: {
+          morning_open: Number(e.target.saturday__morning_open.value),
+          morning_close: Number(e.target.saturday__morning_close.value),
+          afternoon_open: Number(e.target.saturday__afternoon_open.value),
+          afternoon_close: Number(e.target.saturday__afternoon_close.value),
+        },
+        sunday: {
+          morning_open: Number(e.target.sunday__morning_open.value),
+          morning_close: Number(e.target.sunday__morning_close.value),
+          afternoon_open: Number(e.target.sunday__afternoon_open.value),
+          afternoon_close: Number(e.target.sunday__afternoon_close.value),
+        },
+      },
+    };
+
+    const days = ['monday', 'tuesday', 'thursday', 'wednesday', 'friday', 'saturday', 'sunday'];
+    const half = ['morning', 'afternoon'];
+    const time = ['open', 'close'];
+
+    Array.from(e.target).forEach(el => {
+      if (el.value !== '' && el.name.length < 15) {
+        data[el.name] = el.value;
+      }
+    });
+
+    delete data.avatar;
+    console.log(data);
+    let formData = null;
+    if (e.target.avatar.value !== '') {
+      formData = new FormData();
+      formData.append('avatar', img);
+      formData.append('name', 'avatar');
+    }
+    updateProfil(data, formData, role, token);
+  };
+
   return (
     <>
       <div className="container mt-4 py-5 shopkeeper-profil-update">
         <div className="row justify-content-center">
           <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-            <form className="mb-4">
+            <form className="mb-4" onSubmit={onUpdate}>
               <Input
                 type="firstname"
                 className="form-control"
                 name="firstname"
-                placeholder="Votre prénom"
-                value={currentUser.user.firstname}
+                placeholder={currentUser.user.firstname}
                 label="Votre prénom"
               />
               <Input
                 type="text"
                 name="lastname"
                 className="form-control"
-                placeholder="votre nom"
-                value={currentUser.user.lastname}
+                placeholder={currentUser.user.lastname}
                 label="Votre nom"
               />
               <Input
@@ -38,8 +114,7 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                 type="text"
                 name="shopkeeper_name"
                 className="form-control"
-                placeholder="Nom de l'entreprise"
-                value={currentUser.user.shopname}
+                placeholder={currentUser.user.shopname}
                 label="Nom du commerçant"
               />
               <Input
@@ -74,7 +149,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <tr>
                     <th>Lundi</th>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="monday__morning_open">
+                        <option value="">00h00</option>
                         <option value="08.00">08h00</option>
                         <option value="08.15">08h15</option>
                         <option value="08.30">08h30</option>
@@ -104,7 +180,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="monday__morning_close">
+                        <option value="">00h00</option>
                         <option value="12.00">12h00</option>
                         <option value="12.15">12h15</option>
                         <option value="12.30">12h30</option>
@@ -118,7 +195,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="monday__afternoon_open">
+                        <option value="">00h00</option>
                         <option value="14.00">14h00</option>
                         <option value="14.15">14h15</option>
                         <option value="14.30">14h30</option>
@@ -140,7 +218,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="monday__afternoon_close">
+                        <option value="">00h00</option>
                         <option value="18.00">18h00</option>
                         <option value="18.15">18h15</option>
                         <option value="18.30">18h30</option>
@@ -173,7 +252,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <tr>
                     <th>Mardi</th>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="tuesday__morning_open">
+                        <option value="">00h00</option>
                         <option value="08.00">08h00</option>
                         <option value="08.15">08h15</option>
                         <option value="08.30">08h30</option>
@@ -203,7 +283,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="tuesday__morning_close">
+                        <option value="">00h00</option>
                         <option value="12.00">12h00</option>
                         <option value="12.15">12h15</option>
                         <option value="12.30">12h30</option>
@@ -217,7 +298,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="tuesday__afternoon_open">
+                        <option value="">00h00</option>
                         <option value="14.00">14h00</option>
                         <option value="14.15">14h15</option>
                         <option value="14.30">14h30</option>
@@ -239,7 +321,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="tuesday__afternoon_close">
+                        <option value="">00h00</option>
                         <option value="18.00">18h00</option>
                         <option value="18.15">18h15</option>
                         <option value="18.30">18h30</option>
@@ -272,7 +355,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <tr>
                     <th>Mercredi</th>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="thursday__morning_open">
+                        <option value="">00h00</option>
                         <option value="08.00">08h00</option>
                         <option value="08.15">08h15</option>
                         <option value="08.30">08h30</option>
@@ -302,7 +386,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="thursday__morning_close">
+                        <option value="">00h00</option>
                         <option value="12.00">12h00</option>
                         <option value="12.15">12h15</option>
                         <option value="12.30">12h30</option>
@@ -316,7 +401,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="thursday__afternoon_open">
+                        <option value="">00h00</option>
                         <option value="14.00">14h00</option>
                         <option value="14.15">14h15</option>
                         <option value="14.30">14h30</option>
@@ -338,7 +424,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="thursday__afternoon_close">
+                        <option value="">00h00</option>
                         <option value="18.00">18h00</option>
                         <option value="18.15">18h15</option>
                         <option value="18.30">18h30</option>
@@ -371,7 +458,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <tr>
                     <th>Jeudi</th>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="wednesday__morning_open">
+                        <option value="">00h00</option>
                         <option value="08.00">08h00</option>
                         <option value="08.15">08h15</option>
                         <option value="08.30">08h30</option>
@@ -401,7 +489,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="wednesday__morning_close">
+                        <option value="">00h00</option>
                         <option value="12.00">12h00</option>
                         <option value="12.15">12h15</option>
                         <option value="12.30">12h30</option>
@@ -415,7 +504,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="wednesday__afternoon_open">
+                        <option value="">00h00</option>
                         <option value="14.00">14h00</option>
                         <option value="14.15">14h15</option>
                         <option value="14.30">14h30</option>
@@ -437,7 +527,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="wednesday__afternoon_close">
+                        <option value="">00h00</option>
                         <option value="18.00">18h00</option>
                         <option value="18.15">18h15</option>
                         <option value="18.30">18h30</option>
@@ -470,7 +561,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <tr>
                     <th>Vendredi</th>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="friday__morning_open">
+                        <option value="">00h00</option>
                         <option value="08.00">08h00</option>
                         <option value="08.15">08h15</option>
                         <option value="08.30">08h30</option>
@@ -500,7 +592,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="friday__morning_close">
+                        <option value="">00h00</option>
                         <option value="12.00">12h00</option>
                         <option value="12.15">12h15</option>
                         <option value="12.30">12h30</option>
@@ -514,7 +607,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="friday__afternoon_open">
+                        <option value="">00h00</option>
                         <option value="14.00">14h00</option>
                         <option value="14.15">14h15</option>
                         <option value="14.30">14h30</option>
@@ -536,7 +630,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="friday__afternoon_close">
+                        <option value="">00h00</option>
                         <option value="18.00">18h00</option>
                         <option value="18.15">18h15</option>
                         <option value="18.30">18h30</option>
@@ -569,7 +664,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <tr>
                     <th>Samedi</th>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="saturday__morning_open">
+                        <option value="">00h00</option>
                         <option value="08.00">08h00</option>
                         <option value="08.15">08h15</option>
                         <option value="08.30">08h30</option>
@@ -599,7 +695,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="saturday__morning_close">
+                        <option value="">00h00</option>
                         <option value="12.00">12h00</option>
                         <option value="12.15">12h15</option>
                         <option value="12.30">12h30</option>
@@ -613,7 +710,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="saturday__afternoon_open">
+                        <option value="">00h00</option>
                         <option value="14.00">14h00</option>
                         <option value="14.15">14h15</option>
                         <option value="14.30">14h30</option>
@@ -635,7 +733,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="saturday__afternoon_close">
+                        <option value="">00h00</option>
                         <option value="18.00">18h00</option>
                         <option value="18.15">18h15</option>
                         <option value="18.30">18h30</option>
@@ -668,7 +767,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <tr>
                     <th>Dimanche</th>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="sunday__morning_open">
+                        <option value="">00h00</option>
                         <option value="08.00">08h00</option>
                         <option value="08.15">08h15</option>
                         <option value="08.30">08h30</option>
@@ -698,7 +798,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="sunday__morning_close">
+                        <option value="">00h00</option>
                         <option value="12.00">12h00</option>
                         <option value="12.15">12h15</option>
                         <option value="12.30">12h30</option>
@@ -712,7 +813,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="sunday__afternoon_open">
+                        <option value="">00h00</option>
                         <option value="14.00">14h00</option>
                         <option value="14.15">14h15</option>
                         <option value="14.30">14h30</option>
@@ -734,7 +836,8 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                       </select>
                     </td>
                     <td>
-                      <select className="custom-select">
+                      <select className="custom-select" name="sunday__afternoon_close">
+                        <option value="">00h00</option>
                         <option value="18.00">18h00</option>
                         <option value="18.15">18h15</option>
                         <option value="18.30">18h30</option>
@@ -813,6 +916,17 @@ const ShopkeeperProfilUpdate = ({ currentUser }) => {
                   <label className="form-check-label" htmlFor="hotellerie">
                     Hôtellerie
                   </label>
+                </div>
+                <div class="form-group">
+                  <label for="avatar">Votre avatar</label>
+                  <input
+                    type="file"
+                    class="form-control-file"
+                    id="avatar"
+                    name="avatar"
+                    accept="image/*"
+                    onChange={e => handleFile(e)}
+                  />
                 </div>
               </div>
               <button type="submit" className="mt-4 btn btn-primary btn-block">

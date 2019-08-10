@@ -196,7 +196,9 @@ class Shopkeeper extends React.Component {
                       <div className="card">
                         <img
                           className="card-img-top"
-                          src={`https://picsum.photos/300/200?var=${shop.shopkeeper_name}`}
+                          src={`http://aider-son-prochain.fr/projet-AideTonProchain-back/${
+                            shop.avatar
+                          }`}
                           alt={shop.shopkeeper_name}
                         />
                         <div className="card-body">

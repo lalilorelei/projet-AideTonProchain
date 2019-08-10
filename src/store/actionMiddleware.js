@@ -113,9 +113,10 @@ export const getDonations = (role, token) => ({
 // update profil
 export const UPDATE_PROFIL = 'UPDATE_PROFIL';
 
-export const updateProfil = (data, role, token) => ({
+export const updateProfil = (data, img, role, token) => ({
   type: UPDATE_PROFIL,
   data,
+  img,
   role,
   token,
 });

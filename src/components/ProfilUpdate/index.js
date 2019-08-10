@@ -14,9 +14,21 @@ const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
       <div>
         <ProfilHeader title={`${currentUser.user.username} (${role})`} user={currentUser} />
         {role === 'beneficiary' && (
-          <BeneficiaryProfilUpdate currentUser={currentUser} role={role} />
+          <BeneficiaryProfilUpdate
+            currentUser={currentUser}
+            role={role}
+            updateProfil={updateProfil}
+            token={token}
+          />
         )}
-        {role === 'shopkeeper' && <ShopkeeperProfilUpdate currentUser={currentUser} role={role} />}
+        {role === 'shopkeeper' && (
+          <ShopkeeperProfilUpdate
+            currentUser={currentUser}
+            role={role}
+            updateProfil={updateProfil}
+            token={token}
+          />
+        )}
         {role === 'donor' && (
           <DonorProfilUpdate
             currentUser={currentUser}

@@ -12,8 +12,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateProfil: (data, role, token) => {
-    dispatch(updateProfil(data, role, token));
+  updateProfil: (data, img, role, token) => {
+    dispatch(updateProfil(data, img, role, token));
   },
 });
 

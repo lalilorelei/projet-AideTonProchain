@@ -4,6 +4,13 @@ import Input from 'components/Input';
 import './profilUpdate.scss';
 
 const DonorProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
+  const [img, setImg] = useState({});
+
+  const handleFile = e => {
+    console.log(e.target.files[0]);
+    setImg(e.target.files[0]);
+  };
+
   const onUpdate = e => {
     e.preventDefault();
     const data = {};
@@ -12,7 +19,15 @@ const DonorProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
         data[el.name] = el.value;
       }
     });
-    updateProfil(data, role, token);
+    delete data.avatar;
+
+    let formData = null;
+    if (e.target.avatar.value !== '') {
+      formData = new FormData();
+      formData.append('avatar', img);
+      formData.append('name', 'avatar');
+    }
+    updateProfil(data, formData, role, token);
   };
   return (
     <>
@@ -49,6 +64,7 @@ const DonorProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
                   id="avatar"
                   name="avatar"
                   accept="image/*"
+                  onChange={e => handleFile(e)}
                 />
               </div>
               <button type="submit" className="mt-4 btn btn-primary btn-block">
