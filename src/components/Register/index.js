@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import Input from 'components/Input';
 import RegisterShopkeeper from './shopkeeperInputs';
 import RegisterBeneficiary from './beneficiaryInputs';
@@ -158,6 +159,8 @@ const Register = props => {
           </div>
         </div>
       </div>
+      <br/>
+      <Footer />
     </>
   );
 };

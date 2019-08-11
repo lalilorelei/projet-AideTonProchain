@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from 'components/Footer';
 
 const Beneficiary = ({ currentUser, role }) => {
   console.log(role);
@@ -81,6 +82,7 @@ const Beneficiary = ({ currentUser, role }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

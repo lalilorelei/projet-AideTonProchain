@@ -74,6 +74,7 @@ const RegisterShopkeeper = ({ addressError }) => (
         </label>
       </div>
     </div>
+    
   </>
 );
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import ProductSelector from './ProductSelector';
 import BlocCoordonneesHoraires from './BlocCoordonneesHoraires';
 import './shopkeeper.scss';
@@ -251,6 +252,7 @@ class ShopkeeperDetails extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </>
     );
   }

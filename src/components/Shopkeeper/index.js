@@ -8,6 +8,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 
 /* Local Components */
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import Input from 'components/Input';
 import EmptyState from 'components/UtilsComponents/EmptyState';
 import Error403 from 'components/Error403';
@@ -213,8 +214,9 @@ class Shopkeeper extends React.Component {
                       </div>
                     )}
               </div>
-            </div>
+            </div>           
           ) : null}
+          <Footer />
         </>
       );
     } else {

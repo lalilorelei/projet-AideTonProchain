@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Footer from 'components/Footer';
 import { Link } from 'react-router-dom';
 
 const Donor = ({ currentUser }) => {
@@ -25,6 +25,7 @@ const Donor = ({ currentUser }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

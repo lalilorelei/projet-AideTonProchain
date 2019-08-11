@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import './error404.scss';
 
 const Error404 = () => (
@@ -18,6 +19,7 @@ const Error404 = () => (
         </div>
       </div>
     </div>
+    <Footer />
   </>
 );
 

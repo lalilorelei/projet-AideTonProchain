@@ -5,7 +5,7 @@ import mockup from 'assets/img/mockup-donation.png';
 
 import { Link } from 'react-router-dom';
 import Header from 'components/Header';
-
+import Footer from 'components/Footer';
 import testimonies from 'data/testimonies';
 import './home.scss';
 
@@ -131,6 +131,7 @@ const Home = () => (
         </div>
       </div>
     </section>
+    <Footer />
   </>
 );
 

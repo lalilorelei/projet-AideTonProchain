@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import './localisation.scss';
 
 const Localisation = () => {
@@ -31,6 +32,7 @@ const Localisation = () => {
           </button>
         </div>
       </div>
+    <Footer />
     </>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import EmptyState from 'components/UtilsComponents/EmptyState';
 import './donations.scss';
 import backgroundDonations from 'assets/img/donations.jpg';
@@ -202,6 +203,7 @@ class Donations extends React.Component {
               </div>
             </div>
           </div>
+          <Footer />
         </>
       );
     } else {

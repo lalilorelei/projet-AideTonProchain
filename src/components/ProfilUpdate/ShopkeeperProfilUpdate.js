@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/Input';
+import Footer from 'components/Footer';
 import './profilUpdate.scss';
 
 const ShopkeeperProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
@@ -936,6 +937,7 @@ const ShopkeeperProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

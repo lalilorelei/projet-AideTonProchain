@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from 'components/Footer';
 import PropTypes from 'prop-types';
 import { serializeFormData } from 'utils';
 import { Link } from 'react-router-dom';
@@ -45,6 +46,8 @@ const AddProduct = ({ currentUser, submitAddProductForm, role, message }) => {
             </div>
           </div>
         </div>
+        <br/>
+        <Footer />
       </>
     );
   } else {

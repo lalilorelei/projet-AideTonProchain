@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Input from 'components/Input';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import { serializeFormData } from 'utils';
 
 import contactBackgroundImage from 'assets/img/handshake.jpg';
@@ -91,6 +92,7 @@ const Contact = ({ submitContact }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

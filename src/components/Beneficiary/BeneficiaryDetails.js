@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Header from 'components/Header';
+
 import BeneficiaryDetails from 'components/Profil/Beneficiary';
 
 import './beneficiary.scss';
@@ -29,6 +30,7 @@ class ShopkeeperDetails extends Component {
           theme="dark"
         />
         <BeneficiaryDetails currentUser={currentUser} role={role} />
+        
       </>
     );
   }
