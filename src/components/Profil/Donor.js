@@ -3,27 +3,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Donor = ({ currentUser }) => {
+  const user = currentUser.user;
   return (
     <>
-      <div className="container mt-4 py-5">
-        <div className="row justify-content-center">
-          <div className="col-sm-6 col-md-4">
-            <p className="font-weight-bold my-2">Mes coordonnées</p>
-            <span>
-              Prénom: {currentUser.user.firstname}
-              <br />
-              Nom : {currentUser.user.lastname}
-            </span>
-            <br />
-            <span>Email : {currentUser.user.email}</span>
-            <Link className="mt-4 btn btn-primary btn-block" to="/donations">
-              Voir les dons
-            </Link>
-            <Link className="mt-4 btn btn-primary btn-block" to="/shopkeeper">
-              Trouver un commerce
-            </Link>
-          </div>
-        </div>
+      <h2>Mes informations personnelles</h2>
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Nom d'utilisateur</p>
+        <span>
+          {user.username && user.username !== '' && user.username !== undefined
+            ? user.username
+            : 'Non renseigné'}
+        </span>
+      </div>
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Adresse email</p>
+        <span>
+          {user.email && user.email !== '' && user.email !== undefined
+            ? user.email
+            : 'Non renseigné'}
+        </span>
+        <p className="text-small mt-2 text-muted">Visible uniquement par vous</p>
+      </div>
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Prénom</p>
+        <span>
+          {user.firstname && user.firstname !== '' && user.firstname !== undefined
+            ? user.firstname
+            : 'Non renseigné'}
+        </span>
+      </div>
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Nom</p>
+        <span>
+          {user.lastname && user.lastname !== '' && user.lastname !== undefined
+            ? user.lastname
+            : 'Non renseigné'}
+        </span>
       </div>
     </>
   );

@@ -31,49 +31,64 @@ const DonorProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
   };
   return (
     <>
-      <div className="container mt-4 py-5">
-        <div className="row justify-content-center">
-          <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-            <form className="mb-4" onSubmit={onUpdate}>
-              <Input
-                type="text"
-                name="firstname"
-                placeholder={currentUser.user.firstname}
-                className="form-control"
-                label="Votre prénom"
-              />
-              <Input
-                type="text"
-                name="lastname"
-                className="form-control"
-                placeholder={currentUser.user.lastname}
-                label="Votre nom"
-              />
-              <Input
-                type="password"
-                name="password"
-                className="form-control"
-                label="Votre mot de passe"
-                placeholder="Nouveau mot de passe"
-              />
-              <div class="form-group">
-                <label for="avatar">Votre avatar</label>
-                <input
-                  type="file"
-                  class="form-control-file"
-                  id="avatar"
-                  name="avatar"
-                  accept="image/*"
-                  onChange={e => handleFile(e)}
-                />
-              </div>
-              <button type="submit" className="mt-4 btn btn-primary btn-block">
-                Confirmer
-              </button>
-            </form>
-          </div>
+      <form className="mb-4" onSubmit={onUpdate}>
+        <h2>Mes informations personnelles</h2>
+        <Input
+          type="text"
+          label="Adresse email"
+          name="email"
+          id="email"
+          placeholder={currentUser.user.email}
+          disabled={true}
+        />
+        <Input
+          type="text"
+          label="Nom d'utilisateur"
+          name="username"
+          id="username"
+          placeholder={currentUser.user.username}
+          disabled={true}
+          fieldHelp={"Votre nom d'utilisateur et votre email ne peuvent pas être modifiés."}
+        />
+        <Input
+          type="text"
+          name="firstname"
+          placeholder={currentUser.user.firstname}
+          className="form-control"
+          label="Prénom"
+        />
+        <Input
+          type="text"
+          name="lastname"
+          className="form-control"
+          placeholder={currentUser.user.lastname}
+          label="Nom"
+        />
+        <h2 className="mt-5">Mon mot de passe</h2>
+        <Input
+          type="password"
+          name="password"
+          className="form-control"
+          label="Votre mot de passe"
+          placeholder="Nouveau mot de passe"
+        />
+        <div class="form-group">
+          <label for="avatar">Votre avatar</label>
+          <input
+            type="file"
+            class="form-control-file"
+            id="avatar"
+            name="avatar"
+            accept="image/*"
+            onChange={e => handleFile(e)}
+          />
         </div>
-      </div>
+        <div className="text-center">
+          <button type="submit" className="mt-4 btn btn-primary btn-lg">
+            Confirmer
+          </button>
+        </div>
+      </form>
     </>
   );
 };

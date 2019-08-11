@@ -1,8 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ type, label, name, id, placeholder, required, value }) => (
-  <div className="form-group">
+const Input = ({
+  type,
+  label,
+  name,
+  id,
+  placeholder,
+  required,
+  value,
+  disabled,
+  fieldHelp,
+  className = '',
+  parentClassName = '',
+}) => (
+  <div className={'form-group ' + (parentClassName ? parentClassName : '')}>
     <label htmlFor={id}>
       {label}
       {required === true ? <span className="required"> *</span> : null}
@@ -10,16 +22,30 @@ const Input = ({ type, label, name, id, placeholder, required, value }) => (
     {required && (
       <input
         type={type}
-        className="form-control"
+        className={'form-control ' + (className ? className : '')}
         id={id}
         name={name}
         placeholder={placeholder}
         value={value}
-        required
+        required={required}
+        disabled={disabled}
       />
     )}
     {!required && (
-      <input type={type} className="form-control" id={id} name={name} placeholder={placeholder} value={value} />
+      <input
+        type={type}
+        className={'form-control ' + (className ? className : '')}
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        disabled={disabled}
+      />
+    )}
+    {fieldHelp && (
+      <small id={`${id}-emailHelp`} class="form-text text-muted">
+        {fieldHelp}
+      </small>
     )}
   </div>
 );

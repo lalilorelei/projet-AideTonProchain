@@ -27,16 +27,6 @@ class ProductSelector extends React.Component {
             )}
             {role === 'shopkeeper' && <>Liste des produits disponibles dans votre établissement</>}
           </p>
-          {role === 'shopkeeper' && (
-            <Link
-              exact="true"
-              to="/add-product"
-              path="/add-product"
-              className="btn btn-custom-accent"
-            >
-              Ajouter un produit
-            </Link>
-          )}
         </div>
         {products.length > 0 ? (
           <form
@@ -108,6 +98,7 @@ class ProductSelector extends React.Component {
                 </tfoot>
               )}
             </table>
+
             {role === 'donor' && (
               <>
                 <p className="font-weight-bold">2 - Affectez votre don à un bénéficiaire</p>
@@ -166,6 +157,18 @@ class ProductSelector extends React.Component {
               link={{ label: 'Retour à la liste', url: '/shopkeeper' }}
             />
           )
+        )}
+        {role === 'shopkeeper' && (
+          <div className="text-center mb-5">
+            <Link
+              exact="true"
+              to="/add-product"
+              path="/add-product"
+              className="btn btn-outline-primary"
+            >
+              Ajouter un produit
+            </Link>
+          </div>
         )}
       </>
     );

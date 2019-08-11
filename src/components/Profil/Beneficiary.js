@@ -6,80 +6,69 @@ const Beneficiary = ({ currentUser, role }) => {
   const beneficiary = currentUser.user;
   return (
     <>
-      <div className="container mt-4 py-5">
-        <div className="row justify-content-center">
-          <div className="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-            <h3 className="font-weight-bold my-2">Nom d'utilisateur</h3>
-            {beneficiary.username}
-            <h3 className="font-weight-bold my-2">Mon quartier</h3>
-            {beneficiary.location !== undefined && (
-              <p>
-                {beneficiary.location.adress !== '' && (
-                  <p className="my-2">{beneficiary.location.adress}</p>
-                )}
-                {beneficiary.location.adress === '' && (
-                  <p className="my-2">Aucune adresse enregistrée</p>
-                )}
-              </p>
-            )}
-            {beneficiary.location === undefined && (
-              <p className="my-2">Aucune adresse enregistrée</p>
-            )}
+      <h2>Mes informations personnelles</h2>
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Nom d'utilisateur</p>
+        <span>
+          {beneficiary.username && beneficiary.username !== '' && beneficiary.username !== undefined
+            ? beneficiary.username
+            : 'Non renseigné'}
+        </span>
+      </div>
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Adresse email</p>
+        <span>
+          {beneficiary.email && beneficiary.email !== '' && beneficiary.email !== undefined
+            ? beneficiary.email
+            : 'Non renseigné'}
+        </span>
+        <p className="text-small mt-2 text-muted">Visible uniquement par vous</p>
+      </div>
 
-            <h3 className="font-weight-bold mb-0">Mes besoins</h3>
-            {beneficiary.description !== undefined && (
-              <p>
-                {beneficiary.description.need !== '' && (
-                  <p className="my-2">{beneficiary.description.need}</p>
-                )}
-                {beneficiary.description.need === '' && (
-                  <p className="my-2">Aucun besoin enregistrée</p>
-                )}
-              </p>
-            )}
-            {beneficiary.description === undefined && (
-              <p className="my-2">Aucun besoin enregistrée</p>
-            )}
+      <h2 className="mt-5">Mes informations de bénéficiaire</h2>
 
-            <h3 className="font-weight-bold mb-0">Ma biographie</h3>
-            {beneficiary.description !== undefined && (
-              <p>
-                {beneficiary.description.bio !== '' && (
-                  <p className="my-2">{beneficiary.description.bio}</p>
-                )}
-                {beneficiary.description.bio === '' && (
-                  <p className="my-2">Aucune biographie enregistrée</p>
-                )}
-              </p>
-            )}
-            {beneficiary.description === undefined && (
-              <p className="my-2">Aucune biographie enregistrée</p>
-            )}
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Mon quartier</p>
+        <span>
+          {beneficiary.localisation &&
+          beneficiary.localisation.address !== '' &&
+          beneficiary.localisation.address !== undefined
+            ? beneficiary.location.adress
+            : 'Aucune adresse enregistrée'}
+        </span>
+      </div>
 
-            <h3 className="font-weight-bold mb-0">Où me trouver</h3>
-            {beneficiary.description !== undefined && (
-              <p>
-                {beneficiary.description.place !== '' && (
-                  <p className="my-2">{beneficiary.description.place}</p>
-                )}
-                {beneficiary.description.place === '' && (
-                  <p className="my-2">Aucun lieu enregistré</p>
-                )}
-              </p>
-            )}
-            {beneficiary.description === undefined && <p className="my-2">Aucun lieu enregistré</p>}
-            {role === 'beneficiary' && (
-              <>
-                <Link className="d-block mt-4 btn btn-primary" to="/donations">
-                  Voir les dons
-                </Link>
-                <Link className="d-block mt-4 btn btn-primary" to="/shopkeeper">
-                  Trouver un commerce
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Mes besoins</p>
+        <span>
+          {beneficiary.description &&
+          beneficiary.description.need !== '' &&
+          beneficiary.description.need !== undefined
+            ? beneficiary.description.need
+            : 'Aucun besoin enregistré'}
+        </span>
+      </div>
+
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Ma biographie</p>
+        <span>
+          {beneficiary.description &&
+          beneficiary.description.bio !== '' &&
+          beneficiary.description.bio !== undefined
+            ? beneficiary.description.bio
+            : 'Aucune biographie enregistrée'}
+        </span>
+      </div>
+
+      <div className="profile-group mb-3">
+        <p className="mb-1 font-weight-bold">Où me trouver</p>
+        <span>
+          {beneficiary.description &&
+          beneficiary.description.place !== '' &&
+          beneficiary.description.place !== undefined
+            ? beneficiary.description.place
+            : 'Aucun lieu enregistré'}
+        </span>
       </div>
     </>
   );
