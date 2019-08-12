@@ -1,17 +1,26 @@
 import axios from 'axios';
-import {
-  ADD_PRODUCT,
-  GET_PRODUCTS,
-  recieveProducts,
-  getDeletedProduct,
-} from 'store/reducers/product';
+import { ADD_PRODUCT, GET_PRODUCTS, recieveProducts, getDeletedProduct } from 'store/reducers/product';
 
-import { DELETE_PRODUCT, getProducts } from 'store/actionMiddleware';
+import { DELETE_PRODUCT, getProducts, EDIT_PRODUCT } from 'store/actionMiddleware';
 
 import { decodedToken } from 'utils';
 
 const productMiddleware = store => next => action => {
   switch (action.type) {
+    case EDIT_PRODUCT:
+      console.log(action);
+      axios
+        .patch(`http://95.142.175.77:3000/api/product/update/${action.productId}`, action.data, {
+          headers: { Authorization: `Bearer ${action.token}` },
+        })
+        .then(response => {
+          console.log('produit mis à jour');
+          //store.dispatch(recieveProducts(response.data.products, response.data.shopkeeper));
+        })
+        .catch(e => {
+          console.log(e);
+        });
+      break;
     case GET_PRODUCTS:
       axios
         .get(`http://95.142.175.77:3000/api/product/${action.shopkeeperId}`)
@@ -24,7 +33,6 @@ const productMiddleware = store => next => action => {
       break;
     case ADD_PRODUCT:
       console.log('ajout', action.data, action.token);
-      const id = decodedToken(action.token).id;
       axios
         .post(`http://95.142.175.77:3000/api/product/`, action.data, {
           headers: { Authorization: `Bearer ${action.token}` },

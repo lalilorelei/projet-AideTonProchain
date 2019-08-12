@@ -7,17 +7,7 @@ const Input = ({ type, label, name, id, placeholder, required, value }) => (
       {label}
       {required === true ? <span className="required"> *</span> : null}
     </label>
-    {required && (
-      <input
-        type={type}
-        className="form-control"
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        required
-      />
-    )}
+    {required && <input type={type} className="form-control" id={id} name={name} placeholder={placeholder} required />}
     {!required && (
       <input type={type} className="form-control" id={id} name={name} placeholder={placeholder} value={value} />
     )}

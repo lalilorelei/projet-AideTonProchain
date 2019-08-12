@@ -29,6 +29,7 @@ export const deconnexion = (token, role) => ({
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT ';
+export const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 export const createProduct = (data, token) => ({
   type: ADD_PRODUCT,
@@ -45,6 +46,13 @@ export const deleteProduct = (token, productId) => ({
   type: DELETE_PRODUCT,
   token,
   productId,
+});
+
+export const editProduct = (data, productId, token) => ({
+  type: EDIT_PRODUCT,
+  data,
+  productId,
+  token,
 });
 
 // shopkeeper middleware

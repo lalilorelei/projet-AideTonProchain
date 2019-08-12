@@ -14,7 +14,7 @@ import Error404 from 'components/Error404';
 import Contact from 'containers/Contact';
 import Login from 'containers/Login';
 import Register from 'containers/Register';
-import AddProduct from 'containers/Shopkeeper/addProduct';
+import AddProduct from 'containers/AddProduct';
 import Profil from 'containers/Profil';
 import ProfilUpdate from 'containers/ProfilUpdate';
 import Beneficiary from 'containers/Beneficiary';
@@ -22,6 +22,7 @@ import Shopkeeper from 'containers/Shopkeeper';
 import ShopkeeperDetails from 'containers/ShopkeeperDetails';
 import BeneficiaryDetails from 'containers/BeneficiaryDetails';
 import Donations from 'containers/Donation';
+import EditProduct from 'containers/EditProduct';
 
 const App = () => (
   <>
@@ -50,12 +51,7 @@ const App = () => (
           return <Login />;
         }}
       />
-      <Route
-        exact
-        key="/register"
-        path="/register/:role(donor|beneficiary|shopkeeper)"
-        component={Register}
-      />
+      <Route exact key="/register" path="/register/:role(donor|beneficiary|shopkeeper)" component={Register} />
       <Route
         exact
         key="/profil"
@@ -132,6 +128,14 @@ const App = () => (
         path="/add-product"
         render={() => {
           return <AddProduct />;
+        }}
+      />
+      <Route
+        exact
+        key="/edit-product/:id"
+        path="/edit-product/:id"
+        render={() => {
+          return <EditProduct />;
         }}
       />
       <Route

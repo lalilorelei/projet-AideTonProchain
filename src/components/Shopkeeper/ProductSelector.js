@@ -22,18 +22,11 @@ class ProductSelector extends React.Component {
       <>
         <div className="mb-2 table-header d-flex justify-content-between align-items-center">
           <p className="font-weight-bold">
-            {role === 'donor' && products.length > 0 && (
-              <>1 - Sélectionnez les produits que vous désirez offrir</>
-            )}
+            {role === 'donor' && products.length > 0 && <>1 - Sélectionnez les produits que vous désirez offrir</>}
             {role === 'shopkeeper' && <>Liste des produits disponibles dans votre établissement</>}
           </p>
           {role === 'shopkeeper' && (
-            <Link
-              exact="true"
-              to="/add-product"
-              path="/add-product"
-              className="btn btn-custom-accent"
-            >
+            <Link exact="true" to="/add-product" path="/add-product" className="btn btn-custom-accent">
               Ajouter un produit
             </Link>
           )}
@@ -54,11 +47,7 @@ class ProductSelector extends React.Component {
                     <>
                       <th scope="col">Prix</th>
                       <th scope="col">
-                        {role === 'donor'
-                          ? 'Sélection'
-                          : role === 'shopkeeper'
-                          ? 'Action'
-                          : 'Quantité'}
+                        {role === 'donor' ? 'Sélection' : role === 'shopkeeper' ? 'Action' : 'Quantité'}
                       </th>
                     </>
                   )}
@@ -73,21 +62,12 @@ class ProductSelector extends React.Component {
                         <td>{product.price}€</td>
                         <td className="selector text-center">
                           {role === 'donor' && (
-                            <input
-                              type="checkbox"
-                              value="1"
-                              data-id={product._id}
-                              data-price={product.price}
-                            />
+                            <input type="checkbox" value="1" data-id={product._id} data-price={product.price} />
                           )}
                           {role === 'shopkeeper' && (
                             <div className="action-links">
-                              <a href="#">Editer</a>
-                              <span
-                                className="text-primary"
-                                onClick={clickDeleteProduct}
-                                data-id={product._id}
-                              >
+                              <Link to={`/edit-product/${product._id}`}>Editer</Link>
+                              <span className="text-primary" onClick={clickDeleteProduct} data-id={product._id}>
                                 Supprimer
                               </span>
                             </div>
@@ -128,12 +108,7 @@ class ProductSelector extends React.Component {
                         <div className="suggests d-none">
                           {beneficiariesSuggests.map(suggest => {
                             return (
-                              <div
-                                className="suggest"
-                                key={suggest._id}
-                                onClick={clickSuggest}
-                                data-id={suggest._id}
-                              >
+                              <div className="suggest" key={suggest._id} onClick={clickSuggest} data-id={suggest._id}>
                                 {suggest.username}
                               </div>
                             );
