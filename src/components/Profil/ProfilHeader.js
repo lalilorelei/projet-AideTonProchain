@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaPen } from 'react-icons/fa';
 
-const ProfilHeader = ({ user, role, update }) => {
+const ProfilHeader = ({ user, role, update, publicProfile = false }) => {
   console.log(user, role);
 
   return (
     <>
-      {!update && (
+      {!update && !publicProfile && (
         <div className="d-none d-lg-block text-right mb-3">
           <Link exact="true" to="/profil-update" className="text-right btn btn-sm btn-link mr-2">
             Editer mon profil

@@ -155,6 +155,7 @@ class ProductSelector extends React.Component {
             <EmptyState
               message="Cet établissement n'a aucun produit disponible pour le moment"
               link={{ label: 'Retour à la liste', url: '/shopkeeper' }}
+              className="mb-5"
             />
           )
         )}

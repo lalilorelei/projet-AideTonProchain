@@ -30,6 +30,7 @@ class Shopkeeper extends React.Component {
   // Avant d'afficher le composant on récupère la localisation via le navigateur et l'ensemble des shops
   componentDidMount = () => {
     initGeolocation(this);
+    document.title = `Commerces à proximité - Aide ton prochain`;
   };
 
   // Soumission du formulaire avec adresse manuell
@@ -49,7 +50,7 @@ class Shopkeeper extends React.Component {
     const { shops, getShops, role, token } = this.props;
     const { location } = this.state;
 
-    if (shops === undefined) {
+    if (shops === undefined && location) {
       getShops(role, token, location, 9999);
     }
   }

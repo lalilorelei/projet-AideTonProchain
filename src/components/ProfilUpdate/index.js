@@ -11,6 +11,7 @@ import './profilUpdate.scss';
 import '../Profil/profil.scss';
 
 const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
+  document.title = `Editer mon profil - Aide ton prochain`;
   if (currentUser.user !== undefined) {
     return (
       <>

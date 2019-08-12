@@ -16,6 +16,7 @@ const Register = props => {
   const { initRegister, submitRegister, isRegistered } = props;
   initRegister();
   const role = props.match.params.role;
+
   let roleTitle = '';
 
   const [addressError, setAddressError] = useState(false);
@@ -80,6 +81,8 @@ const Register = props => {
     : role === 'donor'
     ? (roleTitle = 'donateur')
     : (roleTitle = 'commerçant');
+
+  document.title = `Inscription ${roleTitle} - Aide ton prochain`;
 
   return (
     <>

@@ -11,6 +11,7 @@ import Nav from 'containers/Nav';
 import './profil.scss';
 
 const Profil = ({ currentUser, role }) => {
+  document.title = `Mon profil - Aide ton prochain`;
   if (currentUser.user !== undefined) {
     return (
       <>

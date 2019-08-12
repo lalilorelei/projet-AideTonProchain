@@ -2,31 +2,37 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from 'components/Footer';
 
-const Beneficiary = ({ currentUser, role }) => {
+const Beneficiary = ({ currentUser, role, publicProfile }) => {
   console.log(role);
   const beneficiary = currentUser.user;
   return (
     <>
-      <h2>Mes informations personnelles</h2>
-      <div className="profile-group mb-3">
-        <p className="mb-1 font-weight-bold">Nom d'utilisateur</p>
-        <span>
-          {beneficiary.username && beneficiary.username !== '' && beneficiary.username !== undefined
-            ? beneficiary.username
-            : 'Non renseigné'}
-        </span>
-      </div>
-      <div className="profile-group mb-3">
-        <p className="mb-1 font-weight-bold">Adresse email</p>
-        <span>
-          {beneficiary.email && beneficiary.email !== '' && beneficiary.email !== undefined
-            ? beneficiary.email
-            : 'Non renseigné'}
-        </span>
-        <p className="text-small mt-2 text-muted">Visible uniquement par vous</p>
-      </div>
+      {!publicProfile && (
+        <>
+          <h2>Mes informations personnelles</h2>
+          <div className="profile-group mb-3">
+            <p className="mb-1 font-weight-bold">Nom d'utilisateur</p>
+            <span>
+              {beneficiary.username &&
+              beneficiary.username !== '' &&
+              beneficiary.username !== undefined
+                ? beneficiary.username
+                : 'Non renseigné'}
+            </span>
+          </div>
+          <div className="profile-group mb-3">
+            <p className="mb-1 font-weight-bold">Adresse email</p>
+            <span>
+              {beneficiary.email && beneficiary.email !== '' && beneficiary.email !== undefined
+                ? beneficiary.email
+                : 'Non renseigné'}
+            </span>
+            <p className="text-small mt-2 text-muted">Visible uniquement par vous</p>
+          </div>
 
-      <h2 className="mt-5">Mes informations de bénéficiaire</h2>
+          <h2 className="mt-5">Mes informations de bénéficiaire</h2>
+        </>
+      )}
 
       <div className="profile-group mb-3">
         <p className="mb-1 font-weight-bold">Mon quartier</p>
@@ -34,7 +40,7 @@ const Beneficiary = ({ currentUser, role }) => {
           {beneficiary.localisation &&
           beneficiary.localisation.address !== '' &&
           beneficiary.localisation.address !== undefined
-            ? beneficiary.location.adress
+            ? beneficiary.localisation.address
             : 'Aucune adresse enregistrée'}
         </span>
       </div>

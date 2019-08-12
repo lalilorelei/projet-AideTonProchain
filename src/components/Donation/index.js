@@ -13,6 +13,9 @@ class Donations extends React.Component {
   componentDidMount() {
     const { role, token, getDonations } = this.props;
     getDonations(role, token);
+    role !== 'shopkeeper'
+      ? (document.title = `Mes donations - Aide ton prochain`)
+      : (document.title = `Suivi des transactions - Aide ton prochain`);
   }
   handleValidateTransaction = evt => {
     evt.preventDefault();
