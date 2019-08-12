@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
   role: decodedToken(state.user.currentUser.token).role,
   token: state.user.currentUser.token,
+  productEditedConfirmMessage: state.product.productEditedConfirmMessage,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,6 +2,7 @@ const initialState = {
   products: [],
   shop: {},
   productAddedConfirmMessage: {},
+  productEditedConfirmMessage: {},
 };
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
@@ -9,6 +10,7 @@ export const RECIEVE_PRODUCTS = 'RECIEVE_PRODUCTS';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const DELETED_PRODUCT = 'DELETED_PRODUCT';
 export const CONFIRM_PRODUCT_ADDED = 'CONFIRM_PRODUCT_ADDED';
+export const CONFIRM_PRODUCT_EDITED = 'CONFIRM_PRODUCT_EDITED';
 
 const product = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -30,7 +32,19 @@ const product = (state = initialState, action = {}) => {
           type: 'success',
           message: 'Nouveau produit ajouté !',
           link: {
-            label: 'voir le profil',
+            label: ' Retour au profil',
+            url: '/profil',
+          },
+        },
+      };
+    case CONFIRM_PRODUCT_EDITED:
+      return {
+        ...state,
+        productEditedConfirmMessage: {
+          type: 'success',
+          message: 'Produit modifié !',
+          link: {
+            label: ' Retour au profil',
             url: '/profil',
           },
         },
@@ -64,6 +78,10 @@ export const getDeletedProduct = data => ({
 
 export const confirmProductAdded = () => ({
   type: CONFIRM_PRODUCT_ADDED,
+});
+
+export const confirmProductEdited = () => ({
+  type: CONFIRM_PRODUCT_EDITED,
 });
 
 export default product;

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { ADD_PRODUCT, GET_PRODUCTS, recieveProducts, getDeletedProduct } from 'store/reducers/product';
-import { confirmProductAdded } from 'store/reducers/product';
+import { ADD_PRODUCT, GET_PRODUCTS, recieveProducts } from 'store/reducers/product';
+import { confirmProductAdded, confirmProductEdited } from 'store/reducers/product';
 
 import { DELETE_PRODUCT, getProducts, EDIT_PRODUCT } from 'store/actionMiddleware';
 
@@ -16,6 +16,7 @@ const productMiddleware = store => next => action => {
         })
         .then(response => {
           console.log('produit mis à jour');
+          store.dispatch(confirmProductEdited());
           //store.dispatch(recieveProducts(response.data.products, response.data.shopkeeper));
         })
         .catch(e => {
