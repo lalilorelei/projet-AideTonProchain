@@ -45,7 +45,7 @@ const ProfilHeader = ({ user, role, update, publicProfile = false }) => {
             )}
           </div>
           <div className="col col-xs-12 col-lg-8 profile-metas mt-1 text-center text-lg-left pl-lg-3">
-            <h1 className="mb-0 mr-3">
+            <h1 className="mb-0">
               {role === 'shopkeeper' ? user.user.shopkeeper_name : user.user.username}
             </h1>
             <span className="text-muted text-small mt-1">
