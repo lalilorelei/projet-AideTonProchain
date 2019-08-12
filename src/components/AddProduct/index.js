@@ -67,15 +67,10 @@ const AddProduct = ({
                   name="description"
                 />
                 <div className="mt-5 text-right">
-                  <Link
-                    to="/profil"
-                    exact
-                    path="/profil"
-                    className="btn btn-outline-secondary mr-4"
-                  >
+                  <Link to="/profil" exact path="/profil" className="btn btn-outline-secondary">
                     Retour au profil
                   </Link>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary ml-4">
                     Ajouter un produit
                   </button>
                 </div>
