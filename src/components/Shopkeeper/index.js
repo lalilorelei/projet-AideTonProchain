@@ -5,7 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import axios from 'axios';
 
 /* Local Components */
 import Header from 'components/Header';
@@ -18,15 +17,12 @@ import { initGeolocation, geoCode } from 'utils/geolocationUtils';
 
 /* medias */
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
+import defaultAvatar from 'assets/img/default-avatar.png';
 
 class Shopkeeper extends React.Component {
   state = {
     lat: '',
     long: '',
-    location: {
-      latitude: 0,
-      longitude: 0,
-    },
     isGeoLocAccessible: true,
     itemsOrderedByDistance: [],
     getLocationErrorMessage: false,
@@ -35,74 +31,32 @@ class Shopkeeper extends React.Component {
   componentDidMount = () => {
     initGeolocation(this);
     document.title = `Commerces à proximité - Aide ton prochain`;
-    if (this.state.location.latitude === 0) {
-      const { latitude, longitude } = this.state.location;
-      this.getShops(latitude, longitude, 30);
-    }
-  };
-
-  getShops = (latitude, longitude, km) => {
-    axios
-      .post(
-        `http://95.142.175.77:3000/api/${this.props.role}/shopkeepers-distance`,
-        { latitude, longitude, km },
-        {
-          headers: {
-            Authorization: `Bearer ${this.props.token}`,
-            'Content-Type': 'application/json',
-          },
-        },
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({
-          itemsOrderedByDistance: [...response.data.shopkeepers],
-          shops: [...response.data.shopkeepers],
-        });
-      })
-      .catch(e => {
-        console.log('Impossible de récupérer les shops', e);
-      });
   };
 
   // Soumission du formulaire avec adresse manuell
-  submitAskLocation = async evt => {
+  submitAskLocation = evt => {
     evt.preventDefault();
-    await axios
-      .get(
-        `https://nominatim.openstreetmap.org/?format=json&addressdetails=1&q=${
-          evt.target.locationAddress.value
-        }&limit=1`,
-      )
-      .then(response => {
-        const { lat, lon } = response.data[0];
-        this.setState({
-          ...this.state,
-          location: {
-            latitude: lat,
-            longitude: lon,
-          },
-          isGeoLocAccessible: true,
-        });
-      })
-      .catch(e => {
-        this.setState({
-          ...this.state,
-          isGeoLocAccessible: false,
-        });
-      });
-    const { latitude, longitude } = this.state.location;
-    await this.getShops(latitude, longitude, 30);
+    geoCode(this, evt.target.locationAddress.value);
   };
 
   onChangeSelect = evt => {
     const maxDist = evt.target.value;
-    const { latitude, longitude } = this.state.location;
-    this.getShops(latitude, longitude, maxDist);
+    const { location } = this.state;
+    const { getShops, role, token } = this.props;
+    getShops(role, token, location, maxDist);
   };
 
+  componentDidUpdate() {
+    const { shops, getShops, role, token } = this.props;
+    const { location } = this.state;
+
+    if (shops === undefined && location) {
+      getShops(role, token, location, 9999);
+    }
+  }
+
   render() {
-    const { shops } = this.state;
+    const { shops } = this.props;
     const { currentUser, role } = this.props;
     if (currentUser.user !== undefined && role !== 'shopkeeper') {
       return (
@@ -147,73 +101,71 @@ class Shopkeeper extends React.Component {
           )}
           {shops !== undefined ? (
             <div className="container py-5 shopkeeper-list">
-              {this.state.location.latitude !== 0 && (
-                <form className="form-inline d-flex justify-content-between">
-                  <div className="row my-3">
-                    <div className="col-md-4">
-                      <div className="form-group">
-                        <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
-                          Distance maxi :
-                        </label>
-                        <select
-                          className="form-control form-control-sm"
-                          id="selectDistance"
-                          onChange={this.onChangeSelect}
-                          defaultValue={9999}
-                        >
-                          <option value="1">1 km</option>
-                          <option value="2">2 km</option>
-                          <option value="3">3 km</option>
-                          <option value="4">4 km</option>
-                          <option value="5">5 km</option>
-                          <option value="10">10 km</option>
-                          <option value="20">20 km</option>
-                          <option value="30">30 km</option>
-                          <option value="9999">Illimitée</option>
-                        </select>
-                      </div>
+              <form className="form-inline d-flex justify-content-between">
+                <div className="row my-3">
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label className="inline-form-label" htmlFor="exampleFormControlSelect1">
+                        Distance maxi :
+                      </label>
+                      <select
+                        className="form-control form-control-sm"
+                        id="selectDistance"
+                        onChange={this.onChangeSelect}
+                        defaultValue={9999}
+                      >
+                        <option value="1">1 km</option>
+                        <option value="2">2 km</option>
+                        <option value="3">3 km</option>
+                        <option value="4">4 km</option>
+                        <option value="5">5 km</option>
+                        <option value="10">10 km</option>
+                        <option value="20">20 km</option>
+                        <option value="30">30 km</option>
+                        <option value="9999">Illimitée</option>
+                      </select>
                     </div>
-                    <div className="col-md-8">
-                      <div className="form-group">
-                        <span className="inline-form-label">Produits :</span>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox1"
-                            value="option1"
-                          />
-                          <label className="form-check-label" htmlFor="inlineCheckbox1">
-                            menus
-                          </label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox2"
-                            value="option2"
-                          />
-                          <label className="form-check-label" htmlFor="inlineCheckbox2">
-                            restauration rapide
-                          </label>
-                        </div>
-                        <div className="form-check form-check-inline">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="inlineCheckbox3"
-                            value="option3"
-                          />
-                          <label className="form-check-label" htmlFor="inlineCheckbox3">
-                            café
-                          </label>
-                        </div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="form-group">
+                      <span className="inline-form-label">Produits :</span>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox1"
+                          value="option1"
+                        />
+                        <label className="form-check-label" htmlFor="inlineCheckbox1">
+                          menus
+                        </label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox2"
+                          value="option2"
+                        />
+                        <label className="form-check-label" htmlFor="inlineCheckbox2">
+                          restauration rapide
+                        </label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="inlineCheckbox3"
+                          value="option3"
+                        />
+                        <label className="form-check-label" htmlFor="inlineCheckbox3">
+                          café
+                        </label>
                       </div>
                     </div>
                   </div>
-                </form>
-              )}
+                </div>
+              </form>
               <div className="row">
                 {shops !== false
                   ? shops.map(shop => {
@@ -222,9 +174,9 @@ class Shopkeeper extends React.Component {
                           <div className="card">
                             <img
                               className="card-img-top"
-                              src={`http://aider-son-prochain.fr/projet-AideTonProchain-back/${
-                                shop.avatar
-                              }`}
+                              src={
+                                shop.avatar ? `data:image/jpg;base64,${shop.avatar}` : defaultAvatar
+                              }
                               alt={shop.shopkeeper_name}
                             />
                             <div className="card-body">

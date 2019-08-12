@@ -7,7 +7,6 @@ const BeneficiaryProfilUpdate = ({ currentUser, updateProfile, role, token }) =>
   const [img, setImg] = useState({});
 
   const handleFile = e => {
-    console.log(e.target.files[0]);
     setImg(e.target.files[0]);
   };
 

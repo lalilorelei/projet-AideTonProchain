@@ -21,6 +21,7 @@ import './beneficiary.scss';
 
 /* medias */
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
+import defaultAvatar from 'assets/img/default-avatar.png';
 
 class Beneficiary extends React.Component {
   state = {
@@ -143,9 +144,11 @@ class Beneficiary extends React.Component {
                           <div className="card">
                             <img
                               className="card-img-top"
-                              src={`http://aider-son-prochain.fr/projet-AideTonProchain-back/${
+                              src={
                                 beneficiary.avatar
-                              }`}
+                                  ? `data:image/jpg;base64,${beneficiary.avatar}`
+                                  : defaultAvatar
+                              }
                               alt={beneficiary.username}
                             />
                             <div className="card-body">

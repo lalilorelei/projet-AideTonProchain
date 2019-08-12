@@ -11,7 +11,6 @@ import loginBackgroundImage from 'assets/img/welcome.jpg';
 
 class Login extends React.Component {
   componentDidMount() {
-    const { initLogin } = this.props;
     document.title = `Connexion - Aide ton prochain`;
   }
 
