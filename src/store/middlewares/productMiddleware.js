@@ -17,7 +17,7 @@ const productMiddleware = store => next => action => {
         .then(response => {
           console.log('produit mis à jour');
           store.dispatch(confirmProductEdited());
-          //store.dispatch(recieveProducts(response.data.products, response.data.shopkeeper));
+          store.dispatch(recieveProducts(response.data.products, response.data.shopkeeper));
         })
         .catch(e => {
           console.log(e);

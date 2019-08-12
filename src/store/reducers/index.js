@@ -6,6 +6,7 @@ import shopkeeper from './shopkeeper';
 import product from './product';
 import donation from './donation';
 import user from './user';
+import utils from './utils';
 
 const reducers = combineReducers({
   beneficiary,
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   product,
   donation,
   user,
+  utils,
 });
 
 export default reducers;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Alert from 'components/UtilsComponents/Alert';
 import Input from 'components/Input';
 import RegisterShopkeeper from './shopkeeperInputs';
 import RegisterBeneficiary from './beneficiaryInputs';
@@ -13,7 +13,7 @@ import './register.scss';
 import registerBackgroundImage from 'assets/img/welcome.jpg';
 
 const Register = props => {
-  const { initRegister, submitRegister, isRegistered } = props;
+  const { initRegister, submitRegister, isRegistered, alert } = props;
   initRegister();
   const role = props.match.params.role;
 
@@ -106,6 +106,16 @@ const Register = props => {
         theme="dark"
         backgroundImage={registerBackgroundImage}
       />
+
+      {alert && alert !== {} && (
+        <div className="container">
+          <div className="row">
+            <div className="col col-md-12 col-lg-6 mx-auto">
+              <Alert alert={alert} />
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="container register">
         <div className="row justify-content-center">

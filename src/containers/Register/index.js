@@ -7,6 +7,7 @@ import { submitRegister, initRegister } from 'store/actionMiddleware';
 const mapStateToProps = state => ({
   addressError: state.user.addressError,
   isRegistered: state.user.isRegistered,
+  alert: state.utils.alert,
 });
 
 const mapDispatchToProps = dispatch => ({

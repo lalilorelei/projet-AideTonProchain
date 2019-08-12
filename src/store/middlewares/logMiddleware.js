@@ -1,5 +1,6 @@
 import { SUBMIT_LOGIN, SUBMIT_REGISTER, DECONNEXION } from 'store/actionMiddleware';
 import { recieveCurrentUser, confirmRegister } from 'store/reducers/user';
+import { alert } from 'store/reducers/utils';
 //import { decodedToken } from 'utils';
 
 import axios from 'axios';
@@ -7,16 +8,20 @@ import axios from 'axios';
 const logMiddleware = store => next => action => {
   switch (action.type) {
     case SUBMIT_REGISTER:
-      console.log('data', action.data);
       axios
         .post(`http://95.142.175.77:3000/api/${action.role}/register`, action.data)
         .then(response => {
           store.dispatch(confirmRegister());
-          //window.location = '/login';
+          console.log('register response', response);
         })
         .catch(e => {
-          store.dispatch(confirmRegister({ succes: '', error: "Erreur lors de l'enregistrement" }));
           console.log(e.message);
+          store.dispatch(
+            alert({
+              type: 'danger',
+              message: "Erreur lors de l'enregistrement",
+            }),
+          );
         });
       break;
     case SUBMIT_LOGIN:
@@ -30,6 +35,12 @@ const logMiddleware = store => next => action => {
         })
         .catch(e => {
           console.log(e.message);
+          store.dispatch(
+            alert({
+              type: 'danger',
+              message: "La connexion n'a pas pu aboutir. Veuillez vérifier vos identifiants",
+            }),
+          );
         });
 
       break;

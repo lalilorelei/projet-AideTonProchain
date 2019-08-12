@@ -18,7 +18,7 @@ class Profil extends React.Component {
   }
 
   render() {
-    let profileUpdatedConfirmMessage = '';
+    let profileUpdatedConfirmMessage = undefined;
     if (this.props.location.state) {
       profileUpdatedConfirmMessage = this.props.location.state.profileUpdatedConfirmMessage;
     }

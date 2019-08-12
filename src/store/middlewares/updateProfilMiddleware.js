@@ -5,7 +5,6 @@ import { recieveCurrentUser, confirmProfileUpdated } from 'store/reducers/user';
 const shopkeeperMiddleware = store => next => action => {
   switch (action.type) {
     case UPDATE_PROFIL:
-      console.log(action.data, action.img);
       axios
         .patch(`http://95.142.175.77:3000/api/${action.role}/profil-update`, action.data, {
           headers: {

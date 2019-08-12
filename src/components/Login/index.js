@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Alert from 'components/UtilsComponents/Alert';
 import Input from 'components/Input';
 import { serializeFormData } from 'utils';
 import './login.scss';
@@ -22,6 +22,7 @@ class Login extends React.Component {
   };
 
   render() {
+    const { alert } = this.props;
     let registerConfirmMessage = undefined;
     if (this.props.location.state) {
       registerConfirmMessage = this.props.location.state.registerConfirmMessage;
@@ -48,6 +49,7 @@ class Login extends React.Component {
                   )}
                 </div>
               )}
+              {alert && alert !== {} && <Alert alert={alert} />}
               <form className="mt-4" onSubmit={this.submitLoginForm}>
                 <Input
                   label="Adresse email ou nom d'utilisateur"

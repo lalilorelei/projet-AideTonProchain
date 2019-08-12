@@ -18,18 +18,17 @@ const user = (state = initialState, action = {}) => {
         currentUser: action.data,
       };
     case INIT_REGISTER:
-      console.log('init register !');
       return {
         ...state,
         isRegistered: false,
       };
     case INIT_PROFILE_UPDATE:
-      console.log('init profile update !');
       return {
         ...state,
         profileUpdated: false,
       };
     case CONFIRM_REGISTER:
+      console.log('confirm register !');
       return {
         ...state,
         isRegistered: true,

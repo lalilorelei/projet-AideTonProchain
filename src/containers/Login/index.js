@@ -1,10 +1,15 @@
 import { connect } from 'react-redux';
 
-import Form from '../../components/Login';
+import Login from 'components/Login';
 
 import { submitLogin } from 'store/actionMiddleware';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  console.log('hi there return', state.utils.alert);
+  return {
+    alert: state.utils.alert,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   submitLogin: data => {
@@ -12,9 +17,9 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const FormContainer = connect(
+const LoginContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Form);
+)(Login);
 
-export default FormContainer;
+export default LoginContainer;

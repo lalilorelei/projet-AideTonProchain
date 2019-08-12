@@ -11,9 +11,12 @@ import logo_light from '../../assets/img/logo-atp-black.png';
 
 const Nav = ({ currentUser, role, theme, deconnexion, match }) => (
   <nav className={`navbar navbar-expand-lg navbar-${theme}`}>
-    {console.log(match.path)}
     <Link key="/logo" className="navbar-brand" to="/">
-      {theme === 'dark' ? <img src={logo_dark} alt="logo-atp" /> : <img src={logo_light} alt="logo-atp" />}
+      {theme === 'dark' ? (
+        <img src={logo_dark} alt="logo-atp" />
+      ) : (
+        <img src={logo_light} alt="logo-atp" />
+      )}
     </Link>
     <button
       className="navbar-toggler"

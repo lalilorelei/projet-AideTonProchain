@@ -21,7 +21,6 @@ const ProfilUpdate = ({
 }) => {
   document.title = `Editer mon profil - Aide ton prochain`;
   initProfileUpdate();
-  console.log('cpu', profileUpdated);
   if (currentUser.user !== undefined) {
     return (
       <>
