@@ -5,7 +5,6 @@ import mockup from 'assets/img/mockup-donation.png';
 
 import { Link } from 'react-router-dom';
 import Header from 'components/Header';
-import Footer from 'components/Footer';
 import testimonies from 'data/testimonies';
 import './home.scss';
 
@@ -67,7 +66,7 @@ class Home extends React.Component {
             <div className="row">
               {/* bloc donateur */}
               <div className="col text-center d-flex flex-column profile-col">
-                <div className="profile-bloc">Donateur</div>
+                <div className="profile-bloc profile-bloc-donor">Donateur</div>
                 <p>
                   For doing some work for us "pro bono" will really add to your portfolio i promise
                   nor can my website be in english?. In an ideal world give us a complimentary.
@@ -79,7 +78,7 @@ class Home extends React.Component {
 
               {/* bloc bénéficiaire */}
               <div className="col text-center d-flex flex-column profile-col">
-                <div className="profile-bloc">Bénéficiaire</div>
+                <div className="profile-bloc profile-bloc-beneficiary">Bénéficiaire</div>
                 <p>
                   For doing some work for us "pro bono" will really add to your portfolio i promise
                   nor can my website be in english?. In an ideal world give us a complimentary.
@@ -96,7 +95,7 @@ class Home extends React.Component {
 
               {/* bloc commerçant */}
               <div className="col text-center d-flex flex-column profile-col">
-                <div className="profile-bloc">Commerçant</div>
+                <div className="profile-bloc profile-bloc-shopkeeper">Commerçant</div>
                 <p>
                   For doing some work for us "pro bono" will really add to your portfolio i promise
                   nor can my website be in english?. In an ideal world give us a complimentary.

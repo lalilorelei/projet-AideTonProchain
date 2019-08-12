@@ -26,10 +26,20 @@
     background-color: darkslategray;
     border-radius: 5px;
     color: #fff;
-    padding: 4rem 3rem;
+    padding: 5rem 3rem;
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 2rem;
+    background-size: cover;
+    &.profile-bloc-donor {
+      background-image: url('../../assets/img/donor.jpg');
+    }
+    &.profile-bloc-beneficiary {
+      background-image: url('../../assets/img/beneficiary.jpg');
+    }
+    &.profile-bloc-shopkeeper {
+      background-image: url('../../assets/img/shopkeeper.jpg');
+    }
   }
 }
 
