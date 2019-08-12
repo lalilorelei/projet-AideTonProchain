@@ -25,7 +25,6 @@ class Profil extends React.Component {
 
     const { currentUser, role } = this.props;
     if (currentUser.user !== undefined) {
-      console.log(currentUser);
       return (
         <>
           <Nav theme="light" />
