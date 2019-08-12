@@ -43,7 +43,7 @@ const Input = ({
       />
     )}
     {fieldHelp && (
-      <small id={`${id}-emailHelp`} class="form-text text-muted">
+      <small id={`${id}-emailHelp`} className="form-text text-muted">
         {fieldHelp}
       </small>
     )}

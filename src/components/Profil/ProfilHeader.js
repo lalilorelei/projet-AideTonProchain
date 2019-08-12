@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaPen } from 'react-icons/fa';
+import defaultAvatar from 'assets/img/default-avatar.png';
 
 const ProfilHeader = ({ user, role, update, publicProfile = false }) => {
-  console.log(user, role);
-
   return (
     <>
       {!update && !publicProfile && (
@@ -19,16 +18,18 @@ const ProfilHeader = ({ user, role, update, publicProfile = false }) => {
         <div className="row">
           <div className="col col-xs-12 col-lg-4 mb-3 profile-avatar text-center">
             <img
-              src={`http://aider-son-prochain.fr/projet-AideTonProchain-back/${user.user.avatar}`}
+              src={user.user.avatar ? `data:image/jpg;base64,${user.user.avatar}` : defaultAvatar}
               alt={role === 'shopkeeper' ? user.user.shopkeeper_name : user.user.username}
             />
-            <Link
-              exact="true"
-              to="/profil-update"
-              className="d-lg-none d-block text-center btn btn-sm btn-link mt-2"
-            >
-              Editer mon profil
-            </Link>
+            {!update && !publicProfile && (
+              <Link
+                exact="true"
+                to="/profil-update"
+                className="d-lg-none d-block text-center btn btn-sm btn-link mt-2"
+              >
+                Editer mon profil
+              </Link>
+            )}
             {update && (
               <span>
                 <span

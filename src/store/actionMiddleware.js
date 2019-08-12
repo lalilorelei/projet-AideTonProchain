@@ -2,6 +2,7 @@
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
 export const INIT_REGISTER = 'INIT_REGISTER';
+export const INIT_PROFILE_UPDATE = 'INIT_PROFILE_UPDATE';
 export const DECONNEXION = 'DECONNEXION';
 
 export const submitLogin = data => ({
@@ -17,6 +18,10 @@ export const submitRegister = (data, role) => ({
 
 export const initRegister = () => ({
   type: INIT_REGISTER,
+});
+
+export const initProfileUpdate = () => ({
+  type: INIT_PROFILE_UPDATE,
 });
 
 export const deconnexion = (token, role) => ({
@@ -127,7 +132,7 @@ export const getDonations = (role, token) => ({
 // update profil
 export const UPDATE_PROFIL = 'UPDATE_PROFIL';
 
-export const updateProfil = (data, img, role, token) => ({
+export const updateProfile = (data, img, role, token) => ({
   type: UPDATE_PROFIL,
   data,
   img,

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { UPDATE_PROFIL } from 'store/actionMiddleware';
-import { recieveCurrentUser } from 'store/reducers/user';
+import { recieveCurrentUser, confirmProfileUpdated } from 'store/reducers/user';
 
 const shopkeeperMiddleware = store => next => action => {
   switch (action.type) {
@@ -16,6 +16,7 @@ const shopkeeperMiddleware = store => next => action => {
         .then(response => {
           const data = { user: { ...response.data.user }, token: action.token };
           store.dispatch(recieveCurrentUser(data));
+          store.dispatch(confirmProfileUpdated());
         })
         .catch(e => {
           console.log('Impossible de mettre à jour le profil', e);

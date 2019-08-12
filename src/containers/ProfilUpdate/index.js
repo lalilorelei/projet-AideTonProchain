@@ -3,17 +3,21 @@ import { connect } from 'react-redux';
 import ProfilUpdate from 'components/ProfilUpdate';
 
 import { decodedToken } from 'utils';
-import { updateProfil } from 'store/actionMiddleware';
+import { updateProfile, initProfileUpdate } from 'store/actionMiddleware';
 
 const mapStateToProps = state => ({
   currentUser: state.user.currentUser,
   role: decodedToken(state.user.currentUser.token).role,
   token: state.user.currentUser.token,
+  profileUpdated: state.user.profileUpdated,
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateProfil: (data, img, role, token) => {
-    dispatch(updateProfil(data, img, role, token));
+  initProfileUpdate: () => {
+    dispatch(initProfileUpdate());
+  },
+  updateProfile: (data, img, role, token) => {
+    dispatch(updateProfile(data, img, role, token));
   },
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import ProfilHeader from 'components/Profil/ProfilHeader';
 import BeneficiaryProfilUpdate from './BeneficiaryProfilUpdate';
 import DonorProfilUpdate from './DonorProfilUpdate';
@@ -10,11 +11,33 @@ import Nav from 'containers/Nav';
 import './profilUpdate.scss';
 import '../Profil/profil.scss';
 
-const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
+const ProfilUpdate = ({
+  currentUser,
+  role,
+  updateProfile,
+  token,
+  profileUpdated,
+  initProfileUpdate,
+}) => {
   document.title = `Editer mon profil - Aide ton prochain`;
+  initProfileUpdate();
+  console.log('cpu', profileUpdated);
   if (currentUser.user !== undefined) {
     return (
       <>
+        {profileUpdated && (
+          <Redirect
+            to={{
+              pathname: '/profil',
+              state: {
+                profileUpdatedConfirmMessage: {
+                  type: 'success',
+                  message: 'Profil mis à jour !',
+                },
+              },
+            }}
+          />
+        )}
         <Nav theme="light" />
         <div className="container mt-5 edit-profile-container profile-update-container">
           <div className="row">
@@ -26,7 +49,7 @@ const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
                     <BeneficiaryProfilUpdate
                       currentUser={currentUser}
                       role={role}
-                      updateProfil={updateProfil}
+                      updateProfile={updateProfile}
                       token={token}
                     />
                   )}
@@ -34,7 +57,7 @@ const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
                     <ShopkeeperProfilUpdate
                       currentUser={currentUser}
                       role={role}
-                      updateProfil={updateProfil}
+                      updateProfile={updateProfile}
                       token={token}
                     />
                   )}
@@ -42,7 +65,7 @@ const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
                     <DonorProfilUpdate
                       currentUser={currentUser}
                       role={role}
-                      updateProfil={updateProfil}
+                      updateProfile={updateProfile}
                       token={token}
                     />
                   )}

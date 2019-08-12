@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/Input';
-import Footer from 'components/Footer';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import './profilUpdate.scss';
 
-const DonorProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
+const DonorProfilUpdate = ({ currentUser, updateProfile, role, token }) => {
   const [img, setImg] = useState({});
 
   const handleFile = e => {
@@ -28,7 +28,7 @@ const DonorProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
       formData.append('avatar', img);
       formData.append('name', 'avatar');
     }
-    updateProfil(data, formData, role, token);
+    updateProfile(data, formData, role, token);
   };
   return (
     <>
@@ -73,19 +73,22 @@ const DonorProfilUpdate = ({ currentUser, updateProfil, role, token }) => {
           label="Votre mot de passe"
           placeholder="Nouveau mot de passe"
         />
-        <div class="form-group">
-          <label for="avatar">Votre avatar</label>
+        <div className="form-group">
+          <label htmlFor="avatar">Votre avatar</label>
           <input
             type="file"
-            class="form-control-file"
+            className="form-control-file"
             id="avatar"
             name="avatar"
             accept="image/*"
             onChange={e => handleFile(e)}
           />
         </div>
-        <div className="text-center">
-          <button type="submit" className="mt-4 btn btn-primary btn-lg">
+        <div className="text-right mt-5">
+          <Link to="/profil" exact path="/profil" className="btn btn-outline-secondary">
+            Retour au profil
+          </Link>
+          <button type="submit" className="btn btn-primary ml-4">
             Confirmer
           </button>
         </div>
@@ -98,4 +101,4 @@ DonorProfilUpdate.propTypes = {
   currentUser: PropTypes.object.isRequired,
 };
 
-export default DonorProfilUpdate;
+export default withRouter(DonorProfilUpdate);

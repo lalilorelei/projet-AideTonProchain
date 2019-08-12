@@ -174,7 +174,7 @@ class Donations extends React.Component {
                             </span>
                           </div>
                           {donation.additionalData.used === false && role === 'beneficiary' && (
-                            <div class="mt-4">
+                            <div className="mt-4">
                               <span className="text-muted">Référence à rappeler :</span>
                               <h4>{donation.additionalData.donationDisplayRef}</h4>
                             </div>

@@ -18,21 +18,21 @@ const Localisation = () => {
             <p>Merci d'accorder la permission ou de taper une adresse ci-dessous :</p>
           </div>
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default">
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text" id="inputGroup-sizing-default">
                 Votre adresse
               </span>
             </div>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Default"
               aria-describedby="inputGroup-sizing-default"
             />
           </div>
 
-          <button type="button" class="btn btn-primary btn-lg btn-block">
+          <button type="button" className="btn btn-primary btn-lg btn-block">
             Valider
           </button>
         </div>
