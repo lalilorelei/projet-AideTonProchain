@@ -5,6 +5,7 @@ import {
   recieveProducts,
   getDeletedProduct,
 } from 'store/reducers/product';
+import { confirmProductAdded } from 'store/reducers/product';
 
 import { DELETE_PRODUCT, getProducts } from 'store/actionMiddleware';
 
@@ -24,13 +25,13 @@ const productMiddleware = store => next => action => {
       break;
     case ADD_PRODUCT:
       console.log('ajout', action.data, action.token);
-      const id = decodedToken(action.token).id;
       axios
         .post(`http://95.142.175.77:3000/api/product/`, action.data, {
           headers: { Authorization: `Bearer ${action.token}` },
         })
         .then(response => {
           console.log(response);
+          store.dispatch(confirmProductAdded());
         })
         .catch(e => {
           console.log(e);
