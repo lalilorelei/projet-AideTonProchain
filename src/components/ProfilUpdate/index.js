@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProfilHeaderCss from 'components/Profil/ProfilHeaderCss';
+import ProfilHeader from 'components/Profil/ProfilHeader';
 import BeneficiaryProfilUpdate from './BeneficiaryProfilUpdate';
 import DonorProfilUpdate from './DonorProfilUpdate';
-import ShopkeeperProfilUpdateCss from './ShopkeeperProfilUpdateCss';
+import ShopkeeperProfilUpdate from './ShopkeeperProfilUpdate';
 import Error403 from 'components/Error403';
 import Nav from 'containers/Nav';
 
@@ -20,7 +20,7 @@ const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
             <div className="col col-md-10 col-lg-8 mx-auto bg-white py-md-medium">
               <div className="row">
                 <div className="col px-md-large">
-                  <ProfilHeaderCss role={role} user={currentUser} update={true} />
+                  <ProfilHeader role={role} user={currentUser} update={true} />
                   {role === 'beneficiary' && (
                     <BeneficiaryProfilUpdate
                       currentUser={currentUser}
@@ -30,7 +30,7 @@ const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
                     />
                   )}
                   {role === 'shopkeeper' && (
-                    <ShopkeeperProfilUpdateCss
+                    <ShopkeeperProfilUpdate
                       currentUser={currentUser}
                       role={role}
                       updateProfil={updateProfil}

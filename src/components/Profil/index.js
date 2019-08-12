@@ -5,7 +5,7 @@ import Donor from './Donor';
 import Beneficiary from './Beneficiary';
 import Shopkeeper from 'containers/Profil/shopkeeperDetails';
 import Error403 from 'components/Error403';
-import ProfilHeaderCss from 'components/Profil/ProfilHeaderCss';
+import ProfilHeader from 'components/Profil/ProfilHeader';
 import Nav from 'containers/Nav';
 
 import './profil.scss';
@@ -20,7 +20,7 @@ const Profil = ({ currentUser, role }) => {
             <div className="col col-md-10 col-lg-8 mx-auto bg-white py-medium">
               <div className="row">
                 <div className="col px-md-large">
-                  <ProfilHeaderCss
+                  <ProfilHeader
                     title={`${currentUser.user.username} (${role})`}
                     user={currentUser}
                     role={role}

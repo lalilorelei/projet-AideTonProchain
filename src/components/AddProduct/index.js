@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from 'components/Footer';
 import PropTypes from 'prop-types';
 import { serializeFormData } from 'utils';
 import { Link } from 'react-router-dom';
@@ -33,8 +34,21 @@ const AddProduct = ({ currentUser, submitAddProductForm, role, message }) => {
                   name="name"
                   required={true}
                 />
-                <Input label="Prix" type="text" className="form-control" id="price" name="price" required={true} />
-                <Input label="Description" type="text" className="form-control" id="description" name="description" />
+                <Input
+                  label="Prix"
+                  type="text"
+                  className="form-control"
+                  id="price"
+                  name="price"
+                  required={true}
+                />
+                <Input
+                  label="Description"
+                  type="text"
+                  className="form-control"
+                  id="description"
+                  name="description"
+                />
                 <button type="submit" className="mt-4 btn btn-primary btn-block">
                   Ajouter un produit
                 </button>
@@ -48,7 +62,9 @@ const AddProduct = ({ currentUser, submitAddProductForm, role, message }) => {
       </>
     );
   } else {
-    return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
+    return (
+      <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />
+    );
   }
 };
 

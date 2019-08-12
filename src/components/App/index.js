@@ -9,6 +9,7 @@ import Home from 'components/Home';
 import Localisation from 'components/Localisation';
 import Payment from 'components/Payment';
 import Error404 from 'components/Error404';
+import Footer from 'components/Footer';
 
 /* Containers */
 import Contact from 'containers/Contact';
@@ -141,6 +142,7 @@ const App = () => (
         status={404}
       />
     </Switch>
+    <Footer />
   </>
 );
 
