@@ -1,5 +1,5 @@
 import { SUBMIT_LOGIN, SUBMIT_REGISTER, DECONNEXION } from 'store/actionMiddleware';
-import { recieveCurrentUser, confirmRegister } from 'store/reducers/user';
+import { recieveCurrentUser, confirmRegister, confirmLogin } from 'store/reducers/user';
 import { alert } from 'store/reducers/utils';
 //import { decodedToken } from 'utils';
 
@@ -29,9 +29,7 @@ const logMiddleware = store => next => action => {
         .post('http://95.142.175.77:3000/api/connexion', action.data)
         .then(response => {
           store.dispatch(recieveCurrentUser(response.data));
-        })
-        .then(response => {
-          window.location = '/profil';
+          store.dispatch(confirmLogin());
         })
         .catch(e => {
           console.log(e.message);

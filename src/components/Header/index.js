@@ -26,7 +26,7 @@ class Header extends React.Component {
                     contract, do we or can you please change the color theme of the website
                   </p>
                   <a
-                    href="http://localhost:3000#comment-ca-marche"
+                    href={`${process.env.PUBLIC_URL}/#comment-ca-marche`}
                     className="btn btn-lg btn-custom-accent font-weight-bold mt-5 mb-4"
                   >
                     Découvrir comment ça marche

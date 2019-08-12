@@ -91,7 +91,7 @@ class Contact extends React.Component {
                     75014 - Paris
                   </span>
                   <a href="mailto:contact@aidetonprochain.com" className="d-block mt-3">
-                    contact@aidetonprochain.com
+                    contact@aider-son-prochain.fr
                   </a>
                 </div>
               </div>

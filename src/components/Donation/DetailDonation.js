@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
-import Footer from 'components/Footer';
 import backgroundDonations from 'assets/img/donations.jpg';
 import './donations.scss';
 

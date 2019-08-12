@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import Header from 'components/Header';
 import Alert from 'components/UtilsComponents/Alert';
@@ -11,6 +11,7 @@ import loginBackgroundImage from 'assets/img/welcome.jpg';
 
 class Login extends React.Component {
   componentDidMount() {
+    const { initLogin } = this.props;
     document.title = `Connexion - Aide ton prochain`;
   }
 
@@ -22,7 +23,8 @@ class Login extends React.Component {
   };
 
   render() {
-    const { alert } = this.props;
+    const { alert, isLogged, initLogin } = this.props;
+    initLogin();
     let registerConfirmMessage = undefined;
     if (this.props.location.state) {
       registerConfirmMessage = this.props.location.state.registerConfirmMessage;
@@ -30,6 +32,13 @@ class Login extends React.Component {
 
     return (
       <>
+        {isLogged === true && (
+          <Redirect
+            to={{
+              pathname: '/profil',
+            }}
+          />
+        )}
         <Header
           title="Heureux de vous revoir !"
           subtitle="Connectez-vous à votre compte"

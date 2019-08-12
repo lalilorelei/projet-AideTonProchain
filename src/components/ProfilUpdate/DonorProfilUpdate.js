@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from 'components/Input';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './profilUpdate.scss';
 
 const DonorProfilUpdate = ({ currentUser, updateProfile, role, token }) => {

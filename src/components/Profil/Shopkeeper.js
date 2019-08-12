@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from 'components/Footer';
 import ProductSelector from 'components/Shopkeeper/ProductSelector';
 // import { getProducts, getShopDetails, deleteProduct } from 'utils/shopkeeperUtils';
 

@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCoffee } from 'react-icons/fa';
-// import Media from 'react-media';
+
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 
 import Header from 'components/Header';
-import Footer from 'components/Footer';
 import './shopkeeper.scss';
 
 const ShopKeeper = ({ currentUser, shops }) => {
