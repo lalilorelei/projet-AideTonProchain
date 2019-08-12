@@ -35,6 +35,7 @@ class Beneficiary extends React.Component {
   // Avant d'afficher le composant on récupère la localisation via le navigateur et l'ensemble des shops
   componentDidMount = () => {
     initGeolocation(this);
+    document.title = `Personnes à proximité - Aide ton prochain`;
   };
 
   submitAskLocation = evt => {
@@ -53,7 +54,7 @@ class Beneficiary extends React.Component {
     const { beneficiaries, getBeneficiaries, role, token } = this.props;
     const { location } = this.state;
 
-    if (beneficiaries === undefined) {
+    if (beneficiaries === undefined && location) {
       getBeneficiaries(role, token, location, 9999);
     }
   }
@@ -61,6 +62,7 @@ class Beneficiary extends React.Component {
   render() {
     const { beneficiaries } = this.props;
     const { currentUser, role } = this.props;
+
     if (currentUser.user !== undefined && role !== 'shopkeeper') {
       return (
         <>
@@ -142,7 +144,9 @@ class Beneficiary extends React.Component {
                           <div className="card">
                             <img
                               className="card-img-top"
-                              src={`https://picsum.photos/300/200?var=${beneficiary.username}`}
+                              src={`http://aider-son-prochain.fr/projet-AideTonProchain-back/${
+                                beneficiary.avatar
+                              }`}
                               alt={beneficiary.username}
                             />
                             <div className="card-body">
@@ -194,7 +198,6 @@ class Beneficiary extends React.Component {
               </div>
             </div>
           ) : null}
-          <Footer />
         </>
       );
     } else {

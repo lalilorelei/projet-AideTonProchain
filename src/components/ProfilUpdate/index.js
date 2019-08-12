@@ -5,39 +5,53 @@ import BeneficiaryProfilUpdate from './BeneficiaryProfilUpdate';
 import DonorProfilUpdate from './DonorProfilUpdate';
 import ShopkeeperProfilUpdate from './ShopkeeperProfilUpdate';
 import Error403 from 'components/Error403';
+import Nav from 'containers/Nav';
 
 import './profilUpdate.scss';
+import '../Profil/profil.scss';
 
 const ProfilUpdate = ({ currentUser, role, updateProfil, token }) => {
+  document.title = `Editer mon profil - Aide ton prochain`;
   if (currentUser.user !== undefined) {
     return (
-      <div>
-        <ProfilHeader title={`${currentUser.user.username} (${role})`} user={currentUser} />
-        {role === 'beneficiary' && (
-          <BeneficiaryProfilUpdate
-            currentUser={currentUser}
-            role={role}
-            updateProfil={updateProfil}
-            token={token}
-          />
-        )}
-        {role === 'shopkeeper' && (
-          <ShopkeeperProfilUpdate
-            currentUser={currentUser}
-            role={role}
-            updateProfil={updateProfil}
-            token={token}
-          />
-        )}
-        {role === 'donor' && (
-          <DonorProfilUpdate
-            currentUser={currentUser}
-            role={role}
-            updateProfil={updateProfil}
-            token={token}
-          />
-        )}
-      </div>
+      <>
+        <Nav theme="light" />
+        <div className="container mt-5 edit-profile-container profile-update-container">
+          <div className="row">
+            <div className="col col-md-10 col-lg-8 mx-auto bg-white py-md-medium">
+              <div className="row">
+                <div className="col px-md-large">
+                  <ProfilHeader role={role} user={currentUser} update={true} />
+                  {role === 'beneficiary' && (
+                    <BeneficiaryProfilUpdate
+                      currentUser={currentUser}
+                      role={role}
+                      updateProfil={updateProfil}
+                      token={token}
+                    />
+                  )}
+                  {role === 'shopkeeper' && (
+                    <ShopkeeperProfilUpdate
+                      currentUser={currentUser}
+                      role={role}
+                      updateProfil={updateProfil}
+                      token={token}
+                    />
+                  )}
+                  {role === 'donor' && (
+                    <DonorProfilUpdate
+                      currentUser={currentUser}
+                      role={role}
+                      updateProfil={updateProfil}
+                      token={token}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   } else {
     return (

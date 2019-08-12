@@ -19,7 +19,6 @@ const Error403 = () => (
         </div>
       </div>
     </div>
-    <Footer />
   </>
 );
 

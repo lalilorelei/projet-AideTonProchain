@@ -146,8 +146,7 @@ class ShopkeeperDetails extends Component {
 
   render() {
     const { shop, products, role, beneficiariesSuggests, donationConfirmMessage } = this.props;
-    if (donationConfirmMessage.hasOwnProperty('message')) {
-    }
+    document.title = `${shop.shopkeeper_name} - Aide ton prochain`;
     const date = new Date();
     return (
       <>
@@ -252,7 +251,6 @@ class ShopkeeperDetails extends Component {
             </div>
           </div>
         </div>
-        <Footer />
       </>
     );
   }

@@ -25,11 +25,6 @@ class ProductSelector extends React.Component {
             {role === 'donor' && products.length > 0 && <>1 - Sélectionnez les produits que vous désirez offrir</>}
             {role === 'shopkeeper' && <>Liste des produits disponibles dans votre établissement</>}
           </p>
-          {role === 'shopkeeper' && (
-            <Link exact="true" to="/add-product" path="/add-product" className="btn btn-custom-accent">
-              Ajouter un produit
-            </Link>
-          )}
         </div>
         {products.length > 0 ? (
           <form
@@ -88,6 +83,7 @@ class ProductSelector extends React.Component {
                 </tfoot>
               )}
             </table>
+
             {role === 'donor' && (
               <>
                 <p className="font-weight-bold">2 - Affectez votre don à un bénéficiaire</p>
@@ -139,8 +135,16 @@ class ProductSelector extends React.Component {
             <EmptyState
               message="Cet établissement n'a aucun produit disponible pour le moment"
               link={{ label: 'Retour à la liste', url: '/shopkeeper' }}
+              className="mb-5"
             />
           )
+        )}
+        {role === 'shopkeeper' && (
+          <div className="text-center mb-5">
+            <Link exact="true" to="/add-product" path="/add-product" className="btn btn-outline-primary">
+              Ajouter un produit
+            </Link>
+          </div>
         )}
       </>
     );

@@ -10,7 +10,9 @@ import './login.scss';
 import loginBackgroundImage from 'assets/img/welcome.jpg';
 
 class Login extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    document.title = `Connexion - Aide ton prochain`;
+  }
 
   submitLoginForm = event => {
     const { submitLogin } = this.props;
@@ -79,8 +81,6 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-        <br/>
-        <Footer />
       </>
     );
   }

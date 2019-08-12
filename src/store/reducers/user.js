@@ -26,6 +26,7 @@ const user = (state = initialState, action = {}) => {
         ...state,
         isRegistered: true,
       };
+
     default:
       return state;
   }

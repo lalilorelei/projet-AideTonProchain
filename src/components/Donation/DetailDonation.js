@@ -32,7 +32,6 @@ const DetailDonation = ({ role }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

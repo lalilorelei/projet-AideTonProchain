@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ADD_PRODUCT, GET_PRODUCTS, recieveProducts, getDeletedProduct } from 'store/reducers/product';
+import { confirmProductAdded } from 'store/reducers/product';
 
 import { DELETE_PRODUCT, getProducts, EDIT_PRODUCT } from 'store/actionMiddleware';
 
@@ -39,6 +40,7 @@ const productMiddleware = store => next => action => {
         })
         .then(response => {
           console.log(response);
+          store.dispatch(confirmProductAdded());
         })
         .catch(e => {
           console.log(e);

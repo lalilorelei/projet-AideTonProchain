@@ -127,7 +127,6 @@ const ShopKeeper = ({ currentUser, shops }) => {
           </div>
         </div>
       )}
-      <Footer />
     </>
   );
 };

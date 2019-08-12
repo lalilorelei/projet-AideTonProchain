@@ -9,7 +9,13 @@ import Input from 'components/Input';
 import './addProduct.scss';
 import Error403 from 'components/Error403';
 
-const AddProduct = ({ currentUser, submitAddProductForm, role, message }) => {
+const AddProduct = ({
+  currentUser,
+  submitAddProductForm,
+  role,
+  message,
+  productAddedConfirmMessage,
+}) => {
   const submitNewProduct = event => {
     event.preventDefault();
     const newProductObject = serializeFormData(event.target);
@@ -24,7 +30,18 @@ const AddProduct = ({ currentUser, submitAddProductForm, role, message }) => {
 
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-md-6 col-lg-4">
+            <div className="col-md-6 col-lg-6 px-lg-5 bg-white py-5">
+              <h2 className="text-center mb-3">Ajout d'un nouveau produit à vore catalogue</h2>
+              {productAddedConfirmMessage && (
+                <div className={`alert alert-${productAddedConfirmMessage.type}`}>
+                  {productAddedConfirmMessage.message}
+                  {productAddedConfirmMessage.link && (
+                    <a href={productAddedConfirmMessage.link.url} className="alert-link">
+                      {' ' + productAddedConfirmMessage.link.label}
+                    </a>
+                  )}
+                </div>
+              )}
               <form className="mt-4" onSubmit={submitNewProduct}>
                 <Input
                   label="Nom du produit"
@@ -34,24 +51,39 @@ const AddProduct = ({ currentUser, submitAddProductForm, role, message }) => {
                   name="name"
                   required={true}
                 />
-                <Input label="Prix" type="text" className="form-control" id="price" name="price" required={true} />
-                <Input label="Description" type="text" className="form-control" id="description" name="description" />
-                <button type="submit" className="mt-4 btn btn-primary btn-block">
-                  Ajouter un produit
-                </button>
-                <Link to="/profil" exact path="/profil">
-                  Retour au profil
-                </Link>
+                <Input
+                  label="Prix"
+                  type="text"
+                  className="form-control"
+                  id="price"
+                  name="price"
+                  required={true}
+                />
+                <Input
+                  label="Description"
+                  type="text"
+                  className="form-control"
+                  id="description"
+                  name="description"
+                />
+                <div className="mt-5 text-right">
+                  <Link to="/profil" exact path="/profil" className="btn btn-outline-secondary">
+                    Retour au profil
+                  </Link>
+                  <button type="submit" className="btn btn-primary ml-4">
+                    Ajouter un produit
+                  </button>
+                </div>
               </form>
             </div>
           </div>
         </div>
-        <br/>
-        <Footer />
       </>
     );
   } else {
-    return <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />;
+    return (
+      <Error403 message="Vous ne pouvez pas accéder à cette page, vous n'êtes pas connectés" />
+    );
   }
 };
 
