@@ -24,7 +24,7 @@ const Register = props => {
   const submitRegisterForm = event => {
     event.preventDefault();
 
-    let localisation = { lat: '', lon: '', address: '' };
+    let localisation = { latitude: '', longitude: '', address: '' };
     const jsonObject = serializeFormData(event.target);
 
     const { streetAddress, postCode, city } = event.target;
@@ -49,8 +49,8 @@ const Register = props => {
           if (response.data[0] !== undefined) {
             const { lat, lon } = response.data[0];
             localisation = {
-              lat,
-              lon,
+              latitude: Number(lat),
+              longitude: Number(lon),
               address: stringAddress,
             };
             if (typeof jsonObject.categories !== 'object') {
