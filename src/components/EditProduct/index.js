@@ -92,7 +92,7 @@ class EditProduct extends React.Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor={description}>Description</label>
-                  <inpu
+                  <input
                     type="text"
                     className="form-control"
                     id="description"

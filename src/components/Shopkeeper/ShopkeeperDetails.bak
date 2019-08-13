@@ -9,16 +9,20 @@ import shopKeeperBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import EmptyState from 'components/UtilsComponents/EmptyState';
 
 class ShopkeeperDetails extends Component {
-  state = {
-    selectedProductsTotal: 0,
-    donation: {
-      shopkeeper: this.props.match.params.id,
-      beneficiary: '',
-      donor: this.props.currentUser.user._id,
-      products: [],
-    },
-    donationIsReady: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedProductsTotal: 0,
+      donation: {
+        shopkeeper: this.props.match.params.id,
+        beneficiary: '',
+        donor: this.props.currentUser.user._id,
+        products: [],
+      },
+      donationIsReady: false,
+    };
+    this.inputSuggestRef = React.createRef();
+  }
 
   componentDidMount() {
     const { token, role, getShop, getProducts } = this.props;
@@ -28,19 +32,16 @@ class ShopkeeperDetails extends Component {
   }
 
   componentDidUpdate() {
-    const input = document.querySelector('#beneficiary-search-input');
-    if (input) {
-      input.addEventListener('blur', function() {
-        setTimeout(function() {
-          document.querySelector('.suggests').classList.remove('d-block');
-          document.querySelector('.suggests').classList.add('d-none');
-        }, 50);
-      });
-    }
+    this.inputSuggestRef.current.addEventListener('blur', function() {
+      setTimeout(function() {
+        document.querySelector('.suggests').classList.remove('d-block');
+        document.querySelector('.suggests').classList.add('d-none');
+      }, 50);
+    });
   }
 
   clickSuggest = evt => {
-    document.querySelector('#beneficiary-search-input').value = evt.target.innerHTML;
+    this.inputSuggestRef.current.value = evt.target.innerHTML;
     this.setState(
       {
         ...this.state,
@@ -253,7 +254,7 @@ class ShopkeeperDetails extends Component {
                             <tfoot>
                               <tr>
                                 <th scope="row">Total</th>
-                                <td>{this.state.sele}€</td>
+                                <td>{this.state.selectedProductsTotal}€</td>
                                 <td />
                               </tr>
                             </tfoot>
@@ -281,6 +282,7 @@ class ShopkeeperDetails extends Component {
                                       placeholder="ex : Jane Doe"
                                       aria-describedby="beneficiaryHelp"
                                       onChange={this.inputSearchBeneficiary}
+                                      ref={this.inputSuggestRef}
                                     />
                                     <div className="suggests d-none">
                                       {beneficiariesSuggests.map(suggest => {
@@ -308,6 +310,7 @@ class ShopkeeperDetails extends Component {
                                 className="btn btn-custom-accent ml-auto btn-lg"
                                 name="submitProductSelector"
                                 value="Valider la donation"
+                                disabled={!this.state.isDonationReady}
                               />
                             </div>
                           </>
