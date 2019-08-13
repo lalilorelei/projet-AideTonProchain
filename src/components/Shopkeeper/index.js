@@ -74,7 +74,7 @@ class Shopkeeper extends React.Component {
   }*/
 
   getShops = (latitude, longitude, km) => {
-    console.log('get shops');
+    console.log('get shops', this.props);
     axios
       .post(
         `http://95.142.175.77:3000/api/${this.props.role}/shopkeepers-distance`,
@@ -142,11 +142,7 @@ class Shopkeeper extends React.Component {
     if (currentUser.user !== undefined && role !== 'shopkeeper') {
       return (
         <>
-          <Header
-            title="Commerces à proximité"
-            backgroundImage={shopKeepersBackgroundImage}
-            theme="dark"
-          />
+          <Header title="Commerces à proximité" backgroundImage={shopKeepersBackgroundImage} theme="dark" />
           {this.state.isGeoLocAccessible && this.state.location.latitude === 0 ? (
             <EmptyState
               className="mt-5"
@@ -157,8 +153,8 @@ class Shopkeeper extends React.Component {
               <div className="row">
                 <div className="col">
                   <p>
-                    Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre
-                    navigateur ou renseigner une adresse.
+                    Votre géolocalisation n'a pas pu être trouvée, veuillez l'autoriser dans votre navigateur ou
+                    renseigner une adresse.
                   </p>
                   <form onSubmit={this.submitAskLocation}>
                     <Input
@@ -174,12 +170,7 @@ class Shopkeeper extends React.Component {
                         L'adresse renseignée n'est pas valide, veuillez réessayer
                       </p>
                     )}
-                    <input
-                      type="submit"
-                      value="valider"
-                      className="btn btn-custom-accent"
-                      name="submitAskLocation"
-                    />
+                    <input type="submit" value="valider" className="btn btn-custom-accent" name="submitAskLocation" />
                   </form>
                 </div>
               </div>
@@ -221,9 +212,7 @@ class Shopkeeper extends React.Component {
                         <div className="card">
                           <img
                             className="card-img-top"
-                            src={
-                              shop.avatar ? `data:image/jpg;base64,${shop.avatar}` : defaultAvatar
-                            }
+                            src={shop.avatar ? `data:image/jpg;base64,${shop.avatar}` : defaultAvatar}
                             alt={shop.shopkeeper_name}
                           />
                           <div className="card-body">

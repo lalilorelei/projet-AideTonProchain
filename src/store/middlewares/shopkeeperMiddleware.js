@@ -5,6 +5,7 @@ import { GET_SHOPS, GET_SHOP } from 'store/actionMiddleware';
 const shopkeeperMiddleware = store => next => action => {
   switch (action.type) {
     case GET_SHOPS:
+      console.log('action', action);
       axios
         .get(`http://95.142.175.77:3000/api/${action.role}/shopkeepers`, {
           headers: { Authorization: `Bearer ${action.token}` },

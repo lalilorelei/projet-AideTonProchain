@@ -44,6 +44,7 @@ class Shopkeeper extends React.Component {
     const shop = this.props.currentUser.user;
 
     const date = new Date();
+    console.log(shop);
 
     return (
       <>
