@@ -17,7 +17,7 @@ class ProductSelector extends React.Component {
       clickSuggest,
       submitDonation,
     } = this.props;
-
+    console.log(products);
     return (
       <>
         <div className="mb-2 table-header d-flex justify-content-between align-items-center">
@@ -57,7 +57,12 @@ class ProductSelector extends React.Component {
               <tbody>
                 {products.map(product => (
                   <tr className="product-row" key={product._id}>
-                    <td>{product.name}</td>
+                    <td>
+                      {product.name}
+                      {product.description && (
+                        <small class="d-block text-muted">{product.description}</small>
+                      )}
+                    </td>
                     {role !== 'beneficiary' && (
                       <>
                         <td>{product.price}€</td>
