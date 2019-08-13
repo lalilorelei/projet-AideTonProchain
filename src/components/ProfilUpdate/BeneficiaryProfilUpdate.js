@@ -80,37 +80,13 @@ const BeneficiaryProfilUpdate = ({ currentUser, updateProfile, role, token }) =>
           label="Quartier/arrondissement"
           placeholder="Mon quartier / où me trouver ?"
         />
-
-        <label className="form-group-label" htmlFor="bio">
-          Ma biographie
-        </label>
-        <textarea
-          className="form-control mt-3"
-          name="message"
-          id="bio"
-          aria-label="With textarea"
-          rows="5"
-          placeholder="Modifier ma biographie"
-        />
-        <label className="form-group-label mt-3" htmlFor="need">
-          Mes besoins
-        </label>
-        <textarea
-          className="form-control mt-2"
-          name="need"
-          id="need"
-          aria-label="With textarea"
-          rows="5"
-          placeholder="Modifer mes besoins"
-        />
-        <br />
         <Input
           type="text"
           className="form-control"
-          name="place"
-          label="Où me rencontrer"
-          id="editmyplace"
-          placeholder="Où me rencontrer"
+          name="description"
+          label="Description"
+          id="description"
+          placeholder="Description"
         />
         <div className="form-group">
           <label htmlFor="avatar">Votre avatar</label>
