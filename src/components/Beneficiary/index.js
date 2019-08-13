@@ -14,7 +14,6 @@ import EmptyState from 'components/UtilsComponents/EmptyState';
 import Error403 from 'components/Error403';
 
 /* utils & data */
-import { initGeolocation, geoCode } from 'utils/geolocationUtils';
 import profileSubtitles from 'data/profileSubtitles';
 import defaultAvatar from 'assets/img/default-avatar.png';
 

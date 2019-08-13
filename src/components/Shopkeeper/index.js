@@ -13,9 +13,6 @@ import Input from 'components/Input';
 import EmptyState from 'components/UtilsComponents/EmptyState';
 import Error403 from 'components/Error403';
 
-/* utils */
-import { initGeolocation, geoCode } from 'utils/geolocationUtils';
-
 /* medias */
 import shopKeepersBackgroundImage from 'assets/img/background-shopkeepers.jpg';
 import defaultAvatar from 'assets/img/default-avatar.png';
