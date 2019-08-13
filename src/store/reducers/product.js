@@ -33,7 +33,7 @@ const product = (state = initialState, action = {}) => {
           message: 'Nouveau produit ajouté !',
           link: {
             label: ' Retour au profil',
-            url: '/profil',
+            url: `${process.env.PUBLIC_URL}/profil`,
           },
         },
       };

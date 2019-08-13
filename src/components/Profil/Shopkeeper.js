@@ -99,13 +99,26 @@ class Shopkeeper extends React.Component {
                     <td className="px-2">
                       {this.openingHours(shop.opening_hours.tuesday.morning_open)}{' '}
                       {this.openingHours(shop.opening_hours.tuesday.morning_close) !== '' && (
+<<<<<<< HEAD
                         <span> / {this.openingHours(shop.opening_hours.tuesday.morning_close)}</span>
+=======
+                        <span>
+                          {' '}
+                          / {this.openingHours(shop.opening_hours.tuesday.morning_close)}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {' - '}
                     </td>
                     <td>
                       {this.openingHours(shop.opening_hours.tuesday.afternoon_open) !== '' && (
+<<<<<<< HEAD
                         <span>{this.openingHours(shop.opening_hours.tuesday.afternoon_open)} / </span>
+=======
+                        <span>
+                          {this.openingHours(shop.opening_hours.tuesday.afternoon_open)} /{' '}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {this.openingHours(shop.opening_hours.tuesday.afternoon_close)}
                     </td>
@@ -115,13 +128,26 @@ class Shopkeeper extends React.Component {
                     <td className="px-2">
                       {this.openingHours(shop.opening_hours.wednesday.morning_open)}
                       {this.openingHours(shop.opening_hours.wednesday.morning_close) !== '' && (
+<<<<<<< HEAD
                         <span> / {this.openingHours(shop.opening_hours.wednesday.morning_close)}</span>
+=======
+                        <span>
+                          {' '}
+                          / {this.openingHours(shop.opening_hours.wednesday.morning_close)}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {' - '}
                     </td>
                     <td>
                       {this.openingHours(shop.opening_hours.wednesday.afternoon_open) !== '' && (
+<<<<<<< HEAD
                         <span>{this.openingHours(shop.opening_hours.wednesday.afternoon_open)} / </span>
+=======
+                        <span>
+                          {this.openingHours(shop.opening_hours.wednesday.afternoon_open)} /{' '}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {this.openingHours(shop.opening_hours.wednesday.afternoon_close)}
                     </td>
@@ -131,13 +157,26 @@ class Shopkeeper extends React.Component {
                     <td className="px-2">
                       {this.openingHours(shop.opening_hours.thursday.morning_open)}
                       {this.openingHours(shop.opening_hours.thursday.morning_close) !== '' && (
+<<<<<<< HEAD
                         <span> / {this.openingHours(shop.opening_hours.thursday.morning_close)}</span>
+=======
+                        <span>
+                          {' '}
+                          / {this.openingHours(shop.opening_hours.thursday.morning_close)}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {' - '}
                     </td>
                     <td>
                       {this.openingHours(shop.opening_hours.thursday.afternoon_open) !== '' && (
+<<<<<<< HEAD
                         <span>{this.openingHours(shop.opening_hours.thursday.afternoon_open)} / </span>
+=======
+                        <span>
+                          {this.openingHours(shop.opening_hours.thursday.afternoon_open)} /{' '}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {this.openingHours(shop.opening_hours.thursday.afternoon_close)}
                     </td>
@@ -153,7 +192,13 @@ class Shopkeeper extends React.Component {
                     </td>
                     <td>
                       {this.openingHours(shop.opening_hours.friday.afternoon_open) !== '' && (
+<<<<<<< HEAD
                         <span>{this.openingHours(shop.opening_hours.friday.afternoon_open)} / </span>
+=======
+                        <span>
+                          {this.openingHours(shop.opening_hours.friday.afternoon_open)} /{' '}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {this.openingHours(shop.opening_hours.friday.afternoon_close)}
                     </td>
@@ -163,13 +208,26 @@ class Shopkeeper extends React.Component {
                     <td className="px-2">
                       {this.openingHours(shop.opening_hours.saturday.morning_open)}
                       {this.openingHours(shop.opening_hours.saturday.morning_close) !== '' && (
+<<<<<<< HEAD
                         <span> / {this.openingHours(shop.opening_hours.saturday.morning_close)}</span>
+=======
+                        <span>
+                          {' '}
+                          / {this.openingHours(shop.opening_hours.saturday.morning_close)}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {' - '}
                     </td>
                     <td>
                       {this.openingHours(shop.opening_hours.saturday.afternoon_open) !== '' && (
+<<<<<<< HEAD
                         <span>{this.openingHours(shop.opening_hours.saturday.afternoon_open)} / </span>
+=======
+                        <span>
+                          {this.openingHours(shop.opening_hours.saturday.afternoon_open)} /{' '}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {this.openingHours(shop.opening_hours.saturday.afternoon_close)}
                     </td>
@@ -185,7 +243,13 @@ class Shopkeeper extends React.Component {
                     </td>
                     <td>
                       {this.openingHours(shop.opening_hours.sunday.afternoon_open) !== '' && (
+<<<<<<< HEAD
                         <span>{this.openingHours(shop.opening_hours.sunday.afternoon_open)} / </span>
+=======
+                        <span>
+                          {this.openingHours(shop.opening_hours.sunday.afternoon_open)} /{' '}
+                        </span>
+>>>>>>> f22e437efcc0dedbaff3a75d7421549a81d87cd4
                       )}
                       {this.openingHours(shop.opening_hours.sunday.afternoon_close)}
                     </td>

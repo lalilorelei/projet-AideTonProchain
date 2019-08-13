@@ -35,9 +35,13 @@ const AddProduct = ({
                 <div className={`alert alert-${productAddedConfirmMessage.type}`}>
                   {productAddedConfirmMessage.message}
                   {productAddedConfirmMessage.link && (
-                    <a href={productAddedConfirmMessage.link.url} className="alert-link">
+                    <Link
+                      to={productAddedConfirmMessage.link.url}
+                      path={productAddedConfirmMessage.link.url}
+                      className="alert-link"
+                    >
                       {' ' + productAddedConfirmMessage.link.label}
-                    </a>
+                    </Link>
                   )}
                 </div>
               )}
@@ -66,7 +70,11 @@ const AddProduct = ({
                   name="description"
                 />
                 <div className="mt-5 text-right">
-                  <Link to="/profil" exact path="/profil" className="btn btn-outline-secondary">
+                  <Link
+                    to={`${process.env.PUBLIC_URL}/profil`}
+                    path={`${process.env.PUBLIC_URL}/profil`}
+                    className="btn btn-outline-secondary"
+                  >
                     Retour au profil
                   </Link>
                   <button type="submit" className="btn btn-primary ml-4">
