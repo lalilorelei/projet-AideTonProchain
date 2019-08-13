@@ -3,13 +3,14 @@ import { INIT_REGISTER, INIT_PROFILE_UPDATE, INIT_LOGIN } from 'store/actionMidd
 const initialState = {
   currentUser: {},
   isRegistered: false,
-  profileUpdated: false,
+  profileUpdated: null,
   isLogged: false,
 };
 
 export const RECIEVE_CURRENT_USER = 'RECIEVE_CURRENT_USER';
 export const CONFIRM_REGISTER = 'CONFIRM_REGISTER';
 export const CONFIRM_PROFILE_UPDATED = 'CONFIRM_PROFILE_UPDATED';
+export const ERROR_PROFILE_UPDATED = 'ERROR_PROFILE_UPDATED';
 export const CONFIRM_LOGIN = 'CONFIRM_LOGIN';
 
 const user = (state = initialState, action = {}) => {
@@ -33,12 +34,17 @@ const user = (state = initialState, action = {}) => {
     case INIT_PROFILE_UPDATE:
       return {
         ...state,
-        profileUpdated: false,
+        profileUpdated: null,
       };
     case CONFIRM_PROFILE_UPDATED:
       return {
         ...state,
         profileUpdated: true,
+      };
+    case ERROR_PROFILE_UPDATED:
+      return {
+        ...state,
+        profileUpdated: false,
       };
     case INIT_LOGIN:
       return {
@@ -65,6 +71,9 @@ export const initRegister = () => ({
 });
 export const confirmRegister = () => ({
   type: CONFIRM_REGISTER,
+});
+export const errorProfileUpdated = () => ({
+  type: ERROR_PROFILE_UPDATED,
 });
 
 export const initProfileUpdate = () => ({

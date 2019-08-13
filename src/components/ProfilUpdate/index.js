@@ -24,7 +24,7 @@ const ProfilUpdate = ({
   if (currentUser.user !== undefined) {
     return (
       <>
-        {profileUpdated && (
+        {profileUpdated === true && (
           <Redirect
             to={{
               pathname: '/profil',
@@ -32,6 +32,19 @@ const ProfilUpdate = ({
                 profileUpdatedConfirmMessage: {
                   type: 'success',
                   message: 'Profil mis à jour !',
+                },
+              },
+            }}
+          />
+        )}
+        {profileUpdated === false && (
+          <Redirect
+            to={{
+              pathname: '/profil',
+              state: {
+                profileUpdatedConfirmMessage: {
+                  type: 'danger',
+                  message: "Une erreur est survenue lors de l'édition du profil",
                 },
               },
             }}

@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { UPDATE_PROFIL } from 'store/actionMiddleware';
-import { recieveCurrentUser, confirmProfileUpdated } from 'store/reducers/user';
+import {
+  recieveCurrentUser,
+  confirmProfileUpdated,
+  errorProfileUpdated,
+} from 'store/reducers/user';
 
 const shopkeeperMiddleware = store => next => action => {
   switch (action.type) {
@@ -19,6 +23,7 @@ const shopkeeperMiddleware = store => next => action => {
         })
         .catch(e => {
           console.log('Impossible de mettre à jour le profil', e);
+          store.dispatch(errorProfileUpdated());
         });
       if (action.img !== null) {
         axios

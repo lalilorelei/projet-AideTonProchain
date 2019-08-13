@@ -44,7 +44,7 @@ class Home extends React.Component {
               <div className="col">
                 <h2>Comment ça marche ?</h2>
                 <ol id="steps-counter">
-                  <li>Je vais la rencontre d'une personne</li>
+                  <li>Je vais à la rencontre d'une personne</li>
                   <li>Je lui fais un don chez un commerçant via le site</li>
                   <li>La personne consomme ce don quand elle en a envie</li>
                 </ol>
