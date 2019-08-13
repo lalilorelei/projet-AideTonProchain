@@ -71,7 +71,7 @@ class Shopkeeper extends React.Component {
   }*/
 
   getShops = (latitude, longitude, km) => {
-    console.log('get shops');
+    console.log('get shops', this.props);
     axios
       .post(
         `http://95.142.175.77:3000/api/${this.props.role}/shopkeepers-distance`,
