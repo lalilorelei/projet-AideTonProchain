@@ -1,18 +1,44 @@
 @import 'vars.scss';
-
-body{
+#root {
+  min-height: 100vh;
+}
+html,
+body {
+  height: 100%;
+}
+body {
   font-family: Roboto, sans-serif;
   color: #232323;
+  background-color: #f9f8fa;
 }
 
 /* spacing */
-.py-6{
+@media (min-width: 768px) {
+  .px-md-large {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+  .py-md-medium {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.py-6 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.px-6 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+.py-medium {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
 
 /* text */
-.text-small{
+.text-small {
   font-size: 90%;
 }
 p {
@@ -20,32 +46,40 @@ p {
   line-height: 1.7;
 }
 
-h2{
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 3rem;
-  margin-top: 1.7rem;
+.text-accent {
+  color: $accent-color;
 }
-
-.text-accent{color: $accent-color;}
-a.text-accent:hover{color:darken($accent-color, 5%);}
+a.text-accent:hover {
+  color: darken($accent-color, 5%);
+}
 
 /* buttons */
 
-.btn-custom-orange{
+.btn-custom-accent {
   color: #ffffff;
   background-color: $accent-color;
   border-color: $accent-color;
-  &:hover{
+  &:hover {
     color: #ffffff;
     background-color: darken($accent-color, 3%);
-    border-color:darken($accent-color, 3%);
+    border-color: darken($accent-color, 3%);
   }
 }
 
 /* img */
 
-img{
+img {
   max-width: 100%;
+}
+
+/* Navbar */
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 600;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
 }

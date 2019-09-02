@@ -1,0 +1,51 @@
+.card.donation {
+  .card-header {
+    cursor: pointer;
+  }
+  .donation-metas {
+    flex: 3;
+  }
+  .donation-value {
+    flex: 1;
+  }
+  h4,
+  .donation-value {
+    font-size: 30px;
+  }
+  table {
+    tr {
+      td {
+        padding: 0;
+        &.product-item {
+          padding-right: 2rem;
+        }
+      }
+    }
+    tfoot {
+      border-top: 1px solid #888;
+      td {
+        padding: 0.25rem 0;
+      }
+    }
+  }
+  .card-body {
+    a {
+      color: #232323;
+    }
+    table {
+      width: 50%;
+      margin: 0 auto;
+      tr {
+        border-top: 1px solid #eee;
+        td {
+          padding: 0.75rem 0;
+        }
+      }
+      tbody {
+        tr:first-child {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+}

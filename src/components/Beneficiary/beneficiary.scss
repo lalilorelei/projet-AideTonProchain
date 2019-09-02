@@ -1,0 +1,21 @@
+.inline-form-label {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.beneficiary-list,
+.shopkeeper-list {
+  .card-title {
+    text-transform: capitalize;
+  }
+  .distance {
+    font-size: 12px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    margin-left: -8px;
+    &.border-none {
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+nav{
+    padding: 1rem !important;
+    .nav-link{
+        padding: .5rem 1rem !important;
+    }
+    .dropdown-menu{
+        background-color: transparent;
+    }
+}
+
+
+@media screen and (max-width: 991px) {
+    nav {
+        background-color: rgba(255,255,255,.1);
+        .dropdown-menu{
+            border: none;
+            a{
+                color: #fff;
+            }
+        }
+    }
+  }
+
+@media screen and (min-width: 992px) {
+  .dropdown-menu{
+    right: 0;
+    left: auto;
+  }
+}
